@@ -1,140 +1,155 @@
-import profilePhoto from '../../assets/profile-pic.jpg';
-import { AnimatePresence, motion, useInView } from 'framer-motion';
-import HtmlElement from './HtmlElement';
-import { useEffect, useRef, useState } from 'react';
-import ContactDetails from './ContactDetails';
-import codePhoto from '../../assets/code-editor.png';
-import ChevronButton from './ChevronButton';
+import profilePhoto from "../../assets/profile-pic.jpg";
+import { motion, useInView } from "framer-motion";
+import HtmlElement from "./HtmlElement";
+import { forwardRef, useEffect, useState } from "react";
+import codePhoto from "../../assets/code-editor3.png";
+import ChevronButton from "./ChevronButton";
+import Tilt from "react-parallax-tilt";
+import { BottomMenu } from "./BottomMenu";
 
 const variants = {
-  hide: { opacity: 0.5 },
+  hide: { opacity: 0, x: -40 },
   show: {
-    opacity: 1,
-    transition: { duration: 0.2, delay: 0.2, staggerChildren: 0.5 },
-  },
-};
-
-const childrenVariants = {
-  hide: { opacity: 0, x: -100 },
-  show: {
-    opacity: 1,
+    opacity: [0, 0.2, 0.25, 1],
     x: 0,
-    transition: { duration: 0.5, delay: 1 },
+    transition: {
+      duration: 1,
+      delay: 0.5,
+      ease: "easeOut",
+      staggerChildren: 0.9,
+    },
   },
 };
 
-const Home = ({ makeActive, goToSection }) => {
-  const [viewContactDetails, setViewContactDetails] = useState(false);
-
-  const ref = useRef();
-
+const Home = forwardRef(({ makeActive, goToSection }, ref) => {
+  const [zoomInText, setZoomInText] = useState(false);
   const isInView = useInView(ref);
 
   useEffect(() => {
     if (isInView) {
-      makeActive('home');
+      makeActive("home");
     }
   }, [isInView]);
 
   return (
-    <motion.div
-      layout="position"
-      className="flex flex-col min-h-screen gap-10 py-8 justify-evenly "
-    >
-      <img
-        src={codePhoto}
-        alt=""
-        className="absolute z-0 object-cover w-auto h-1/3 top-16 right-12 opacity-20 brightness-50"
-      />
-      <motion.div
-        layout
-        className="flex flex-col-reverse items-center flex-grow gap-4 xl:gap-16 xl:flex-row"
-      >
-        <motion.div
-          layout
-          variants={variants}
-          whileInView="show"
-          initial="hide"
-          className="flex flex-col gap-0 py-12 pl-8 pr-16 roboto"
-        >
-          <HtmlElement variants={childrenVariants} tag={'header'}>
-            <HtmlElement tag={'h3'}>
-              <motion.h3
-                className="text-lg md:text-xl xl:text-2xl opacity-60 text-primary"
-                ref={ref}
-              >
-                Hello, my name is
-              </motion.h3>
-            </HtmlElement>
-            <HtmlElement variants={childrenVariants} tag={'h1'}>
-              <motion.h3
-                ref={ref}
-                className="text-2xl font-semibold md:text-5xl xl:text-7xl text-neutral-content brightness-125"
-              >
-                Raul Vărzar
-              </motion.h3>
-            </HtmlElement>
-          </HtmlElement>
-        </motion.div>
-        <motion.img
-          initial={{ opacity: 0, x: 100, scale: 0.9 }}
-          whileInView={{ opacity: 1, x: 0, scale: 1 }}
-          transition={{ delay: 0.2, duration: 0.5, ease: 'easeOut' }}
-          src={profilePhoto}
-          className="relative object-cover w-64 h-64 border-8 rounded-full shadow-lg border-base-100"
-          alt="profile"
-        />
-      </motion.div>
-
-      <AnimatePresence mode="sync">
-        {viewContactDetails && (
-          <ContactDetails
-            key={viewContactDetails}
-            exit={{ opacity: 0 }}
-            closeDetails={() => setViewContactDetails(false)}
-          />
-        )}
-      </AnimatePresence>
+    <motion.section className="grid w-full h-screen text-4xl section place-content-center text-info snap-center ">
       <motion.div
         layout="position"
-        className="flex flex-row items-center flex-none gap-6 py-6 mx-auto"
+        className="flex flex-col min-h-screen py-8 gap-x-10 justify-evenly "
       >
-        <motion.button
+        <motion.img
+          src={codePhoto}
+          alt="code"
           initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.3, duration: 0.6, ease: 'anticipate' }}
-          className="px-5 py-2 text-xl font-light tracking-wider transition-all duration-300 bg-transparent rounded-md text-base-content hover:bg-base-100 hover:scale-95"
+          whileInView={{ opacity: 0.25 }}
+          transition={{ delay: 1, duration: 0.9, ease: "easeOut" }}
+          className="absolute z-0 object-cover w-auto h-1/2 top-20 right-12 brightness-50"
+        />
+        <motion.div
+          layout
+          className="flex flex-col-reverse items-center content-center justify-center flex-grow gap-4 align-middle xl:flex-row"
         >
-          Github <i className="fa-brands fa-github"></i>
-        </motion.button>
+          <Tilt
+            tiltReverse={true}
+            transitionEasing="cubic-bezier(.03,.98,.52,.99)"
+            tiltMaxAngleX={3}
+            tiltMaxAngleY={3}
+            perspective={1000}
+            onEnter={() => setZoomInText(true)}
+            onLeave={() => setZoomInText(false)}
+          >
+            <motion.div
+              layout
+              ref={ref}
+              className="relative flex flex-col max-w-5xl gap-0 py-2 sm:px-4 md:pr-16 md:pl-10 xl:py-20 h-fit xl:pl-12 xl:pr-20 2xl:pr-36 roboto "
+            >
+              <HtmlElement
+                tag={"header"}
+                blur={zoomInText}
+                variants={variants}
+                whileInView="show"
+                initial="hide"
+              >
+                <HtmlElement tag={"h3"} blur={zoomInText} variants={variants}>
+                  <motion.h3
+                    variants={variants}
+                    className={
+                      "text-lg md:text-xl xl:text-2xl opacity-60 z-50 text-primary transition-all duration-500 ease-[cubic-bezier(.03,.98,.52,.99)]  " +
+                      (zoomInText
+                        ? " scale-115 font-semibold opacity-100"
+                        : " opacity-60")
+                    }
+                  >
+                    Hello, my name is
+                  </motion.h3>
+                </HtmlElement>
+                <HtmlElement variants={variants} tag={"h1"} blur={zoomInText}>
+                  <motion.h3
+                    variants={variants}
+                    className={
+                      "text-4xl font-semibold md:text-5xl xl:6xl 2xl:text-7xl z-50 text-neutral-content brightness-150 transition-all duration-500  ease-[cubic-bezier(.03,.98,.52,.99)] " +
+                      (zoomInText
+                        ? " scale-120 font-bold opacity-100 brightness-125"
+                        : " opacity-75")
+                    }
+                  >
+                    Raul Vărzar
+                  </motion.h3>
+                </HtmlElement>
+              </HtmlElement>
+              <HtmlElement
+                blur={zoomInText}
+                tag={"p"}
+                whileInView="show"
+                initial="hide"
+                variants={variants}
+              >
+                <motion.h3
+                  variants={variants}
+                  className={
+                    "text-lg md:text-xl font-thin xl:text-2xl z-50 text-neutral-content transition-all duration-500 ease-[cubic-bezier(.03,.98,.52,.99)]  " +
+                    (zoomInText
+                      ? " scale-105 font-semibold opacity-90"
+                      : " opacity-60")
+                  }
+                >
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                  Provident odio sequi ut soluta.
+                </motion.h3>
+              </HtmlElement>
+            </motion.div>
+          </Tilt>
+          <motion.div
+            initial={{ opacity: 0, x: 100, scale: 0.9 }}
+            whileInView={{
+              opacity: 1,
+              x: 0,
+              scale: 1,
+              transition: { delay: 1, duration: 0.5, ease: "easeOut" },
+            }}
+            className="z-50"
+          >
+            <div className="w-52 h-60 z-50 overflow-hidden group sm:w-64 sm:h-72 border-8 delay-100 shadow-lg rounded-3xl sm:rounded-[60px] hover:rounded-3xl border-base-100 transition-all duration-500 ease-in-out hover:scale-105">
+              <img
+                src={profilePhoto}
+                className="object-cover transition-all duration-500 ease-in-out delay-100 scale-110 group-hover:scale-100"
+                alt="profile-pic"
+              />
+            </div>
+          </motion.div>
+        </motion.div>
 
-        <motion.button
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.5, duration: 0.6, ease: 'anticipate' }}
-          onClick={() => setViewContactDetails(true)}
-          className="px-5 py-2 text-lg font-light tracking-wider uppercase transition-all duration-300 bg-transparent border-4 rounded-md text-base-content border-base-100 hover:bg-base-200 hover:scale-95 hover:border-base-200"
+        <BottomMenu goToSection={goToSection} />
+        <motion.div
+          initial={{ opacity: 0, y: 50, scale: 0.4 }}
+          whileInView={{ opacity: 1, y: 0, scale: 1 }}
+          transition={{ delay: 0.4, duration: 0.8, ease: "easeInOut" }}
         >
-          Contact me
-        </motion.button>
-        <motion.button
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          transition={{ delay: 0.7, duration: 0.6, ease: 'easeIn' }}
-        >
-          <i className="text-5xl align-middle transition-all duration-300 fa-brands fa-square-instagram text-base-content hover:text-gray-300 hover:scale-105"></i>
-        </motion.button>
-        <motion.button
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          transition={{ delay: 0.9, duration: 0.6, ease: 'easeIn' }}
-        >
-          <i className="text-5xl align-middle transition-all duration-300 fa-brands fa-square-behance text-base-content hover:text-gray-300 hover:scale-105"></i>
-        </motion.button>
+          <ChevronButton goToSection={goToSection} />
+        </motion.div>
       </motion.div>
-      <ChevronButton goToSection={goToSection} />
-    </motion.div>
+    </motion.section>
   );
-};
+});
 
 export default Home;

@@ -1,5 +1,5 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300;400;700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;500;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300;400;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Outfit:wght@300;500;700&display=swap");
 
 @tailwind base;
 @tailwind components;
@@ -7,11 +7,12 @@
 
 body,
 html {
-  font-family: 'Outfit', sans-serif;
+  font-family: "Outfit", sans-serif;
+  cursor: none!;
 }
 
 .roboto {
-  font-family: 'Roboto Mono', sans-serif;
+  font-family: "Roboto Mono", sans-serif;
 }
 
 html {
@@ -19,7 +20,7 @@ html {
   scroll-behavior: smooth;
 }
 
-.mainn {
+body {
   background: rgb(9, 13, 16);
   background: -moz-linear-gradient(
     60deg,
@@ -37,4 +38,17 @@ html {
     rgba(14, 21, 27, 1) 100%
   );
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#090d10",endColorstr="#0e151b",GradientType=1);
+}
+
+.cursor-style {
+  background-color: rgba(40, 55, 70, 0.9);
+  box-shadow: 1px 1px 6px rgba(50, 50, 50, 0.3);
+  height: 1.5rem;
+  width: 1.5rem;
+  z-index: 9999;
+  border-radius: 100%;
+  transform-origin: 100% 100%;
+  transform: translate(-50%, -50%);
+  position: fixed;
+  pointer-events: none;
 }

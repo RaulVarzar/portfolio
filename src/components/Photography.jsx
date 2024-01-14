@@ -1,12 +1,12 @@
-import { motion, useInView } from 'framer-motion';
-import { useEffect, useRef } from 'react';
-import { PhotoProvider, PhotoView } from 'react-photo-view';
-import 'react-photo-view/dist/react-photo-view.css';
+import { motion, useInView } from "framer-motion";
+import { forwardRef, useEffect, useRef } from "react";
+import { PhotoProvider, PhotoView } from "react-photo-view";
+import "react-photo-view/dist/react-photo-view.css";
 
 const gallery = Object.values(
-  import.meta.glob('@photos/*.{png,jpg,jpeg,PNG,JPEG}', {
+  import.meta.glob("@photos/*.{png,jpg,jpeg,PNG,JPEG}", {
     eager: true,
-    as: 'url',
+    as: "url",
   })
 );
 
@@ -31,43 +31,46 @@ const childrenVariants = {
   },
 };
 
-export default function Photography({ makeActive }) {
-  const ref = useRef();
-
+const Photography = forwardRef(({ makeActive }, ref) => {
   const isInView = useInView(ref);
 
   useEffect(() => {
     if (isInView) {
-      makeActive('photography');
+      makeActive("photography");
     }
   }, [isInView]);
 
   return (
-    <div ref={ref} className="grid place-content-center">
-      <PhotoProvider>
-        <motion.div
-          variants={demoVariants}
-          initial="hidden"
-          whileInView="animate"
-          className="flex flex-wrap justify-end items-end flex-row gap-2 xl:gap-3 max-w-[1700px] pr-10"
-        >
-          {gallery.map((photo, i) => (
-            <PhotoView src={photo} key={photo}>
-              <motion.img
-                src={photo}
-                alt="gallery"
-                variants={childrenVariants}
-                key={photo}
-                whileHover={{
-                  scale: 1.05,
-                }}
-                transition={{ duration: 0.25, ease: 'easeInOut' }}
-                className="object-cover w-auto rounded-md cursor-pointer h-36 lg:h-44 xl:h-52 2xl:h-56"
-              />
-            </PhotoView>
-          ))}
-        </motion.div>
-      </PhotoProvider>
-    </div>
+    <section className="relative grid h-screen text-4xl section place-content-center text-info snap-center">
+      <div className="absolute w-8 h-4 top-1/2" ref={ref} />
+      <div className="grid place-content-center">
+        <PhotoProvider>
+          <motion.div
+            variants={demoVariants}
+            initial="hidden"
+            whileInView="animate"
+            className="flex flex-wrap justify-end items-end flex-row gap-2 xl:gap-3 max-w-[1700px] pr-10"
+          >
+            {gallery.map((photo, i) => (
+              <PhotoView src={photo} key={photo}>
+                <motion.img
+                  src={photo}
+                  alt="gallery"
+                  variants={childrenVariants}
+                  key={photo}
+                  whileHover={{
+                    scale: 1.05,
+                  }}
+                  transition={{ duration: 0.25, ease: "easeInOut" }}
+                  className="object-cover w-auto rounded-md cursor-none h-36 lg:h-44 xl:h-52 2xl:h-56"
+                />
+              </PhotoView>
+            ))}
+          </motion.div>
+        </PhotoProvider>
+      </div>
+    </section>
   );
-}
+});
+
+export default Photography;

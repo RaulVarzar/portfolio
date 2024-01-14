@@ -1,17 +1,17 @@
-import { motion } from 'framer-motion';
+import { motion } from "framer-motion";
 
 const ChevronButton = ({ goToSection }) => {
   return (
     <motion.div
       animate={{
-        y: [0, 6, 0],
-        opacity: [1, 0.8, 1],
+        y: [8, 0, 8],
+        opacity: [0.5, 1, 1, 0.5],
       }}
-      transition={{ ease: 'easeInOut', duration: 3, repeat: Infinity }}
-      className="flex justify-center mx-auto cursor-pointer w-fit"
-      onClick={() => goToSection('skills')}
+      transition={{ ease: "easeInOut", duration: 2.5, repeat: Infinity }}
+      className="flex justify-center mx-auto w-fit"
+      onClick={() => goToSection("skills")}
     >
-      <svg height="30" width="50" className="opacity-40 w-fit">
+      <svg height="30" width="50" className="opacity-30 w-fit">
         <line
           x1="0"
           y1="3"
