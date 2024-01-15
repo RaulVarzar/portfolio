@@ -8,7 +8,7 @@ const ChevronButton = ({ goToSection }) => {
         opacity: [0.5, 1, 1, 0.5],
       }}
       transition={{ ease: "easeInOut", duration: 2.5, repeat: Infinity }}
-      className="flex justify-center mx-auto w-fit"
+      className="absolute left-0 right-0 flex justify-center mx-auto w-fit bottom-3"
       onClick={() => goToSection("skills")}
     >
       <svg height="30" width="50" className="opacity-30 w-fit">

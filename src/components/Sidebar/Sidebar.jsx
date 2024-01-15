@@ -13,7 +13,7 @@ const Sidebar = ({ goToSection, activeSection }) => {
           {/* Page content here */}
           <label
             htmlFor="my-drawer-2"
-            className="absolute text-4xl top-6 drawer-button 2xl:hidden left-6"
+            className="absolute text-2xl md:text-4xl top-1 left-2 md:top-6 drawer-button 2xl:hidden md:left-6"
           >
             <i className="fa-solid fa-bars text-neutral-content opacity-60"></i>
           </label>

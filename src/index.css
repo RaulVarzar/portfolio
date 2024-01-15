@@ -53,3 +53,15 @@ body {
   position: fixed;
   pointer-events: none;
 }
+
+/* for Firefox */
+.carousel {
+  scrollbar-width: initial;
+}
+/* for Chrome, Safari, Edge, etc */
+.carousel::-webkit-scrollbar {
+  @apply block h-3 rounded-sm;
+}
+.carousel::-webkit-scrollbar-thumb {
+  @apply rounded-sm bg-neutral;
+}

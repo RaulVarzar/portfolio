@@ -15,7 +15,7 @@ const Skills = forwardRef(({ makeActive }, ref) => {
   }, [isInView]);
 
   return (
-    <section className="grid h-screen text-4xl section place-content-center text-info snap-center">
+    <section className="grid h-screen overflow-hidden text-4xl section place-content-center text-info snap-center">
       <motion.div
         layout
         className="grid grid-cols-1 lg:grid-cols-2 gap-0.5 p-0.5 place-content-center bg-neutral bg-opacity-60 max-w-7xl roboto bg-opacity-60"

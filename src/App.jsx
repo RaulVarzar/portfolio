@@ -41,7 +41,7 @@ const App = () => {
           initial={{ x: -100, opacity: 0 }}
           animate={{ x: 0, delay: 0.4, opacity: 0.1 }}
           exit={{ x: 100, opacity: 0 }}
-          className="fixed text-3xl italic font-bold uppercase top-4 right-8 2xl:hidden"
+          className="fixed text-xl italic font-semibold uppercase top-2 right-3 2xl:hidden"
         >
           #{activeSection}
         </motion.div>
@@ -50,7 +50,7 @@ const App = () => {
       <div className="flex 2xl:w-11/12 mx-auto max-w-[2100px] ">
         <Sidebar activeSection={activeSection} goToSection={goToSection} />
 
-        <div className="w-full px-6">
+        <div className="w-full px-3">
           <Home ref={home} makeActive={makeActive} goToSection={goToSection} />
           <Skills ref={skills} makeActive={makeActive} />
           <Projects ref={projects} makeActive={makeActive} />

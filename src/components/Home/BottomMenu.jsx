@@ -13,45 +13,53 @@ export const BottomMenu = ({ goToSection }) => {
   return (
     <motion.div
       layout="position"
-      className="flex flex-col items-center justify-start py-6 mx-auto w-fit min-h-36 lg:flex-row "
+      className="flex flex-col items-center justify-start py-1 mx-auto md:py-6 xl:py-12 w-fit h-fit lg:flex-row "
     >
       <motion.div
         variants={variants}
         initial="hide"
         whileInView="show"
-        className="flex flex-row p-4 transition-all duration-300 gap-x-5"
+        className="flex flex-row px-4 transition-all duration-300 gap-x-5"
       >
-        <motion.button
+        <motion.a
           variants={variants}
           whileHover={{ scale: 1.15, transition: { ease: "easeInOut" } }}
-          className="px-2.5 pt-1.5 text-xl font-light tracking-wider rounded-md xl:px-4 xl:py-2 cursor-none bg-base-100 text-neutral-content hover:bg-base-100"
+          href="https://github.com/RaulVarzar"
+          target="_blank"
+          className="flex items-center text-xl "
         >
-          Github <i className="fa-brands fa-github"></i>
-        </motion.button>
-        <motion.span
+          <button className="px-2.5 py-1  font-light tracking-wider rounded-md xl:px-4 xl:py-2 cursor-none bg-base-100 text-neutral-content hover:bg-base-100">
+            Github <i className="fa-brands fa-github"></i>
+          </button>
+        </motion.a>
+        <motion.a
           variants={variants}
+          href="https://behance.net/varzarr"
+          target="_blank"
           whileHover={{ scale: 1.15, transition: { ease: "easeInOut" } }}
           className="flex items-center p-0 h-fit"
         >
           <i className="text-4xl xl:text-5xl fa-brands fa-square-behance text-neutral-content hover:text-gray-300 "></i>
-        </motion.span>
-        <motion.span
+        </motion.a>
+        <motion.a
           variants={variants}
           whileHover={{
             scale: 1.15,
             transition: { ease: "easeInOut" },
           }}
+          href="https://instagram.com/raulvarzar"
+          target="_blank"
           className="flex items-center h-fit"
         >
           <i className="text-4xl xl:text-5xl fa-brands fa-square-instagram text-neutral-content hover:text-gray-300 "></i>
-        </motion.span>
+        </motion.a>
       </motion.div>
 
       <motion.div
         initial={{ scaleY: 0 }}
         whileInView={{ scaleY: 1 }}
         transition={{ delay: 0.8, duration: 0.4, ease: "easeInOut" }}
-        className="text-sm text-base leading-none text-neutral-content divider lg:divider-horizontal"
+        className="py-0 my-1 text-sm text-base leading-none text-neutral-content divider lg:divider-horizontal"
       ></motion.div>
 
       <motion.button

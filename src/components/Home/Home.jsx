@@ -32,7 +32,7 @@ const Home = forwardRef(({ makeActive, goToSection }, ref) => {
   }, [isInView]);
 
   return (
-    <motion.section className="grid w-full h-screen text-4xl section place-content-center text-info snap-center ">
+    <motion.section className="relative grid w-full h-screen overflow-hidden text-4xl section place-content-center text-info snap-center">
       <motion.div
         layout="position"
         className="flex flex-col min-h-screen py-8 gap-x-10 justify-evenly "
@@ -43,11 +43,11 @@ const Home = forwardRef(({ makeActive, goToSection }, ref) => {
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 0.25 }}
           transition={{ delay: 1, duration: 0.9, ease: "easeOut" }}
-          className="absolute z-0 object-cover w-auto h-1/2 top-20 right-12 brightness-50"
+          className="absolute object-cover w-auto w-3/4 -z-1 lg:w-1/2 2xl:w-1/3 top-20 right-8 xl:right-24 brightness-50"
         />
         <motion.div
           layout
-          className="flex flex-col-reverse items-center content-center justify-center flex-grow gap-4 align-middle xl:flex-row"
+          className="flex flex-col-reverse items-center content-center justify-center gap-4 align-middle xl:flex-grow xl:flex-row"
         >
           <Tilt
             tiltReverse={true}
@@ -127,12 +127,11 @@ const Home = forwardRef(({ makeActive, goToSection }, ref) => {
               scale: 1,
               transition: { delay: 1, duration: 0.5, ease: "easeOut" },
             }}
-            className="z-50"
           >
-            <div className="w-52 h-60 z-50 overflow-hidden group sm:w-64 sm:h-72 border-8 delay-100 shadow-lg rounded-3xl sm:rounded-[60px] hover:rounded-3xl border-base-100 transition-all duration-500 ease-in-out hover:scale-105">
+            <div className="  scale-100 overflow-hidden group  border-8 delay-100 shadow-lg rounded-3xl sm:rounded-[60px] hover:rounded-3xl border-base-100 transition-all duration-500 ease-in-out hover:scale-105">
               <img
                 src={profilePhoto}
-                className="object-cover transition-all duration-500 ease-in-out delay-100 scale-110 group-hover:scale-100"
+                className="z-50 object-cover h-40 transition-all duration-500 ease-in-out delay-100 w-36 md:h-52 md:w-48 xl:h-72 xl:w-64 lg:scale-110 group-hover:scale-100"
                 alt="profile-pic"
               />
             </div>
@@ -144,10 +143,9 @@ const Home = forwardRef(({ makeActive, goToSection }, ref) => {
           initial={{ opacity: 0, y: 50, scale: 0.4 }}
           whileInView={{ opacity: 1, y: 0, scale: 1 }}
           transition={{ delay: 0.4, duration: 0.8, ease: "easeInOut" }}
-        >
-          <ChevronButton goToSection={goToSection} />
-        </motion.div>
+        ></motion.div>
       </motion.div>
+      <ChevronButton goToSection={goToSection} />
     </motion.section>
   );
 });

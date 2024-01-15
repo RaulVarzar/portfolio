@@ -1,49 +1,23 @@
-import { motion, useInView } from "framer-motion";
-import { forwardRef, useEffect, useRef } from "react";
-import { PhotoProvider, PhotoView } from "react-photo-view";
-import "react-photo-view/dist/react-photo-view.css";
+import { useInView } from "framer-motion";
+import { forwardRef, useEffect } from "react";
 import { Carousel } from "./Carousel";
-
-const gallery = Object.values(
-  import.meta.glob("@photos/*.{png,jpg,jpeg,PNG,JPEG}", {
-    eager: true,
-    as: "url",
-  })
-);
-
-const demoVariants = {
-  hidden: { opacity: 0 },
-  animate: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.2,
-    },
-  },
-};
-
-const childrenVariants = {
-  hidden: { opacity: 0, x: -50 },
-  animate: {
-    x: 0,
-    opacity: 1,
-    transition: {
-      duration: 0.3,
-    },
-  },
-};
 
 const Photography = forwardRef(({ makeActive }, ref) => {
   const isInView = useInView(ref);
 
   useEffect(() => {
     if (isInView) {
+      console.log("is in view");
       makeActive("photography");
     }
   }, [isInView]);
 
   return (
-    <section className="relative flex items-center h-screen overflow-hidden text-4xl section text-info snap-center">
-      <div className="absolute w-8 h-4 top-1/2" ref={ref} />
+    <section
+      className="relative flex items-center h-screen text-4xl section text-info snap-center"
+      ref={ref}
+    >
+      <div className="absolute w-8 h-4 bg-red-400 top-1/2 left-1/2" />
       {/* <div className="grid place-content-center">
         <PhotoProvider>
           <motion.div
@@ -70,9 +44,7 @@ const Photography = forwardRef(({ makeActive }, ref) => {
           </motion.div>
         </PhotoProvider>
       </div> */}
-      <div className="flex w-full">
-        <Carousel />
-      </div>
+      <Carousel />
     </section>
   );
 });

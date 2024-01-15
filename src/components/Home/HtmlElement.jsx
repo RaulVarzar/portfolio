@@ -5,7 +5,7 @@ const HtmlElement = ({ tag, children, blur, ...props }) => {
     <motion.div
       {...props}
       className={
-        "flex flex-col text-left my-1 " +
+        "flex flex-col text-left  " +
         (tag === "h1" ? " leading-none" : " leading-tight")
       }
     >
