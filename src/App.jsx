@@ -1,7 +1,7 @@
 import { useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 
-import Photography from "./components/Photography";
+import Photography from "./components/Photography/Photography";
 import Home from "./components/Home/Home";
 import Projects from "./components/Projects/Projects";
 import Skills from "./components/Skills/Skills";
@@ -32,7 +32,7 @@ const App = () => {
   };
 
   return (
-    <div className="" onMouseMove={changePosition}>
+    <div className=" cursor-none" onMouseMove={changePosition}>
       <div className="cursor-style" ref={cursor}></div>
 
       <AnimatePresence>

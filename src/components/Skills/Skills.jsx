@@ -18,7 +18,7 @@ const Skills = forwardRef(({ makeActive }, ref) => {
     <section className="grid h-screen text-4xl section place-content-center text-info snap-center">
       <motion.div
         layout
-        className="grid grid-cols-2 gap-0.5 p-0.5 place-content-center bg-neutral bg-opacity-60 max-w-7xl roboto bg-opacity-60"
+        className="grid grid-cols-1 lg:grid-cols-2 gap-0.5 p-0.5 place-content-center bg-neutral bg-opacity-60 max-w-7xl roboto bg-opacity-60"
       >
         <motion.div
           layout="position"
@@ -40,7 +40,7 @@ const Skills = forwardRef(({ makeActive }, ref) => {
             </h3>
           </motion.div>
           <motion.div layout="position" className="w-11/12 mx-auto">
-            <p className="text-base leading-tight tracking-tight text-gray-500 opacity-80">
+            <p className="text-sm leading-tight tracking-tight text-gray-500 lg:text-base opacity-80">
               Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut unde
               quas debitis explicabo aperiam! Delectus dolores aperiam,
               blanditiis exercitationem consequatur.
@@ -84,7 +84,7 @@ const Skills = forwardRef(({ makeActive }, ref) => {
               Photography
             </h3>
           </div>
-          <p className="w-11/12 mx-auto text-base leading-tight tracking-tight text-gray-500 opacity-80">
+          <p className="w-11/12 mx-auto text-sm leading-tight tracking-tight text-gray-500 lg:text-base opacity-80">
             Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut unde
             quas debitis explicabo aperiam! Delectus dolores aperiam, blanditiis
             exercitationem consequatur, distinctio necessitatibus earum
@@ -98,7 +98,7 @@ const Skills = forwardRef(({ makeActive }, ref) => {
               Others
             </h3>
           </div>
-          <p className="w-11/12 mx-auto text-base leading-tight tracking-tight text-gray-500 opacity-80">
+          <p className="w-11/12 mx-auto text-sm leading-tight tracking-tight text-gray-500 lg:text-base opacity-80">
             Delectus dolores aperiam, blanditiis exercitationem consequatur,
             distinctio necessitatibus earum ea ullam accusantium officiis nihil
             et esse.

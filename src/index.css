@@ -41,7 +41,8 @@ body {
 }
 
 .cursor-style {
-  background-color: rgba(40, 55, 70, 0.9);
+  background-color: rgba(40, 55, 70, 0.3);
+  border: 2px solid gray;
   box-shadow: 1px 1px 6px rgba(50, 50, 50, 0.3);
   height: 1.5rem;
   width: 1.5rem;

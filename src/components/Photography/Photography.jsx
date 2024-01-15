@@ -2,6 +2,7 @@ import { motion, useInView } from "framer-motion";
 import { forwardRef, useEffect, useRef } from "react";
 import { PhotoProvider, PhotoView } from "react-photo-view";
 import "react-photo-view/dist/react-photo-view.css";
+import { Carousel } from "./Carousel";
 
 const gallery = Object.values(
   import.meta.glob("@photos/*.{png,jpg,jpeg,PNG,JPEG}", {
@@ -41,9 +42,9 @@ const Photography = forwardRef(({ makeActive }, ref) => {
   }, [isInView]);
 
   return (
-    <section className="relative grid h-screen text-4xl section place-content-center text-info snap-center">
+    <section className="relative flex items-center h-screen overflow-hidden text-4xl section text-info snap-center">
       <div className="absolute w-8 h-4 top-1/2" ref={ref} />
-      <div className="grid place-content-center">
+      {/* <div className="grid place-content-center">
         <PhotoProvider>
           <motion.div
             variants={demoVariants}
@@ -68,6 +69,9 @@ const Photography = forwardRef(({ makeActive }, ref) => {
             ))}
           </motion.div>
         </PhotoProvider>
+      </div> */}
+      <div className="flex w-full">
+        <Carousel />
       </div>
     </section>
   );

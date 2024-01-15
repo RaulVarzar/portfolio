@@ -16,13 +16,13 @@ const variants = {
 };
 
 const formVariants = {
-  hide: { opacity: 0, x: 100 },
+  hide: { opacity: 0, y: 40 },
   show: {
     opacity: 1,
-    x: 0,
+    y: 0,
     transition: {
       duration: 1,
-      delay: 0.9,
+      delay: 1.2,
       ease: "easeOut",
       staggerChildren: 0.9,
     },
