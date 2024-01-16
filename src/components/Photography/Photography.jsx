@@ -1,23 +1,18 @@
-import { useInView } from "framer-motion";
-import { forwardRef, useEffect } from "react";
-import { Carousel } from "./Carousel";
+import { useInView } from 'framer-motion';
+import { forwardRef, useEffect } from 'react';
+import { Carousel } from './Carousel';
 
 const Photography = forwardRef(({ makeActive }, ref) => {
   const isInView = useInView(ref);
 
   useEffect(() => {
     if (isInView) {
-      console.log("is in view");
-      makeActive("photography");
+      makeActive('photography');
     }
   }, [isInView]);
 
   return (
-    <section
-      className="relative flex items-center h-screen text-4xl section text-info snap-center"
-      ref={ref}
-    >
-      <div className="absolute w-8 h-4 bg-red-400 top-1/2 left-1/2" />
+    <section className="relative flex items-center min-h-screen text-4xl section text-info snap-center">
       {/* <div className="grid place-content-center">
         <PhotoProvider>
           <motion.div
@@ -44,7 +39,9 @@ const Photography = forwardRef(({ makeActive }, ref) => {
           </motion.div>
         </PhotoProvider>
       </div> */}
-      <Carousel />
+      <div className="flex" ref={ref}>
+        <Carousel />
+      </div>
     </section>
   );
 });

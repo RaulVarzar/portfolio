@@ -1,15 +1,7 @@
-import { motion, useInView, useScroll } from "framer-motion";
-import ProjectCard from "./ProjectCard";
-import { useState, useRef, useEffect, forwardRef } from "react";
-
-const PROJECTS = [
-  "Timer challenge",
-  "Hangman Game",
-  "Food ordering app",
-  "Demo project",
-  "Quiz game",
-  "Blog",
-];
+import { motion, useInView } from 'framer-motion';
+import ProjectCard from './ProjectCard';
+import { useState, useRef, useEffect, forwardRef } from 'react';
+import { projects } from '../../data/projects';
 
 const variants = {
   hide: { opacity: 0 },
@@ -37,23 +29,23 @@ const Projects = forwardRef(({ makeActive }, ref) => {
 
   useEffect(() => {
     if (isInView) {
-      makeActive("projects");
+      makeActive('projects');
     }
   }, [isInView]);
 
   return (
-    <section className="grid w-full h-screen px-2 py-10 overflow-y-auto md:px-10 section place-content-center snap-center">
+    <section className="grid w-full min-h-screen px-2 py-10 overflow-y-auto md:px-10 section place-content-center snap-center">
       <motion.div
         variants={variants}
         ref={ref}
         initial="hide"
         whileInView="show"
-        className="grid w-full grid-cols-2 gap-1 divide-base-300  max-w-[1600px] xl:grid-cols-3 2xl:grid-cols-4"
+        className="grid w-full grid-cols-2 gap-1 divide-base-300  max-w-[1600px] lg:grid-cols-2 2xl:grid-cols-3"
       >
-        {PROJECTS.map((project, i) => (
-          <motion.div key={project} variants={cardVariants}>
+        {projects.map((project, i) => (
+          <motion.div key={project.title} variants={cardVariants}>
             <ProjectCard
-              title={project}
+              project={project}
               i={i}
               setHover={(state) => setIsHovering(state)}
               isHovering={isHovering}
@@ -65,14 +57,14 @@ const Projects = forwardRef(({ makeActive }, ref) => {
           initial={{ opacity: 0 }}
           whileInView={{
             opacity: 1,
-            transition: { delay: PROJECTS.length * 0.3 },
+            transition: { delay: projects.length * 0.3 },
           }}
           className="grid col-span-2 xl:col-span-1 place-content-center"
         >
           <div
             className={
-              "flex flex-row gap-4 px-8  py-4 transition duration-300 items-center hover:opacity-80 text-base-content hover:text-primary " +
-              (isHovering ? " opacity-0" : " opacity-40 ")
+              'flex flex-row gap-4 px-8  py-4 transition duration-300 items-center hover:opacity-80 text-base-content hover:text-primary ' +
+              (isHovering ? ' opacity-0' : ' opacity-40 ')
             }
           >
             <h3 className="text-base lg:text-md">ALL PROJECTS</h3>

@@ -1,11 +1,11 @@
-import { motion } from "framer-motion";
+import { motion } from 'framer-motion';
 
 const variants = {
   hide: { opacity: 0, y: 30 },
   show: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.7, staggerChildren: 0.3, when: "beforeChildren" },
+    transition: { duration: 0.7, staggerChildren: 0.3, when: 'beforeChildren' },
   },
 };
 
@@ -23,7 +23,7 @@ export const BottomMenu = ({ goToSection }) => {
       >
         <motion.a
           variants={variants}
-          whileHover={{ scale: 1.15, transition: { ease: "easeInOut" } }}
+          whileHover={{ scale: 1.05, transition: { ease: 'easeInOut' } }}
           href="https://github.com/RaulVarzar"
           target="_blank"
           className="flex items-center text-xl "
@@ -36,29 +36,29 @@ export const BottomMenu = ({ goToSection }) => {
           variants={variants}
           href="https://behance.net/varzarr"
           target="_blank"
-          whileHover={{ scale: 1.15, transition: { ease: "easeInOut" } }}
+          whileHover={{ scale: 1.05, transition: { ease: 'easeInOut' } }}
           className="flex items-center p-0 h-fit"
         >
-          <i className="text-4xl xl:text-5xl fa-brands fa-square-behance text-neutral-content hover:text-gray-300 "></i>
+          <i className="text-4xl transition duration-300 xl:text-5xl fa-brands fa-square-behance hover:text-base-content text-neutral brightness-125"></i>
         </motion.a>
         <motion.a
           variants={variants}
           whileHover={{
-            scale: 1.15,
-            transition: { ease: "easeInOut" },
+            scale: 1.05,
+            transition: { ease: 'easeInOut' },
           }}
           href="https://instagram.com/raulvarzar"
           target="_blank"
           className="flex items-center h-fit"
         >
-          <i className="text-4xl xl:text-5xl fa-brands fa-square-instagram text-neutral-content hover:text-gray-300 "></i>
+          <i className="text-4xl transition duration-300 xl:text-5xl fa-brands fa-square-instagram hover:text-base-content text-neutral brightness-125"></i>
         </motion.a>
       </motion.div>
 
       <motion.div
         initial={{ scaleY: 0 }}
         whileInView={{ scaleY: 1 }}
-        transition={{ delay: 0.8, duration: 0.4, ease: "easeInOut" }}
+        transition={{ delay: 0.8, duration: 0.4, ease: 'easeInOut' }}
         className="py-0 my-1 text-sm text-base leading-none text-neutral-content divider lg:divider-horizontal"
       ></motion.div>
 
@@ -72,9 +72,9 @@ export const BottomMenu = ({ goToSection }) => {
         }}
         whileHover={{
           scale: 1.07,
-          transition: { duration: 0.2, delay: 0, ease: "easeInOut" },
+          transition: { duration: 0.2, delay: 0, ease: 'easeInOut' },
         }}
-        onClick={() => goToSection("contact")}
+        onClick={() => goToSection('contact')}
         className="px-3 py-1.5 ml-4 text-lg font-light tracking-wider rounded-md xl:px-5 xl:py-2 uppercasebg-transparent cursor-none border-3 text-base-content border-base-100 hover:bg-base-200 hover:border-base-200 "
       >
         Contact me

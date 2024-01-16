@@ -1,12 +1,12 @@
-import { useRef, useState } from "react";
-import { AnimatePresence, motion } from "framer-motion";
+import { useRef, useState } from 'react';
+import { AnimatePresence, motion } from 'framer-motion';
 
-import Photography from "./components/Photography/Photography";
-import Home from "./components/Home/Home";
-import Projects from "./components/Projects/Projects";
-import Skills from "./components/Skills/Skills";
-import Sidebar from "./components/Sidebar/Sidebar";
-import Contact from "./components/Contact/Contact";
+import Photography from './components/Photography/Photography';
+import Home from './components/Home/Home';
+import Projects from './components/Projects/Projects';
+import Skills from './components/Skills/Skills';
+import Sidebar from './components/Sidebar/Sidebar';
+import Contact from './components/Contact/Contact';
 
 const App = () => {
   const home = useRef();
@@ -15,10 +15,13 @@ const App = () => {
   const contact = useRef();
   const skills = useRef();
 
-  const [activeSection, setActiveSection] = useState("");
+  const [activeSection, setActiveSection] = useState('');
 
   function goToSection(section) {
-    eval(section).current.scrollIntoView();
+    eval(section).current.scrollIntoView({
+      behavior: 'smooth',
+      block: 'start',
+    });
   }
 
   function makeActive(section) {

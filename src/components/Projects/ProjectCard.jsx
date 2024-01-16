@@ -1,77 +1,89 @@
-import { motion } from "framer-motion";
+import { motion } from 'framer-motion';
+import './button.css';
 
-const ProjectCard = ({ title, i, setHover, isHovering }) => {
+const ProjectCard = ({ project, i, setHover, isHovering }) => {
+  const { title, description, github, demo, photo } = project;
   function changeHoverState(title) {
     setHover(title);
   }
-
   const isCurrentHovering = isHovering === title;
 
-  const variants = {
-    hidden: { y: 5, x: 15, opacity: 0.2, scale: 3 },
-    visible: { y: 0, x: 0, opacity: 1, scale: 1 },
-  };
-
   return (
-    <motion.div
+    <div
       onMouseEnter={() => changeHoverState(title)}
       onMouseLeave={() => changeHoverState(false)}
-      layout
       className={
-        "relative group bg-[#0C1318] overflow-hidden h-full cursor-none transition-all duration-300 hover:rounded-lg hover:bg-base-200 shadow-lg hover:z-[1] hover:shadow-xl hover:scale-105 " +
+        'relative group bg-[hsl(205,30%,7%)] overflow-hidden h-full cursor-none transition-all duration-300 hover:rounded-lg hover:bg-base-200 shadow-lg hover:z-[1] hover:shadow-xl hover:scale-105 ' +
         (isHovering !== title &&
           isHovering !== false &&
-          " brightness-85 blur-xs opacity-40 ")
+          ' brightness-85 blur-xxs opacity-50 ')
       }
     >
       <motion.div
         layout="position"
-        className="relative flex flex-col justify-center h-full p-4 space-y-2 md:p-6 lg:p-8 lg:space-y-6"
+        className="relative flex flex-col justify-between h-full p-2 space-y-2 md:p-4 2xl:p-8 lg:space-y-6"
       >
         <motion.div
           layout="position"
-          className="flex flex-col justify-end gap-1 text-left transition-all duration-300 h-fit "
+          className="flex flex-col justify-end gap-4 text-left transition-all duration-300 h-fit "
         >
-          <motion.h3
-            variants={variants}
-            initial="visible"
-            animate={isCurrentHovering ? "hidden" : "visible"}
-            className="z-0 hidden text-4xl group-hover:scale-150 w-fit text-neutral md:flex"
-          >
-            {i + 1}
-          </motion.h3>
-          <motion.h5
-            layout="position"
-            className="z-10 text-base font-medium uppercase transition-all duration-300 saturate-50 brightness-125 text-base-content w-fit group-hover:brightness-150 xl:text-xl group-hover:ml-2 group-hover:scale-110"
-          >
-            {title}
-          </motion.h5>
-          <p className="z-10 text-sm transition-all duration-300 opacity-70 xl:text-base text-neutral-content group-hover:opacity-90">
-            Neque Dolor, fugiat non cum doloribus aperiam voluptates nostrum.
-          </p>
-        </motion.div>
-        <a
-          href="#"
-          className={
-            "flex items-center cursor-none justify-between px-6 py-2 rounded-md text-base-content group-hover:opacity-100 group-hover:text-primary transition-all duration-300  " +
-            (isCurrentHovering &&
-              " bg-base-300 hover:shadow-md hover:bg-neutral ")
-          }
-        >
-          <span className="flex flex-row items-center gap-2 text-base">
-            {!isCurrentHovering && (
-              <i className="text-lg transition-all duration-300 fa-brands fa-github"></i>
-            )}
-            <p className="text-sm transition duration-300 translate-y-4 opacity-0 group-hover:opacity-100 group-hover:translate-y-0">
-              REPOSITORY
+          <img
+            src={`./projects/${photo}`}
+            alt={photo}
+            className={
+              'object-cover w-auto h-48 rounded-lg transition duration-300 ' +
+              (isCurrentHovering && ' scale-105 shadow-2xl')
+            }
+          />
+          <div className="flex flex-col">
+            <motion.h5
+              layout="position"
+              className="z-10 text-base font-semibold uppercase transition-all duration-300 saturate-50 brightness-125 text-base-content w-fit group-hover:brightness-150 xl:text-xl group-hover:scale-110"
+            >
+              {title}
+            </motion.h5>
+            <p className="z-10 text-sm leading-tight tracking-tight transition-all duration-300 opacity-70 xl:text-base text-neutral-content group-hover:opacity-90">
+              {description}
             </p>
-          </span>
-          <span className="text-xl transition duration-300 -translate-x-8 opacity-0 group-hover:opacity-100 group-hover:translate-x-0">
-            <i className="fa-solid fa-arrow-right-long"></i>
-          </span>
-        </a>
+          </div>
+        </motion.div>
+        <div className="flex flex-row gap-4 justify-evenly">
+          <a
+            href={github}
+            target="_blank"
+            className={
+              'flex items-center cursor-none justify-between px-6 py-2 rounded-md text-base-content opacity-80 group-hover:opacity-100 hover:text-primary transition-all duration-100  ' +
+              (isCurrentHovering &&
+                ' bg-base-300 hover:shadow-md hover:bg-neutral ')
+            }
+          >
+            <span className="flex flex-row items-center gap-2 text-base">
+              <i className="text-lg transition-all duration-300 fa-brands fa-github"></i>
+              <p className="text-sm ">Github</p>
+            </span>
+          </a>
+          {/* <a
+            href="https://hangman-ten-tau.vercel.app/"
+            target="_blank"
+            className={
+              'rounded-none border-t-0 border-x-0 border-b-4 border-transparent hover:border-neutral text-sm py-0 btn btn-ghost hover:bg-transparent flex flex-row gap-1 w-fit ' +
+              (isCurrentHovering ? ' opacity-100' : ' opacity-50')
+            }
+          >
+            <p className=" text-nowrap">Live demo</p>
+            <i class="fa-solid fa-arrow-up-right-from-square"></i>
+          </a> */}
+
+          <a href={demo} target="_blank">
+            <button className="my-button text-base-content ">
+              <div className="font-semibold text">
+                <span>Demo</span>
+              </div>
+            </button>
+          </a>
+        </div>
       </motion.div>
-    </motion.div>
+    </div>
   );
 };
 

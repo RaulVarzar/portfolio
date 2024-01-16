@@ -1,15 +1,19 @@
 const DevelopmentSkills = () => {
   return (
-    <div className="bg-transparent stats">
-      <div className=" stat">
+    <div className="gap-2 bg-transparent xl:gap-6 stats">
+      <div className="flex flex-row items-center gap-4 ">
         <div className="stat-figure text-neutral-content">
           <i className="fa-brands fa-react"></i>
         </div>
-        <div className="text-2xl stat-title">React</div>
-        <div className="leading-none h-fit text-md stat-value text-primary">
-          25.6K
+        <div className="flex flex-col">
+          <div className="text-2xl font-semibold leading-tight text-neutral-content xl:text-3xl stat-title">
+            React
+          </div>
+          <div className="text-xs lg:text-sm h-fit stat-value text-primary">
+            Intermediate-advanced
+          </div>
+          <div className="stat-desc">21% more than last month</div>
         </div>
-        <div className="stat-desc">21% more than last month</div>
       </div>
 
       <div className="stat">
