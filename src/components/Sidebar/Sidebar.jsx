@@ -1,8 +1,8 @@
-import { Menu } from './Menu';
+import { Menu } from "./Menu";
 
 const Sidebar = ({ goToSection, activeSection }) => {
   return (
-    <div className="sticky top-0 left-0 z-50 self-start w-0 h-screen drawer xl:w-fit xl:drawer-open ">
+    <div className="fixed top-0 left-0 z-50 w-0 drawer xl:w-fit xl:drawer-open ">
       <input id="my-drawer" type="checkbox" className="drawer-toggle peer" />
       <label
         htmlFor="my-drawer"
@@ -18,7 +18,7 @@ const Sidebar = ({ goToSection, activeSection }) => {
           className="drawer-overlay"
         ></label>
 
-        <ul className="grid min-h-full px-10 max-xl:backdrop-blur-md max-xl:backdrop-brightness-75 xl:bg-transparent xl:px-0 text-base-content">
+        <ul className="grid px-10 border-2 max-xl:backdrop-blur-md max-xl:backdrop-brightness-75 xl:bg-transparent xl:px-0 text-base-content">
           <label
             htmlFor="my-drawer"
             aria-label="close sidebar"
@@ -28,7 +28,6 @@ const Sidebar = ({ goToSection, activeSection }) => {
               <i className="px-2 text-2xl fa-solid text-neutral-content fa-caret-left"></i>
             </div>
           </label>
-          <div className="w-0.5 h-full bg-gradient-to-t fixed opacity-40 right-0 inset-y-0 my-auto from-transparent via-neutral to-transparent"></div>
           <Menu activeSection={activeSection} goToSection={goToSection} />
         </ul>
       </div>

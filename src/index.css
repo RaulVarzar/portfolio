@@ -1,5 +1,5 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300;400;700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;500;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300;400;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Outfit:wght@300;500;700&display=swap");
 
 @tailwind base;
 @tailwind components;
@@ -7,50 +7,44 @@
 
 body,
 html {
-  font-family: 'Roboto Mono', sans-serif;
-  cursor: none!;
-}
-
-.roboto {
-  font-family: 'Roboto Mono', sans-serif;
-}
-
-.section {
-  /* height: 100dvh; */
-}
-
-html {
-  scroll-snap-type: y mandatory;
+  font-family: "Roboto Mono", sans-serif;
 }
 
 body {
-  background: rgb(9, 13, 16);
-  background: -moz-linear-gradient(
-    60deg,
-    rgba(9, 13, 16, 1) 0%,
-    rgba(12, 18, 24, 1) 100%
-  );
-  background: -webkit-linear-gradient(
-    60deg,
-    rgba(9, 13, 16, 1) 0%,
-    rgba(12, 18, 24, 1) 100%
-  );
-  background: linear-gradient(
-    60deg,
-    rgba(9, 13, 16, 1) 0%,
-    rgba(12, 18, 24, 1) 100%
-  );
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#090d10",endColorstr="#0e151b",GradientType=1);
+  overscroll-behavior-y: none;
+  user-select: none;
 }
 
-/* for Firefox */
-.carousel {
-  scrollbar-width: initial;
+.scroll-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  overflow: hidden;
+  will-change: transform;
 }
-/* for Chrome, Safari, Edge, etc */
-.carousel::-webkit-scrollbar {
-  @apply block h-3 rounded-sm;
+
+.scrollBody {
+  width: 100vw;
+  position: fixed;
+  top: 0;
+
+  display: flex;
+  flex-direction: column;
 }
-.carousel::-webkit-scrollbar-thumb {
-  @apply rounded-sm bg-neutral;
+
+::-webkit-scrollbar {
+  height: 5px;
+  width: 10px;
+  background: #999;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #6e67be;
+  border-radius: 3px;
+  width: 20px;
+}
+
+::-webkit-scrollbar-corner {
+  background: #fff;
 }

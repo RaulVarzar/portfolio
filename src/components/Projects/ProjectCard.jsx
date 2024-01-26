@@ -1,51 +1,48 @@
-import { motion } from 'framer-motion';
-import './button.css';
+import { motion, useScroll, useSpring, useTransform } from "framer-motion";
+import "./button.css";
+import { useRef } from "react";
 
-const ProjectCard = ({ project, i, setHover, isHovering }) => {
+const ProjectCard = ({ project, i }) => {
+  const variants = { isEven: { y: -100 } };
+
   const { title, description, github, demo, photo } = project;
-  function changeHoverState(title) {
-    setHover(title);
-  }
-  const isCurrentHovering = isHovering === title;
+
+  const sectionRef = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start end", "start center"],
+  });
+
+  const spring = useSpring(scrollYProgress, {
+    stiffness: 300,
+    damping: 37,
+    restDelta: 0.001,
+  });
+
+  const y = useTransform(spring, [0, 1], ["10vh", "0vh"]);
+  const opacity = useTransform(spring, [0.2, 0.6], ["60%", "100%"]);
+  const scale = useTransform(spring, [0, 1], ["92%", "100%"]);
 
   return (
-    <div
-      onMouseEnter={() => changeHoverState(title)}
-      onMouseLeave={() => changeHoverState(false)}
-      className={
-        'relative flex group bg-[hsl(205,32%,7%)] h-full w-full  transition-all duration-300 hover:rounded-xl hover:bg-base-200 shadow-lg hover:z-[1] hover:shadow-xl hover:scale-105 ' +
-        (isHovering !== title &&
-          isHovering !== false &&
-          ' brightness-85 blur-xxs opacity-50 ')
-      }
+    <motion.div
+      style={{ y, scale, opacity }}
+      ref={sectionRef}
+      className="relative w-full transition-colors duration-300 border-opacity-25 elevation-3 hover:elevation-9 border-1 border-base-content hover:scale-105 bg-base-300 group h-fit rounded-4xl hover:border-opacity-65"
     >
-      <motion.div
-        layout="position"
-        className="relative flex flex-col justify-between w-full h-full p-3 space-y-2 md:p-4 2xl:p-6 lg:space-y-6"
-      >
-        <motion.div
-          layout="position"
-          className="flex flex-col justify-end gap-4 text-left transition-all duration-300 h-fit "
-        >
+      <motion.div className="relative flex flex-col justify-between w-full h-full p-3 space-y-2 md:p-4 2xl:p-6 lg:space-y-6">
+        <motion.div className="flex flex-col justify-end gap-4 text-left ">
           <img
-            src={
-              `./projects/photos/${photo}` +
-              (isCurrentHovering ? '.gif' : '.jpg')
-            }
+            src={`./projects/photos/${photo}.jpg`}
             alt={photo}
             className={
-              'object-cover w-auto h-32 md:h-48 rounded-lg transition duration-300 border-neutral ' +
-              (isCurrentHovering && ' shadow-2xl border-3  ')
+              "object-cover w-full rounded-3xl border-neutral aspect-video  z-50 "
             }
           />
           <div className="flex flex-col">
-            <motion.h3
-              layout="position"
-              className="z-10 flex justify-start w-full overflow-hidden text-base font-semibold leading-7 text-left uppercase transition-all duration-300 group-hover:text-2xl saturate-50 brightness-125 text-base-content xl:text-xl "
-            >
+            <motion.h3 className="z-10 flex justify-start w-full overflow-hidden text-base font-semibold leading-7 text-left uppercase text-base-content xl:text-xl ">
               {title}
             </motion.h3>
-            <p className="z-10 text-sm leading-tight tracking-tight transition-all duration-300 opacity-50 xl:text-base text-neutral-content group-hover:opacity-90">
+            <p className="z-10 text-sm leading-tight tracking-tight opacity-50 xl:text-base text-base-content group-hover:opacity-90">
               {description}
             </p>
           </div>
@@ -54,11 +51,7 @@ const ProjectCard = ({ project, i, setHover, isHovering }) => {
           <a
             href={github}
             target="_blank"
-            className={
-              'flex items-center justify-between px-6 py-2 xl:py-3 rounded-md text-base-content opacity-80 group-hover:opacity-100 hover:text-primary transition-all duration-100  ' +
-              (isCurrentHovering &&
-                ' bg-base-300 hover:shadow-md hover:bg-neutral ')
-            }
+            className="flex items-center justify-between px-6 py-2 transition-all duration-100 rounded-md xl:py-3 text-base-content opacity-80 group-hover:opacity-100 hover:text-primary "
           >
             <span className="flex flex-row items-center gap-2 text-base">
               <i className="text-lg transition-all duration-300 fa-brands fa-github"></i>
@@ -88,7 +81,7 @@ const ProjectCard = ({ project, i, setHover, isHovering }) => {
           </a>
         </div>
       </motion.div>
-    </div>
+    </motion.div>
   );
 };
 
