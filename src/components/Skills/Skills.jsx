@@ -17,7 +17,7 @@ const Skills = forwardRef(({ makeActive }, ref) => {
         layout
         className="grid grid-cols-1 lg:grid-cols-2 gap-0.5 p-0.5 place-content-center bg-neutral bg-opacity-60 max-w-7xl roboto "
       >
-        <motion.div className="relative px-10 col-span-2 pt-8 overflow-hidden pb-3 flex-col flex gap-2 cursor-none hover:rounded-lg bg-[#0C1318] text-base-content hover:bg-base-100 transition-colors duration-300 hover:shadow-2xl hover:z-50 ">
+        <motion.div className="relative px-10 col-span-2 pt-8 overflow-hidden pb-3 flex-col flex gap-2  hover:rounded-lg bg-[#0C1318] text-base-content hover:bg-base-100 transition-colors duration-300 hover:shadow-2xl hover:z-50 ">
           <motion.div
             ref={ref}
             layout="position"
@@ -78,7 +78,7 @@ const Skills = forwardRef(({ makeActive }, ref) => {
 //         whileHover={{ scale: 1.03 }}
 //         onClick={() => setExpanded((prev) => !prev)}
 //         className={
-//           "relative px-10 col-span-2 pt-8 overflow-hidden pb-3 flex-col flex gap-2 cursor-none hover:rounded-lg bg-[#0C1318] text-base-content hover:bg-base-100 transition-colors duration-300 hover:shadow-2xl hover:z-50 " +
+//           "relative px-10 col-span-2 pt-8 overflow-hidden pb-3 flex-col flex gap-2   hover:rounded-lg bg-[#0C1318] text-base-content hover:bg-base-100 transition-colors duration-300 hover:shadow-2xl hover:z-50 " +
 //           (expanded && " bg-[#0e151b]")
 //         }
 //       >
@@ -125,7 +125,7 @@ const Skills = forwardRef(({ makeActive }, ref) => {
 //         ></motion.i>
 //       </motion.div>
 
-//       <div className="relative flex flex-col gap-6 px-10 py-8 transition-all duration-300 cursor-none bg-[#0C1318] hover:rounded-lg text-base-content hover:bg-base-200 hover:scale-105 hover:shadow-2xl hover:z-50">
+//       <div className="relative flex flex-col gap-6 px-10 py-8 transition-all duration-300   bg-[#0C1318] hover:rounded-lg text-base-content hover:bg-base-200 hover:scale-105 hover:shadow-2xl hover:z-50">
 //         <div className="flex items-end content-end gap-3 ">
 //           <i className="text-3xl fa-solid fa-camera opacity-30"></i>
 
@@ -140,7 +140,7 @@ const Skills = forwardRef(({ makeActive }, ref) => {
 //         </p>
 //       </div>
 
-//       <div className="flex flex-col gap-6 px-10 py-8 transition-all duration-300 cursor-none bg-[#0C1318] hover:rounded-lg text-base-content hover:bg-base-200 hover:scale-105 hover:shadow-2xl hover:z-50">
+//       <div className="flex flex-col gap-6 px-10 py-8 transition-all duration-300   bg-[#0C1318] hover:rounded-lg text-base-content hover:bg-base-200 hover:scale-105 hover:shadow-2xl hover:z-50">
 //         <div className="flex items-end content-end gap-3 ">
 //           <i className="text-3xl text-gray-400 opacity-100 fa-solid fa-wand-magic-sparkles"></i>
 //           <h3 className="text-xl font-semibold leading-none text-gray-300 uppercase lg:text-2xl">

@@ -28,27 +28,23 @@ const App = () => {
     setActiveSection(section);
   }
 
-  const cursor = useRef(null);
-  const changePosition = (e) => {
-    cursor.current.style.top = `${e.clientY}px`;
-    cursor.current.style.left = `${e.clientX}px`;
-  };
-
   return (
-    <div className=" cursor-none" onMouseMove={changePosition}>
-      <div className="cursor-style" ref={cursor}></div>
-
-      <AnimatePresence>
-        <motion.div
-          key={activeSection}
-          initial={{ x: -100, opacity: 0 }}
-          animate={{ x: 0, delay: 0.4, opacity: 0.1 }}
-          exit={{ x: 100, opacity: 0 }}
-          className="fixed text-xl italic font-semibold uppercase top-2 right-3 2xl:hidden"
-        >
-          #{activeSection}
-        </motion.div>
-      </AnimatePresence>
+    <div className="">
+      <motion.div
+        layout
+        className="fixed top-0 right-0 z-50 px-4 py-1 overflow-hidden text-base italic font-semibold uppercase md:py-2 md:px-5 md:text-lg w-fit bg-neutral rounded-es-xl 2xl:hidden"
+      >
+        <AnimatePresence mode="popLayout">
+          <motion.span
+            initial={{ x: -100, opacity: 0 }}
+            animate={{ x: 0, delay: 0.4, opacity: 1 }}
+            exit={{ x: 100, opacity: 0 }}
+            key={activeSection}
+          >
+            #{activeSection}
+          </motion.span>
+        </AnimatePresence>
+      </motion.div>
 
       <div className="flex 2xl:w-11/12 mx-auto max-w-[2100px] ">
         <Sidebar activeSection={activeSection} goToSection={goToSection} />

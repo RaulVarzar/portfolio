@@ -61,7 +61,7 @@ const Home = forwardRef(({ makeActive, goToSection }, ref) => {
             <motion.div
               layout
               ref={ref}
-              className="relative flex flex-col max-w-5xl gap-0 py-2 sm:px-4 md:pr-16 md:pl-10 xl:py-20 h-fit xl:pl-12 xl:pr-20 2xl:pr-36 roboto "
+              className="relative flex flex-col max-w-5xl gap-0 py-2 sm:px-4 md:pr-12 md:pl-10 xl:py-20 h-fit xl:pl-12 xl:pr-16 2xl:pr-20 roboto "
             >
               <HtmlElement
                 tag={'header'}
@@ -72,11 +72,10 @@ const Home = forwardRef(({ makeActive, goToSection }, ref) => {
               >
                 <HtmlElement tag={'h3'} blur={zoomInText} variants={variants}>
                   <motion.h3
-                    variants={variants}
                     className={
                       'text-lg md:text-xl xl:text-2xl opacity-60 z-50 text-primary transition-all duration-500 ease-[cubic-bezier(.03,.98,.52,.99)]  ' +
                       (zoomInText
-                        ? ' scale-115 font-semibold opacity-100'
+                        ? ' scale-110 font-semibold opacity-100'
                         : ' opacity-60')
                     }
                   >
@@ -85,11 +84,10 @@ const Home = forwardRef(({ makeActive, goToSection }, ref) => {
                 </HtmlElement>
                 <HtmlElement variants={variants} tag={'h1'} blur={zoomInText}>
                   <motion.h3
-                    variants={variants}
                     className={
                       'text-4xl font-semibold md:text-5xl xl:6xl 2xl:text-7xl z-50 text-neutral-content brightness-150 transition-all duration-500  ease-[cubic-bezier(.03,.98,.52,.99)] ' +
                       (zoomInText
-                        ? ' scale-120 font-bold opacity-100 brightness-125'
+                        ? ' scale-115 font-bold opacity-100 brightness-125'
                         : ' opacity-75')
                     }
                   >
@@ -105,9 +103,8 @@ const Home = forwardRef(({ makeActive, goToSection }, ref) => {
                 variants={variants}
               >
                 <motion.h3
-                  variants={variants}
                   className={
-                    'text-lg md:text-xl font-thin xl:text-2xl z-50 text-neutral-content transition-all duration-500 ease-[cubic-bezier(.03,.98,.52,.99)]  ' +
+                    'text-sm md:text-md xl:text-xl font-thin 2xl:text-2xl z-50 text-neutral-content transition-all duration-500 ease-[cubic-bezier(.03,.98,.52,.99)]  ' +
                     (zoomInText
                       ? ' scale-105 font-semibold opacity-90'
                       : ' opacity-60')
@@ -127,6 +124,7 @@ const Home = forwardRef(({ makeActive, goToSection }, ref) => {
               scale: 1,
               transition: { delay: 1, duration: 0.5, ease: 'easeOut' },
             }}
+            className="p-2"
           >
             <div className="  scale-100 overflow-hidden group  border-8 delay-100 shadow-lg rounded-3xl sm:rounded-[60px] hover:rounded-3xl border-base-100 transition-all duration-500 ease-in-out hover:scale-105">
               <img

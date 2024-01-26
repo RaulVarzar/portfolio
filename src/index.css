@@ -15,6 +15,10 @@ html {
   font-family: 'Roboto Mono', sans-serif;
 }
 
+.section {
+  /* height: 100dvh; */
+}
+
 html {
   scroll-snap-type: y mandatory;
 }
@@ -37,20 +41,6 @@ body {
     rgba(12, 18, 24, 1) 100%
   );
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#090d10",endColorstr="#0e151b",GradientType=1);
-}
-
-.cursor-style {
-  background-color: rgba(40, 55, 70, 0.3);
-  border: 2px solid gray;
-  box-shadow: 1px 1px 6px rgba(50, 50, 50, 0.3);
-  height: 1.5rem;
-  width: 1.5rem;
-  z-index: 9999;
-  border-radius: 100%;
-  transform-origin: 100% 100%;
-  transform: translate(-50%, -50%);
-  position: fixed;
-  pointer-events: none;
 }
 
 /* for Firefox */

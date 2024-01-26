@@ -1,4 +1,4 @@
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence, motion } from 'framer-motion';
 
 const itemVariants = {
   hide: { opacity: 0, x: -50 },
@@ -20,19 +20,19 @@ export const MenuItem = ({
       variants={itemVariants}
       key={section}
       className={
-        "relative flex cursor-none group w-fit flex-row py-2 px-6 " +
+        'relative flex  group w-full flex-row py-2 px-6 cursor-pointer  ' +
         (activeSection
-          ? " text-primary hover:text-primary "
-          : " text-slate-300 hover:text-slate-100")
+          ? ' text-primary hover:text-primary '
+          : ' text-slate-300 hover:text-slate-100')
       }
       onClick={() => goToSection(section)}
     >
       <span
         className={
-          "transition-all duration-300 group-hover:scale-110 roboto text-neutral-content font-normal tracking-[0px] " +
+          'transition-all duration-300 group-hover:scale-110 roboto xl:max-2xl:text-base text-neutral-content font-normal tracking-[0px] ' +
           (activeSection
-            ? " scale-110 text-primary"
-            : " opacity-80 group-hover:opacity-100")
+            ? ' scale-110 text-primary'
+            : ' opacity-80 group-hover:opacity-100')
         }
       >
         {section}
@@ -44,8 +44,8 @@ export const MenuItem = ({
           transition={{
             layout: {
               duration: 0.25,
-              ease: "easeIn",
-              type: "spring",
+              ease: 'easeIn',
+              type: 'spring',
               stiffness: 400,
               damping: 30,
             },
@@ -66,8 +66,8 @@ export const MenuItem = ({
             transition={{
               layout: {
                 duration: 0.25,
-                ease: "easeIn",
-                type: "spring",
+                ease: 'easeIn',
+                type: 'spring',
                 stiffness: 400,
                 damping: 30,
               },

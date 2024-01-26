@@ -1,30 +1,33 @@
 import { Menu } from './Menu';
-import { delay, motion } from 'framer-motion';
 
 const Sidebar = ({ goToSection, activeSection }) => {
   return (
-    <div className="sticky top-0 left-0 z-50 self-start w-0 h-screen cursor-none drawer 2xl:w-fit 2xl:drawer-open ">
-      <input
-        id="my-drawer-2"
-        type="checkbox"
-        className="drawer-toggle cursor-none"
-      />
-      <div className="flex flex-col items-center justify-center cursor-none h-fit w-fit drawer-content">
-        {/* Page content here */}
-        <label
-          htmlFor="my-drawer-2"
-          className="absolute text-2xl md:text-4xl top-1 left-2 md:top-6 drawer-button 2xl:hidden md:left-6"
-        >
-          <i className="fa-solid fa-bars text-neutral-content opacity-60"></i>
-        </label>
-      </div>
+    <div className="sticky top-0 left-0 z-50 self-start w-0 h-screen drawer xl:w-fit xl:drawer-open ">
+      <input id="my-drawer" type="checkbox" className="drawer-toggle peer" />
+      <label
+        htmlFor="my-drawer"
+        className="absolute left-0 px-5 py-2 text-2xl transition-transform duration-300 rounded-r-lg cursor-pointer peer-checked:-translate-x-48 md:text-3xl top-3 bg-base-100 md:top-6 drawer-button xl:hidden "
+      >
+        <i className="fa-solid fa-bars text-neutral-content opacity-90"></i>
+      </label>
+      <div className="flex flex-col items-center justify-center h-fit w-fit drawer-content"></div>
       <div className="overflow-hidden overflow-x-hidden drawer-side">
         <label
-          htmlFor="my-drawer-2"
+          htmlFor="my-drawer"
           aria-label="close sidebar"
-          className="overflow-hidden overflow-x-hidden drawer-overlay "
+          className="drawer-overlay"
         ></label>
-        <ul className="grid min-h-full px-10 bg-base-300 2xl:bg-transparent 2xl:px-0 text-base-content">
+
+        <ul className="grid min-h-full px-10 max-xl:backdrop-blur-md max-xl:backdrop-brightness-75 xl:bg-transparent xl:px-0 text-base-content">
+          <label
+            htmlFor="my-drawer"
+            aria-label="close sidebar"
+            className="absolute right-0 cursor-pointer top-16 xl:hidden"
+          >
+            <div className="px-4 py-2 rounded-none bg-opacity-60 bg-base-200 rounded-l-xl">
+              <i className="px-2 text-2xl fa-solid text-neutral-content fa-caret-left"></i>
+            </div>
+          </label>
           <div className="w-0.5 h-full bg-gradient-to-t fixed opacity-40 right-0 inset-y-0 my-auto from-transparent via-neutral to-transparent"></div>
           <Menu activeSection={activeSection} goToSection={goToSection} />
         </ul>

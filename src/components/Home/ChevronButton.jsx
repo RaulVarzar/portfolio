@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import { motion } from 'framer-motion';
 
 const ChevronButton = ({ goToSection }) => {
   return (
@@ -7,11 +7,15 @@ const ChevronButton = ({ goToSection }) => {
         y: [8, 0, 8],
         opacity: [0.5, 1, 1, 0.5],
       }}
-      transition={{ ease: "easeInOut", duration: 2.5, repeat: Infinity }}
-      className="absolute left-0 right-0 flex justify-center mx-auto w-fit bottom-3"
-      onClick={() => goToSection("skills")}
+      transition={{ ease: 'easeInOut', duration: 2.5, repeat: Infinity }}
+      className="absolute left-0 right-0 flex justify-center mx-auto cursor-pointer w-fit bottom-3 md:bottom-5"
+      onClick={() => goToSection('skills')}
     >
-      <svg height="30" width="50" className="opacity-30 w-fit">
+      <svg
+        height="30"
+        width="50"
+        className="scale-75 opacity-30 w-fit md:scale-100"
+      >
         <line
           x1="0"
           y1="3"

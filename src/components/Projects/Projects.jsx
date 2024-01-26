@@ -34,44 +34,31 @@ const Projects = forwardRef(({ makeActive }, ref) => {
   }, [isInView]);
 
   return (
-    <section className="grid w-full min-h-screen px-2 py-10 overflow-y-auto md:px-10 section place-content-center snap-center">
-      <motion.div
-        variants={variants}
-        ref={ref}
-        initial="hide"
-        whileInView="show"
-        className="grid w-full grid-cols-2 gap-1 divide-base-300  max-w-[1600px] lg:grid-cols-2 2xl:grid-cols-3"
-      >
-        {projects.map((project, i) => (
-          <motion.div key={project.title} variants={cardVariants}>
-            <ProjectCard
-              project={project}
-              i={i}
-              setHover={(state) => setIsHovering(state)}
-              isHovering={isHovering}
-            />
-          </motion.div>
-        ))}
+    <section className="grid w-full min-h-screen px-2 pt-16 pb-10 my-10 overflow-y-auto md:my-0 md:px-10 section place-content-center snap-center">
+      <div className="w-full h-full overflow-y-auto ">
         <motion.div
-          ref={sectionRef}
-          initial={{ opacity: 0 }}
-          whileInView={{
-            opacity: 1,
-            transition: { delay: projects.length * 0.3 },
-          }}
-          className="grid col-span-2 xl:col-span-1 place-content-center"
+          variants={variants}
+          ref={ref}
+          initial="hide"
+          whileInView="show"
+          className="flex flex-wrap items-stretch w-full px-2 sm:px-6 md:px-8 divide-base-300"
         >
-          <div
-            className={
-              'flex flex-row gap-4 px-8  py-4 transition duration-300 items-center hover:opacity-80 text-base-content hover:text-primary ' +
-              (isHovering ? ' opacity-0' : ' opacity-40 ')
-            }
-          >
-            <h3 className="text-base lg:text-md">ALL PROJECTS</h3>
-            <i className="text-md fa-solid fa-arrow-right-long"></i>
-          </div>
+          {projects.map((project, i) => (
+            <motion.div
+              key={project.title}
+              variants={cardVariants}
+              className="w-full p-1 md:w-1/2 xl:w-1/3"
+            >
+              <ProjectCard
+                project={project}
+                i={i}
+                setHover={(state) => setIsHovering(state)}
+                isHovering={isHovering}
+              />
+            </motion.div>
+          ))}
         </motion.div>
-      </motion.div>
+      </div>
     </section>
   );
 });

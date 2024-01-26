@@ -13,7 +13,7 @@ const ProjectCard = ({ project, i, setHover, isHovering }) => {
       onMouseEnter={() => changeHoverState(title)}
       onMouseLeave={() => changeHoverState(false)}
       className={
-        'relative group bg-[hsl(205,30%,7%)] overflow-hidden h-full cursor-none transition-all duration-300 hover:rounded-lg hover:bg-base-200 shadow-lg hover:z-[1] hover:shadow-xl hover:scale-105 ' +
+        'relative flex group bg-[hsl(205,32%,7%)] h-full w-full  transition-all duration-300 hover:rounded-xl hover:bg-base-200 shadow-lg hover:z-[1] hover:shadow-xl hover:scale-105 ' +
         (isHovering !== title &&
           isHovering !== false &&
           ' brightness-85 blur-xxs opacity-50 ')
@@ -21,38 +21,41 @@ const ProjectCard = ({ project, i, setHover, isHovering }) => {
     >
       <motion.div
         layout="position"
-        className="relative flex flex-col justify-between h-full p-2 space-y-2 md:p-4 2xl:p-8 lg:space-y-6"
+        className="relative flex flex-col justify-between w-full h-full p-3 space-y-2 md:p-4 2xl:p-6 lg:space-y-6"
       >
         <motion.div
           layout="position"
           className="flex flex-col justify-end gap-4 text-left transition-all duration-300 h-fit "
         >
           <img
-            src={`./projects/${photo}`}
+            src={
+              `./projects/photos/${photo}` +
+              (isCurrentHovering ? '.gif' : '.jpg')
+            }
             alt={photo}
             className={
-              'object-cover w-auto h-48 rounded-lg transition duration-300 ' +
-              (isCurrentHovering && ' scale-105 shadow-2xl')
+              'object-cover w-auto h-32 md:h-48 rounded-lg transition duration-300 border-neutral ' +
+              (isCurrentHovering && ' shadow-2xl border-3  ')
             }
           />
           <div className="flex flex-col">
-            <motion.h5
+            <motion.h3
               layout="position"
-              className="z-10 text-base font-semibold uppercase transition-all duration-300 saturate-50 brightness-125 text-base-content w-fit group-hover:brightness-150 xl:text-xl group-hover:scale-110"
+              className="z-10 flex justify-start w-full overflow-hidden text-base font-semibold leading-7 text-left uppercase transition-all duration-300 group-hover:text-2xl saturate-50 brightness-125 text-base-content xl:text-xl "
             >
               {title}
-            </motion.h5>
-            <p className="z-10 text-sm leading-tight tracking-tight transition-all duration-300 opacity-70 xl:text-base text-neutral-content group-hover:opacity-90">
+            </motion.h3>
+            <p className="z-10 text-sm leading-tight tracking-tight transition-all duration-300 opacity-50 xl:text-base text-neutral-content group-hover:opacity-90">
               {description}
             </p>
           </div>
         </motion.div>
-        <div className="flex flex-row gap-4 justify-evenly">
+        <div className="flex flex-row items-center gap-4 justify-evenly">
           <a
             href={github}
             target="_blank"
             className={
-              'flex items-center cursor-none justify-between px-6 py-2 rounded-md text-base-content opacity-80 group-hover:opacity-100 hover:text-primary transition-all duration-100  ' +
+              'flex items-center justify-between px-6 py-2 xl:py-3 rounded-md text-base-content opacity-80 group-hover:opacity-100 hover:text-primary transition-all duration-100  ' +
               (isCurrentHovering &&
                 ' bg-base-300 hover:shadow-md hover:bg-neutral ')
             }
@@ -75,8 +78,10 @@ const ProjectCard = ({ project, i, setHover, isHovering }) => {
           </a> */}
 
           <a href={demo} target="_blank">
-            <button className="my-button text-base-content ">
-              <div className="font-semibold text">
+            <button className="px-2 md:px-4 xl:px-6 opacity-70 hover:opacity-100 transition duration-300 pt-1 pb-1.5  my-button text-base-content">
+              <div className="flex items-center gap-2 font-semibold text">
+                <i className="fa-solid fa-arrow-up-right-from-square"></i>
+
                 <span>Demo</span>
               </div>
             </button>

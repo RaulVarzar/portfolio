@@ -19,18 +19,16 @@ export const BottomMenu = ({ goToSection }) => {
         variants={variants}
         initial="hide"
         whileInView="show"
-        className="flex flex-row px-4 transition-all duration-300 gap-x-5"
+        className="flex flex-row transition-all duration-300 gap-x-5"
       >
         <motion.a
           variants={variants}
-          whileHover={{ scale: 1.05, transition: { ease: 'easeInOut' } }}
           href="https://github.com/RaulVarzar"
           target="_blank"
-          className="flex items-center text-xl "
+          whileHover={{ scale: 1.05, transition: { ease: 'easeInOut' } }}
+          className="flex items-center p-0 h-fit"
         >
-          <button className="px-2.5 py-1  font-light tracking-wider rounded-md xl:px-4 xl:py-2 cursor-none bg-base-100 text-neutral-content hover:bg-base-100">
-            Github <i className="fa-brands fa-github"></i>
-          </button>
+          <i className="text-4xl transition duration-300 sm:text-5xl fa-brands fa-square-github hover:text-base-content text-neutral brightness-125"></i>
         </motion.a>
         <motion.a
           variants={variants}
@@ -39,7 +37,7 @@ export const BottomMenu = ({ goToSection }) => {
           whileHover={{ scale: 1.05, transition: { ease: 'easeInOut' } }}
           className="flex items-center p-0 h-fit"
         >
-          <i className="text-4xl transition duration-300 xl:text-5xl fa-brands fa-square-behance hover:text-base-content text-neutral brightness-125"></i>
+          <i className="text-4xl transition duration-300 sm:text-5xl fa-brands fa-square-behance hover:text-base-content text-neutral brightness-125"></i>
         </motion.a>
         <motion.a
           variants={variants}
@@ -51,34 +49,37 @@ export const BottomMenu = ({ goToSection }) => {
           target="_blank"
           className="flex items-center h-fit"
         >
-          <i className="text-4xl transition duration-300 xl:text-5xl fa-brands fa-square-instagram hover:text-base-content text-neutral brightness-125"></i>
+          <i className="text-4xl transition duration-300 sm:text-5xl fa-brands fa-square-instagram hover:text-base-content text-neutral brightness-125"></i>
         </motion.a>
       </motion.div>
 
       <motion.div
         initial={{ scaleY: 0 }}
-        whileInView={{ scaleY: 1 }}
+        whileInView={{ scaleY: 1, transition: { duration: 0.5, delay: 1.8 } }}
         transition={{ delay: 0.8, duration: 0.4, ease: 'easeInOut' }}
-        className="py-0 my-1 text-sm text-base leading-none text-neutral-content divider lg:divider-horizontal"
+        className="py-0 my-1 leading-none lg:px-4 text-neutral-content divider lg:divider-horizontal"
       ></motion.div>
 
-      <motion.button
-        initial={{ scale: 0.8, opacity: 0, y: 10 }}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
         whileInView={{
-          scale: 1,
           y: 0,
           opacity: 1,
-          transition: { duration: 0.5, delay: 1 },
+          transition: { duration: 0.7, delay: 2.4 },
         }}
-        whileHover={{
-          scale: 1.07,
-          transition: { duration: 0.2, delay: 0, ease: 'easeInOut' },
-        }}
-        onClick={() => goToSection('contact')}
-        className="px-3 py-1.5 ml-4 text-lg font-light tracking-wider rounded-md xl:px-5 xl:py-2 uppercasebg-transparent cursor-none border-3 text-base-content border-base-100 hover:bg-base-200 hover:border-base-200 "
+        className="flex"
       >
-        Contact me
-      </motion.button>
+        <motion.button
+          whileHover={{
+            scale: 1.07,
+            transition: { duration: 0.3, ease: 'easeInOut' },
+          }}
+          onClick={() => goToSection('contact')}
+          className="px-3 py-1 text-base font-light tracking-wider rounded-md sm:text-md xl:text-lg xl:px-5 xl:py-1.5 uppercasebg-transparent  border-3 text-base-content border-base-100 hover:bg-base-200 hover:border-base-200 "
+        >
+          Contact me
+        </motion.button>
+      </motion.div>
     </motion.div>
   );
 };
