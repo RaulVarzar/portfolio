@@ -95,8 +95,8 @@ const Home = forwardRef(({ makeActive, goToSection }, ref) => {
             <Tilt
               tiltReverse={true}
               transitionEasing="cubic-bezier(.03,.98,.52,.99)"
-              tiltMaxAngleX={3}
-              tiltMaxAngleY={3}
+              tiltMaxAngleX={7}
+              tiltMaxAngleY={7}
               perspective={1000}
               onEnter={() => setZoomInText(true)}
               onLeave={() => setZoomInText(false)}

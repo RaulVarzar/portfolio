@@ -55,7 +55,7 @@ const SkillsCard = ({ title, large, icon, subtitle }) => {
       {large && (
         <>
           <div className="divider h-fit"></div>
-          <h3 className="text-center text-md">My React knowledge so far</h3>
+          <h3 className="text-center text-md">My React knowledge includes</h3>
           <ul className="flex flex-wrap items-center justify-center text-base gap-x-2 gap-y-1 xl:text-md">
             <li className="px-6 py-2.5 text-white rounded-lg bg-primary bg-opacity-70 w-fit">
               React Router
