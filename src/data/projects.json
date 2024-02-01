@@ -1,39 +1,52 @@
 {
   "projects": [
     {
+      "title": "jardinterra.ro",
+      "description": "A modern refresh for the jardinterra.ro website that includes a new responsive design and new features.",
+      "github": "https://github.com/RaulVarzar/jardin-terra",
+      "demo": "https://jardin-terra.vercel.app/",
+      "photo": "/projects/photos/jardinterra.jpg",
+      "gif": "/projects/photos/jardinterra.gif"
+    },
+    {
       "title": "Blog",
       "description": "A modern refresh for the tablejaponeze.ro blog website that includes a new responsive design and new features.",
-      "github": "",
-      "demo": "",
-      "photo": "table"
+      "github": "https://github.com/RaulVarzar/table-japoneze",
+      "demo": "https://table-japoneze.vercel.app/",
+      "photo": "/projects/photos/table.jpg",
+      "gif": "/projects/photos/table.gif"
     },
     {
       "title": "Food ordering app",
       "description": "My concept for a modern food ordering app.",
-      "github": "",
+      "github": "https://github.com/RaulVarzar/food-app",
       "demo": "",
-      "photo": "food"
+      "photo": "/projects/photos/food.jpg",
+      "gif": "/projects/photos/food.gif"
     },
     {
       "title": "Hangman",
       "description": "The classic hangman game. The game will select a random word from an API based on the difficulty the user chooses",
       "github": "https://github.com/RaulVarzar/hangman",
       "demo": "https://hangman-ten-tau.vercel.app",
-      "photo": "hangman"
+      "photo": "/projects/photos/hangman.jpg",
+      "gif": "/projects/photos/hangman.gif"
     },
     {
       "title": "Quiz",
       "description": "A modern refresh for the tablejaponeze.ro blog website that includes a new responsive design and new features.",
       "github": "https://github.com/RaulVarzar/quiz",
       "demo": "https://quiz-hazel-xi.vercel.app/",
-      "photo": "quiz"
+      "photo": "/projects/photos/quiz.jpg",
+      "gif": "/projects/photos/quiz.gif"
     },
     {
       "title": "Timer challenge",
       "description": "A simple game where the players have to stop a timer before it expires",
       "github": "https://github.com/RaulVarzar/timer-challenge",
       "demo": "https://timer-challenge-nine.vercel.app/",
-      "photo": "timer"
+      "photo": "/projects/photos/timer.jpg",
+      "gif": "/projects/photos/timer.gif"
     }
   ]
 }

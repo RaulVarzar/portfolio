@@ -1,36 +1,54 @@
-import { motion } from "framer-motion";
+import { motion } from 'framer-motion';
 
 const ChevronButton = ({ goToSection }) => {
   return (
     <motion.div
+      initial={{ y: 50, opacity: 0 }}
       animate={{
-        y: [8, 0, 8],
-        opacity: [0.5, 1, 1, 0.5],
+        y: 0,
+        opacity: 1,
       }}
-      transition={{ ease: "easeInOut", duration: 2.5, repeat: Infinity }}
-      className="absolute left-0 right-0 flex justify-center mx-auto cursor-pointer w-fit bottom-6 md:bottom-10"
-      onClick={() => goToSection("skills")}
+      transition={{ ease: 'easeOut', duration: 1, delay: 1.5 }}
+      className="absolute left-0 right-0 z-50 flex justify-center mx-auto cursor-pointer w-fit bottom-6 md:bottom-10"
+      onClick={goToSection}
     >
-      <svg
+      {/* <svg
         height="30"
-        width="50"
-        className="scale-75 opacity-30 w-fit md:scale-100"
+        width="70"
+        className="scale-75 opacity-80 w-fit md:scale-100"
       >
         <line
           x1="0"
-          y1="3"
-          x2="25"
-          y2="20"
-          className="stroke-2 stroke-base-content"
+          y1="0"
+          x2="35"
+          y2="17"
+          className="stroke-2 stroke-neutral-content"
         />
         <line
-          x1="25"
-          y1="20"
-          x2="50"
-          y2="3"
-          className="stroke-2 stroke-base-content"
+          x1="35"
+          y1="17"
+          x2="70"
+          y2="0"
+          className="stroke-2 stroke-neutral-content"
         />
-      </svg>
+      </svg> */}
+      <div className="flex items-center justify-center h-10 overflow-hidden border-2 rounded-full w-7">
+        <motion.div
+          animate={{
+            x: 0,
+            y: [-9, 26],
+            opacity: [0, 0.8, 0.8, 0.6, 0, 0],
+          }}
+          transition={{
+            repeat: Infinity,
+            duration: 2.5,
+            repeatDelay: 0.2,
+            repeatType: 'loop',
+            ease: [0, 0.5, 0.8, 1],
+          }}
+          className="w-2.5 h-2.5 rounded-full bg-neutral-content"
+        ></motion.div>
+      </div>
     </motion.div>
   );
 };

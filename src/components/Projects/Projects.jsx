@@ -4,10 +4,11 @@ import {
   useScroll,
   useSpring,
   useTransform,
-} from "framer-motion";
-import ProjectCard from "./ProjectCard";
-import { useState, useRef, useEffect, forwardRef } from "react";
-import { projects } from "../../data/projects";
+} from 'framer-motion';
+import ProjectCard from './ProjectCard';
+import { useRef, useEffect, forwardRef } from 'react';
+import { projects } from '../../data/projects';
+import { Reveal } from '../../util/animations';
 
 const variants = {
   hide: { opacity: 0 },
@@ -18,44 +19,64 @@ const variants = {
 };
 
 const Projects = forwardRef(({ makeActive }, ref) => {
-  const isInView = useInView(ref);
+  const targetRef = useRef(null);
+  const projectsRef = useRef(null);
+
+  const isInView = useInView(projectsRef);
   useEffect(() => {
     if (isInView) {
-      makeActive("projects");
+      makeActive('projects');
     }
   }, [isInView]);
 
-  const targetRef = useRef(null);
-  const containerRef = useRef(null);
-
   const { scrollYProgress } = useScroll({
     target: targetRef,
-    offset: ["start end", "start start"],
+    offset: ['start end', 'start start'],
   });
+
+  const spring = useSpring(scrollYProgress, {
+    stiffness: 300,
+    damping: 50,
+    restDelta: 0.001,
+  });
+
   const y = useTransform(
-    scrollYProgress,
-    [0, 0.4, 0.8, 1],
-    ["20vh", "0vh", "0vh", "-20vh"]
+    spring,
+    [0, 0.3, 0.7, 1],
+    ['20vh', '0vh', '10vh', '15vh']
   );
-  const scale = useTransform(scrollYProgress, [0, 0.4], ["60%", "100%"]);
-  const opacity = useTransform(scrollYProgress, [0, 0.5], ["40%", "100%"]);
+
+  const scale = useTransform(spring, [0, 0.4], ['85%', '100%']);
+  const opacity = useTransform(
+    spring,
+    [0, 0.25, 0.75, 0.95],
+    ['40%', '100%', '100%', '0%']
+  );
 
   return (
-    <div className="relative flex flex-col justify-center w-full px-2 pt-16 pb-36 md:my-0 md:px-10">
+    <div
+      ref={ref}
+      className="relative flex flex-col justify-center w-full px-2 pt-16 pb-36 md:my-0 md:px-10"
+    >
       <motion.div
         ref={targetRef}
-        className="sticky top-0 flex flex-col items-center justify-start min-h-[40vh] "
+        className="sticky top-0 flex  flex-col  items-center justify-start min-h-[20vh] mt-[10vh]"
       >
-        <motion.h3 style={{ y, scale, opacity }} className="font-bold text-8xl">
-          MY PROJECTS
+        <motion.h3
+          style={{ y, scale, opacity }}
+          className="text-5xl font-bold text-accent sm:text-6xl lg:text-7xl"
+        >
+          <Reveal repeat delay={0.3} duration={1.4}>
+            MY PROJECTS
+          </Reveal>
         </motion.h3>
       </motion.div>
       <motion.div
-        ref={ref}
-        className="h-fit  mx-auto px-2 gap-4 grid grid-cols-2 max-w-7xl [&>div:not(:first-child)]:mt-0"
+        ref={projectsRef}
+        className="h-fit  mx-auto px-2 gap-4 lg:gap-8 grid grid-cols-1 md:grid-cols-2 ax-w-7xl [&>div:not(:first-child)]:mt-0"
       >
         {projects.map((project, i) => (
-          <ProjectCard project={project} i={i} />
+          <ProjectCard project={project} i={i} key={project.title} />
         ))}
       </motion.div>
     </div>

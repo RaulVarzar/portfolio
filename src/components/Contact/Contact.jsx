@@ -1,9 +1,9 @@
-import { useInView, motion } from "framer-motion";
-import { forwardRef, useEffect } from "react";
-import Form from "./Form";
+import { useInView, motion } from 'framer-motion';
+import { forwardRef, useEffect } from 'react';
+import Form from './Form';
 
-import chatIcon from "../../assets/chat-icon.svg";
-import ChatIcon from "./ChatIcon";
+import chatIcon from '../../assets/chat-icon.svg';
+import ChatIcon from './ChatIcon';
 
 const variants = {
   hide: { opacity: 0, x: -40 },
@@ -13,7 +13,7 @@ const variants = {
     transition: {
       duration: 1,
       delay: 0.5,
-      ease: "easeOut",
+      ease: 'easeOut',
       staggerChildren: 0.9,
     },
   },
@@ -27,7 +27,7 @@ const formVariants = {
     transition: {
       duration: 1,
       delay: 1.2,
-      ease: "easeOut",
+      ease: 'easeOut',
       staggerChildren: 0.9,
     },
   },
@@ -38,7 +38,7 @@ const Contact = forwardRef(({ makeActive }, ref) => {
 
   useEffect(() => {
     if (isInView) {
-      makeActive("contact");
+      makeActive('contact');
     }
   }, [isInView]);
 

@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@emailjs/browser": "^3.12.1",
+    "@motionone/utils": "^10.17.0",
     "framer-motion": "^10.18.0",
     "popmotion": "^11.0.5",
     "pure-react-carousel": "^1.30.1",
