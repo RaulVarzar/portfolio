@@ -8,7 +8,6 @@ import {
 } from 'framer-motion';
 import HtmlElement from './HtmlElement';
 import { forwardRef, useEffect, useRef, useState } from 'react';
-import codePhoto from '../../assets/code-editor3.png';
 import ChevronButton from './ChevronButton';
 import Tilt from 'react-parallax-tilt';
 import { BottomMenu } from './BottomMenu';
@@ -53,15 +52,15 @@ const Home = forwardRef(({ makeActive, goToSection }, ref) => {
   const y = useTransform(spring, [0, 1], ['0vh', '-15vh']);
   const headerY = useTransform(spring, [0, 1], ['0vh', '-25vh']);
 
-  const scale = useTransform(spring, [0.1, 0.9], ['100%', '80%']);
-  const imgOpacity = useTransform(spring, [0.3, 0.7], ['100%', '20%']);
-  const imgRotate = useTransform(spring, [0.05, 0.9], ['0deg', '8deg']);
-  const imgX = useTransform(spring, [0.05, 0.9], ['0vw', '5vw']);
+  const imgScale = useTransform(spring, [0, 0.9], ['100%', '80%']);
+  const imgOpacity = useTransform(spring, [0.1, 0.5], ['100%', '20%']);
+  const imgRotate = useTransform(spring, [0.05, 0.9], ['0deg', '5deg']);
+  const imgX = useTransform(spring, [0, 0.9], ['0vw', '5vw']);
 
-  const headerOpacity = useTransform(spring, [0.3, 0.7], ['100%', '40%']);
-  const headerRotate = useTransform(spring, [0.0, 0.9], ['0deg', '-10deg']);
+  const headerOpacity = useTransform(spring, [0.1, 0.5], ['100%', '30%']);
+  const headerRotate = useTransform(spring, [0.0, 0.9], ['0deg', '-3deg']);
   const headerX = useTransform(spring, [0.0, 0.9], ['0vw', '-10vw']);
-  const headerScale = useTransform(spring, [0.1, 0.6], ['100%', '50%']);
+  const headerScale = useTransform(spring, [0, 0.6], ['100%', '50%']);
 
   const socialsOpacity = useTransform(spring, [0.05, 0.2], ['100%', '0%']);
   const dividerOpacity = useTransform(spring, [0.03, 0.18], ['100%', '0%']);
@@ -74,7 +73,7 @@ const Home = forwardRef(({ makeActive, goToSection }, ref) => {
   return (
     <motion.section
       ref={sectionRef}
-      className="relative grid w-full max-md:min-h-[95svh] sm:h-[95vh] rounded-b-3xl overflow-hidden text-4xl bg-accent place-content-start justify-center text-info"
+      className="grid w-full relative max-md:min-h-[100svh] sm:h-[95vh] rounded--3xl overflow-hidden text-4xl bg-accen place-content-start justify-center text-info"
     >
       <motion.div style={{ opacity: chevronOpacity }}>
         <ChevronButton goToSection={goToSection} />
@@ -86,7 +85,6 @@ const Home = forwardRef(({ makeActive, goToSection }, ref) => {
               y: headerY,
               opacity: headerOpacity,
               scale: headerScale,
-              rotate: headerRotate,
               x: headerX,
               borderRadius: '510px',
             }}
@@ -170,13 +168,13 @@ const Home = forwardRef(({ makeActive, goToSection }, ref) => {
             style={{
               y,
               opacity: imgOpacity,
-              scale,
-              rotate: imgRotate,
+              scale: imgScale,
+              // rotate: imgRotate,
               x: imgX,
             }}
             className="p-2"
           >
-            <motion.div className=" scale-100 overflow-hidden group  border-8 delay-100 elevation-4 rounded-3xl sm:rounded-[60px] hover:rounded-3xl border-base-100 transition-all duration-500 ease-in-out hover:scale-105">
+            <motion.div className=" scale-100 overflow-hidden group  border-4 delay-100 elevation-4 rounded-3xl sm:rounded-[60px] hover:rounded-3xl border-base-content transition-all duration-500 ease-in-out hover:scale-105">
               <img
                 src={profilePhoto}
                 className="z-50 object-cover h-40 transition-all duration-500 ease-in-out delay-100 w-36 md:h-52 md:w-48 xl:h-80 xl:w-72 lg:scale-110 group-hover:scale-100"

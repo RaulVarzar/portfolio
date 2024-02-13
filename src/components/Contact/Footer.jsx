@@ -6,8 +6,8 @@ import {
   useInView,
 } from 'framer-motion';
 import { forwardRef, useEffect, useRef } from 'react';
-import ChatIcon from './Contact/ChatIcon';
-import Form from './Contact/Form';
+import ChatIcon from './ChatIcon';
+import Form from './Form';
 
 const Footer = forwardRef(({ makeActive }, ref) => {
   const activeRef = useRef(null);
@@ -38,13 +38,22 @@ const Footer = forwardRef(({ makeActive }, ref) => {
     <div ref={ref} className="flex items-end min-h-screen">
       <motion.div
         style={{ y: cardY, scale: cardScale }}
-        className="flex items-center justify-center mx-auto overflow-hidden min-h-[85vh] md:min-h-[65vh] rounded-t-5xl w-full 3xl:max-w-8xl bg-accent py-12 md:py-16 xl:py-36 text-base-content"
+        className="flex items-center justify-center mx-auto overflow-hidden min-h-[85vh] md:min-h-[80vh] rounded-t-5xl w-full 3xl:max-w-8xl bg-base-200 border-t-1 border-base-content border-opacity-5 py-12 md:py-16 xl:py-36 text-base-content"
       >
         <motion.div
           style={{ y }}
           className="flex flex-col px-8 max-md:w-full gap-x-12 gap-y-6 lg:flex-row md:grid-cols-2 max-w-8xl place-content-center"
         >
-          <motion.div className="flex flex-row items-center pt-6 pr-2 text-right max-lg:justify-center lg:items-end gap-x-6 lg:flex-col text-neutral-content">
+          <motion.div
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{
+              delay: 0.4,
+              duration: 0.8,
+              type: 'tween',
+            }}
+            className="flex flex-row items-center pt-6 pr-2 text-right max-lg:justify-center lg:items-end gap-x-6 lg:flex-col text-neutral-content"
+          >
             <motion.h1
               ref={activeRef}
               className="text-2xl font-bold md:text-3xl xl:text-5xl w-fit text-nowrap"

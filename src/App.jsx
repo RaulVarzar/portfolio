@@ -7,7 +7,7 @@ import Navbar from './components/Navbar/Navbar';
 import MobileNavbar from './components/Navbar/MobileNavbar';
 
 import SmoothScroll from './components/SmoothScroll';
-import Footer from './components/Footer';
+import Footer from './components/Contact/Footer';
 import { useMotionValueEvent, useScroll } from 'framer-motion';
 
 const App = () => {
@@ -39,7 +39,12 @@ const App = () => {
       </div>
 
       <SmoothScroll>
-        <div className="relative bg-base-200 ">
+        <div
+          className={
+            'relative transition-colors duration-700 ' +
+            (activeSection === 'home' ? ' bg-accent' : ' bg-base-100')
+          }
+        >
           <Home
             ref={home}
             makeActive={makeActive}

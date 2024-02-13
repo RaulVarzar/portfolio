@@ -47,25 +47,23 @@ const Contact = forwardRef(({ makeActive }, ref) => {
   }
 
   return (
-    <section className="grid h-screen text-4xl place-content-center text-info snap-center">
-      <div className="flex flex-col items-center w-full gap-8 mx-auto lg:items-start lg:flex-row">
-        <motion.div
+    <section className="hidden h-screen text-4xl border-2  place-content-center text-info snap-center">
+      <motion.div
+        variants={variants}
+        initial="hide"
+        whileInView="show"
+        className="flex flex-row items-center pt-6 pr-2 text-right lg:items-end gap-x-6 lg:flex-col text-base-content"
+      >
+        <motion.h1
+          ref={ref}
           variants={variants}
-          initial="hide"
-          whileInView="show"
-          className="flex flex-row items-center pt-6 pr-2 text-right lg:items-end gap-x-6 lg:flex-col text-base-content"
+          className="font-bold xl:text-5xl"
         >
-          <motion.h1
-            ref={ref}
-            variants={variants}
-            className="font-bold xl:text-5xl"
-          >
-            CONTACT ME
-          </motion.h1>
-          <ChatIcon variants={variants} className="mt-2 text-base-content" />
-        </motion.div>
-        <Form />
-      </div>
+          CONTACT ME
+        </motion.h1>
+        <ChatIcon variants={variants} className="mt-2 text-base-content" />
+      </motion.div>
+      <Form />
     </section>
   );
 });

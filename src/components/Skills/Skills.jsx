@@ -30,13 +30,6 @@ const Skills = forwardRef(({ makeActive }, ref) => {
     offset: ['start end', 'start start'],
   });
 
-  const spring = useSpring(scrollYProgress, {
-    stiffness: 80,
-    damping: 20,
-    // restDelta: 0.001,
-    mass: 0.2,
-  });
-
   const contentSpring = useSpring(contentProgress, {
     stiffness: 80,
     damping: 20,
@@ -44,77 +37,38 @@ const Skills = forwardRef(({ makeActive }, ref) => {
     mass: 0.2,
   });
 
-  const circleScale = useTransform(spring, [0.1, 0.95], ['40%', '100%']);
-  const circleY = useTransform(spring, [0, 0.6], ['20vh', '0vh']);
-  const circleRotate = useTransform(spring, [0.2, 0.8], ['45deg', '0deg']);
-
-  const textX = useTransform(contentSpring, [0, 1], ['-20vw', '5vw']);
+  const textX = useTransform(contentSpring, [0, 1], ['-60vw', '0vw']);
+  const scale = useTransform(contentSpring, [0, 0.4], ['80%', '100%']);
 
   return (
     <section
       ref={ref}
-      className="grid relative min-h-[100vh]  overflow-hidden text-4xl section place-content-center pt-[25vh] text-info snap-center pb-[15vh]"
+      className="relative grid py-12 overflow-hidden text-4xl md:py-24 section place-content-center"
     >
-      <motion.div
-        style={{ scale: circleScale, y: circleY, rotate: circleRotate }}
-        className="absolute inset-x-0 grid overflow-hidden place-content-start pt-[15vh] bottom-[25vh] h-[80vh] max-w[100vw]  mx-auto rounded-full aspect-square bg-accent"
-      >
-        <TextCarousel textX={textX} />
-      </motion.div>
-
+      <TextCarousel textX={textX} />
       <motion.div
         ref={contentRef}
-        className="flex flex-col gap-4  place-content-center max-w-7xl roboto mt-[50vh]"
+        style={{ scale }}
+        className="flex flex-row gap-4 px-4 place-content-center max-w-7xl roboto"
       >
-        {/* <motion.div
-          style={{ y: cardY, scale: cardScale }}
-          className="relative flex flex-col col-span-2 gap-2 px-10 pt-8 pb-3 overflow-hidden transition-colors duration-300 rounded-lg border-1 border-base-content bg-neutral-content text-base-content "
-        >
-          <motion.div className="flex items-end content-end gap-3 ">
-            <i className="text-3xl fa-solid fa-laptop-code opacity-30"></i>
-            <h3 className="text-xl font-semibold leading-none uppercase text-base-content lg:text-2xl">
-              Front-end development
-            </h3>
-          </motion.div>
-          <motion.div ref={activeRef} className="w-11/12 mx-auto">
-            <p className="text-sm leading-tight tracking-tight text-gray-500 lg:text-base opacity-80">
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut unde
-              quas debitis explicabo aperiam! Delectus dolores aperiam,
-              blanditiis exercitationem consequatur.
-            </p>
-          </motion.div>
-
-           <motion.div
-            initial={{ scaleY: 0.5, y: -50, opacity: 0 }}
-            animate={{ scaleY: 1, y: 0, opacity: 1 }}
-            transition={{ type: 'tween', duration: 0.2, delay: 0.1 }}
-            exit={{
-              opacity: 0,
-              scaleY: 0,
-              transition: { duration: 0.1 },
-            }}
-            className="flex flex-row justify-center px-3 py-2 "
-          >
-            <DevelopmentSkills />
-          </motion.div> 
-        </motion.div>  */}
-
         <SkillsCard
           title={'Front-end frameworks'}
           subtitle={'ReactJS'}
           large={true}
           icon={'fa-brands fa-react '}
         />
-        <SkillsCard
-          title={'CSS frameworks'}
-          subtitle={'TailwindCSS'}
-          icon={'fa-brands fa-css3-alt'}
-        />
-        <SkillsCard
-          title={'Animations'}
-          subtitle={'Framer Motion'}
-          icon={'fa-solid fa-wand-magic-sparkles'}
-        />
+        <div className="flex flex-col items-stretch h-full gap-3">
+          <SkillsCard
+            title={'CSS frameworks'}
+            subtitle={'TailwindCSS'}
+            icon={'fa-brands fa-css3-alt'}
+          />
+          <SkillsCard
+            title={'Animations'}
+            subtitle={'Framer Motion'}
+            icon={'fa-solid fa-wand-magic-sparkles'}
+          />
+        </div>
       </motion.div>
     </section>
   );

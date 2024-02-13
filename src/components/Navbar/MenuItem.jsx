@@ -25,37 +25,40 @@ export const MenuItem = ({
         damping: 10,
         duration: 0.6,
       }}
+      layout
       key={section}
-      className="relative flex flex-row w-full px-6 py-2 cursor-pointer group "
+      className="relative flex flex-row items-center justify-center w-full px-6 py-2 cursor-pointer group "
       onClick={() => goToSection(section)}
     >
-      <span
-        className={
-          'transition-all duration-300 group-hover:scale-110 roboto text-md font-normal tracking-[0px] ' +
-          (activeSection
-            ? ' scale-110 text-accent'
-            : ' opacity-40 group-hover:opacity-100 text-neutral')
-        }
-      >
-        {section}
-      </span>
       {activeSection && (
         <motion.div
-          className="absolute top-0 left-0 z-50 flex w-full h-full text-sm font-thin align-text-top rounded-sm roboto"
+          className="absolute z-50 flex w-full h-full text-sm font-thin align-baseline top-0.5 text-accent left-2.5 tracking-none roboto"
           layoutId="background"
           transition={{
             layout: {
-              duration: 0.25,
+              duration: 0.3,
+              delay: 0,
               ease: 'easeIn',
               type: 'spring',
               stiffness: 400,
-              damping: 30,
+              damping: 25,
             },
           }}
         >
-          0{sectionIndex + 1}
+          {sectionIndex}
         </motion.div>
       )}
+      <motion.span
+        layout="position"
+        className={
+          'transition-colors duration-300 group-hover:scale-110 roboto text-md font-normal tracking-[0px] ' +
+          (activeSection
+            ? ' scale-110 text-accent'
+            : ' opacity-60 group-hover:opacity-100 text-base-content')
+        }
+      >
+        {section}
+      </motion.span>
     </motion.li>
   );
 };
