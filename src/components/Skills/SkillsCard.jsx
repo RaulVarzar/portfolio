@@ -6,7 +6,7 @@ const SkillsCard = ({ title, large, icon, subtitle }) => {
 
   const { scrollYProgress } = useScroll({
     target: ref,
-    offset: ['center end', 'start center'],
+    offset: ['start end', 'end 0.85'],
   });
 
   const contentSpring = useSpring(scrollYProgress, {
@@ -16,18 +16,16 @@ const SkillsCard = ({ title, large, icon, subtitle }) => {
     mass: 0.2,
   });
 
-  const cardY = useTransform(contentSpring, [0, 1], ['25vh', '0vh']);
+  const cardY = useTransform(contentSpring, [0, 1], ['15vh', '0vh']);
+
   const cardScale = useTransform(contentSpring, [0, 0.8], ['85%', '100%']);
-  const cardOpacity = useTransform(contentSpring, [0, 0.4], ['30%', '100%']);
+  const opacity = useTransform(contentSpring, [0, 1], ['0%', '100%']);
 
   return (
     <motion.div
       ref={ref}
-      // style={{ scale: cardScale }}
-      className={
-        'relative flex flex-col gap-2 px-10 h-full grow justify-center pt-8 pb-6 overflow-hidden transition-colors duration-500 rounded-4xl bg-base-200 text-base-content ' +
-        (large ? ' row-span-2' : ' row-span-1')
-      }
+      style={{ y: cardY, opacity }}
+      className="relative flex flex-col justify-center h-full max-w-5xl gap-2 p-2 sm:px-10 text-base-content"
     >
       <motion.div className="flex items-start gap-3 md:gap-6">
         <i
@@ -55,18 +53,18 @@ const SkillsCard = ({ title, large, icon, subtitle }) => {
       {large && (
         <>
           <div className="divider h-fit"></div>
-          <h3 className="text-center text-md">My React knowledge includes</h3>
-          <ul className="flex flex-wrap items-center justify-center text-base gap-x-2 gap-y-1 xl:text-md">
-            <li className="px-6 py-2.5 text-white rounded-lg bg-accent bg-opacity-80 w-fit">
+          <h3 className="text-center text-md">My React knowledge</h3>
+          <ul className="flex flex-wrap items-center justify-center text-xs sm:text-sm md:text-base gap-x-2 gap-y-1 xl:text-md">
+            <li className="px-4 py-1.5 sm:px-6 sm:py-2.5 text-white rounded-4xl border-1 border-opacity-20 border-base-content w-fit bg-base-content bg-opacity-5">
               React Router
             </li>
-            <li className="px-6 py-2.5 text-white rounded-lg bg-accent bg-opacity-80 w-fit">
+            <li className="px-4 py-1.5 sm:px-6 sm:py-2.5 text-white rounded-4xl border-1 border-opacity-20 border-base-content w-fit bg-base-content bg-opacity-5">
               Redux Toolkit
             </li>
-            <li className="px-6 py-2.5 text-white rounded-lg bg-accent bg-opacity-80 w-fit">
+            <li className="px-4 py-1.5 sm:px-6 sm:py-2.5 text-white rounded-4xl border-1 border-opacity-20 border-base-content w-fit bg-base-content bg-opacity-5">
               TanStack Query
             </li>
-            <li className="px-6 py-2.5 text-white rounded-lg bg-accent bg-opacity-80 w-fit">
+            <li className="px-4 py-1.5 sm:px-6 sm:py-2.5 text-white rounded-4xl border-1 border-opacity-20 border-base-content w-fit bg-base-content bg-opacity-5">
               Next.JS
             </li>
           </ul>

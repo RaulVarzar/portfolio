@@ -18,9 +18,11 @@ const Footer = forwardRef(({ makeActive }, ref) => {
     }
   }, [isInView]);
 
+  const cardRef = useRef(null);
+
   const { scrollYProgress } = useScroll({
-    target: 'ref',
-    offset: ['start end', 'end'],
+    target: cardRef,
+    offset: ['start end', 'end end'],
   });
 
   const spring = useSpring(scrollYProgress, {
@@ -29,24 +31,26 @@ const Footer = forwardRef(({ makeActive }, ref) => {
     mass: 0.2,
   });
 
-  const cardScale = useTransform(spring, [0.5, 1], ['40%', '100%']);
-  const cardY = useTransform(spring, [0.2, 1], ['30vh', '0vh']);
+  const cardScale = useTransform(spring, [0, 1], [0.7, 1]);
+  const cardY = useTransform(spring, [0, 1], ['10vh', '0vh']);
 
-  const y = useTransform(spring, [0.3, 1], ['150vh', '0vh']);
+  const y = useTransform(spring, [0.3, 1], ['10vh', '0vh']);
+  const opacity = useTransform(spring, [0.1, 1], ['10%', '100%']);
 
   return (
-    <div ref={ref} className="flex items-end min-h-screen">
+    <div ref={ref} className="flex items-center min-h-screen px-2">
       <motion.div
-        style={{ y: cardY, scale: cardScale }}
-        className="flex items-center justify-center mx-auto overflow-hidden min-h-[85vh] md:min-h-[80vh] rounded-t-5xl w-full 3xl:max-w-8xl bg-base-200 border-t-1 border-base-content border-opacity-5 py-12 md:py-16 xl:py-36 text-base-content"
+        style={{ scale: cardScale, y: cardY }}
+        ref={cardRef}
+        className="flex items-center justify-center mx-auto overflow-hidden md:min-h-[80vh] rounded-3xl w-full 3xl:max-w-8xl backdrop-brightness-110 border-2 border-base-content border-opacity-5 py-8 md:py-16 xl:py-36 text-base-content"
       >
         <motion.div
-          style={{ y }}
-          className="flex flex-col px-8 max-md:w-full gap-x-12 gap-y-6 lg:flex-row md:grid-cols-2 max-w-8xl place-content-center"
+          style={{ y, opacity }}
+          className="flex flex-col px-8 pb-8 max-md:w-full gap-x-12 gap-y-6 lg:flex-row md:grid-cols-2 max-w-8xl place-content-center"
         >
           <motion.div
             initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            whileInView={{ opacity: 1, y: 0, once: true }}
             transition={{
               delay: 0.4,
               duration: 0.8,

@@ -1,0 +1,28 @@
+.hoverText {
+  transition: 0.5s font-weight, 0.35s color;
+  /* text-shadow: -1px -1px 0 #444, 1px -1px 0 #444, -1px 1px 0 #444,
+    1px 1px 0 #444; */
+  color: #aaa;
+  font-weight: 400;
+  top: 0;
+  position: relative;
+}
+
+.hoverText:hover {
+  font-weight: 800;
+  color: #fff;
+}
+
+/* First to the right and left*/
+.hoverText:hover + .hoverText,
+.hoverText:has(+ .hoverText:hover) {
+  color: #ddd;
+  font-weight: 600;
+}
+
+/* Second to the right and left*/
+.hoverText:hover + .hoverText + .hoverText,
+.hoverText:has(+ .hoverText + .hoverText:hover) {
+  color: #d6d6d6;
+  font-weight: 500;
+}

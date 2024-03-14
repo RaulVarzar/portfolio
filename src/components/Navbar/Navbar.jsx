@@ -33,20 +33,31 @@ const Sidebar = ({ goToSection, activeSection }) => {
     <motion.nav
       variants={variants}
       animate={hidden ? 'hidden' : 'visible'}
-      transition={{ ease: [0, 0.2, 0.8, 1], duration: 0.6, type: 'spring' }}
+      transition={{
+        ease: [0, 0.2, 0.8, 1],
+        duration: 0.6,
+        type: 'spring',
+        delay: 0.3,
+      }}
       className="fixed z-50 mx-auto md:inset-x-0 w-fit top-8"
     >
       <motion.ul
         // variants={variants}
         // layout
-        // animate="show"
-        // initial="hide"
-        className="flex gap-5 px-6 py-3 text-lg font-semibold shadow-sm h-fit gap-y-10 w-fit bg-base-300 md:rounded-xl place-content-center xl:text-xl"
+        initial={{ y: -200 }}
+        animate={{ y: 0, transition: { duration: 1, delay: 0.7 } }}
+        className={
+          'flex gap-5 px-8 py-3 text-lg font-semibold shadow-sm h-fit  gap-y-10 w-fit md:rounded-xl place-content-center xl:text-xl ' +
+          (activeSection === 'home'
+            ? ' bg-base-content'
+            : ' bg-base-300 border-1 border-base-content border-opacity-10')
+        }
       >
         {SECTIONS.map((section, i) => (
           <MenuItem
             key={section}
             activeSection={section === activeSection}
+            dark={activeSection === 'home'}
             section={section}
             sectionIndex={i}
             goToSection={() => handleGoToSection(section)}

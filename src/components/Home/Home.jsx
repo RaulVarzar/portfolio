@@ -11,6 +11,7 @@ import { forwardRef, useEffect, useRef, useState } from 'react';
 import ChevronButton from './ChevronButton';
 import Tilt from 'react-parallax-tilt';
 import { BottomMenu } from './BottomMenu';
+import BubbleText from '../BubbleText/BubbleText';
 
 const variants = {
   hide: { opacity: 0, x: -40 },
@@ -150,8 +151,11 @@ const Home = forwardRef(({ makeActive, goToSection }, ref) => {
                         : ' opacity-70')
                     }
                   >
-                    I am passionate about web design and creating stuff that
-                    looks pretty
+                    <BubbleText
+                      text={
+                        'I am passionate about web design and creating stuff that looks pretty'
+                      }
+                    />
                   </motion.h3>
                 </HtmlElement>
               </motion.div>

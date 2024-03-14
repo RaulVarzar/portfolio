@@ -7,11 +7,11 @@ import {
   useTransform,
 } from 'framer-motion';
 import SkillsCard from './SkillsCard';
-import TextCarousel from './TextCarousel';
+import BubbleText from '../BubbleText/BubbleText';
 
 const Skills = forwardRef(({ makeActive }, ref) => {
-  const activeRef = useRef(null);
   const contentRef = useRef(null);
+  const targetRef = useRef(null);
 
   const isInView = useInView(contentRef);
   useEffect(() => {
@@ -22,34 +22,53 @@ const Skills = forwardRef(({ makeActive }, ref) => {
 
   const { scrollYProgress } = useScroll({
     target: ref,
-    offset: ['start end', 'center center'],
+    offset: ['start end', 'end start'],
   });
 
-  const { scrollYProgress: contentProgress } = useScroll({
-    target: contentRef,
-    offset: ['start end', 'start start'],
+  const spring = useSpring(scrollYProgress, {
+    stiffness: 300,
+    damping: 50,
+    restDelta: 0.001,
   });
 
-  const contentSpring = useSpring(contentProgress, {
-    stiffness: 80,
-    damping: 20,
-    // restDelta: 0.001,
-    mass: 0.2,
-  });
+  const y = useTransform(
+    spring,
+    [0, 0.5, 0.8, 1],
+    ['5vh', '0vh', '0vh', '-10vh']
+  );
 
-  const textX = useTransform(contentSpring, [0, 1], ['-60vw', '0vw']);
-  const scale = useTransform(contentSpring, [0, 0.4], ['80%', '100%']);
+  const titleScale = useTransform(spring, [0, 0.4], ['75%', '100%']);
+
+  const opacity = useTransform(
+    spring,
+    [0, 0.25, 0.85, 0.95],
+    ['40%', '80%', '85%', '0%']
+  );
+
+  const scale = useTransform(
+    spring,
+    [0, 0.4, 0.75, 1],
+    ['82%', '100%', '100%', '90%']
+  );
 
   return (
     <section
       ref={ref}
-      className="relative grid py-12 overflow-hidden text-4xl md:py-24 section place-content-center"
+      className="relative grid py-8 overflow-hidden min-h-[80vh] gap-8 text-4xl  md:py-12  place-content-center"
     >
-      <TextCarousel textX={textX} />
+      <motion.div className="relative top-0 items-center justify-start mx-auto mt-4 md:mt-8">
+        <motion.h3
+          style={{ y, scale: titleScale, opacity }}
+          className="text-3xl font-bold tracking-widest stroke-text text-base-100 sm:text-4xl md:text-5xl lg:text-6xl"
+        >
+          MY SKILLS
+        </motion.h3>
+      </motion.div>
+
       <motion.div
         ref={contentRef}
         style={{ scale }}
-        className="flex flex-row gap-4 px-4 place-content-center max-w-7xl roboto"
+        className="flex flex-col px-4 gap-y-4 sm:gap-y-12 place-content-center max-w-7xl roboto"
       >
         <SkillsCard
           title={'Front-end frameworks'}
@@ -57,7 +76,7 @@ const Skills = forwardRef(({ makeActive }, ref) => {
           large={true}
           icon={'fa-brands fa-react '}
         />
-        <div className="flex flex-col items-stretch h-full gap-3">
+        <div className="flex flex-col justify-between md:flex-row">
           <SkillsCard
             title={'CSS frameworks'}
             subtitle={'TailwindCSS'}

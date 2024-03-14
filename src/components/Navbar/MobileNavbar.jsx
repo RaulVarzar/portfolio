@@ -30,7 +30,7 @@ const Sidebar = ({ goToSection, activeSection }) => {
     <div
       className={
         'fixed z-50 mx-auto md:inset-x-0 w-fit md:left-0 md:top-0 ' +
-        (open ? ' top-0 left-0' : ' top-3 left-3')
+        (open ? ' top-0 left-0' : ' top-3 left-0')
       }
     >
       <motion.ul
@@ -39,12 +39,20 @@ const Sidebar = ({ goToSection, activeSection }) => {
         animate="show"
         initial="hide"
         className={
-          'flex flex-col h-fit md:hidden gap-5 px-4 py-3 gap-y-10 overflow-hidden text-lg font-semibold md:flex-row w-fit border-1 bg-base-300 md:rounded-xl place-content-center xl:text-xl ' +
-          (open ? ' h-screen w-screen absolute rounded-none' : ' rounded-xl')
+          'flex flex-col h-fit md:hidden gap-5 px-4 py-3 gap-y-10 overflow-hidden text-lg font-semibold md:flex-row w-fit place-content-center xl:text-xl ' +
+          (open
+            ? ' h-screen w-screen absolute rounded-none '
+            : ' rounded-r-2xl ') +
+          (activeSection === 'home' ? ' bg-base-content' : ' bg-base-300')
         }
       >
         {open && (
-          <div className="flex flex-col gap-3 px-2 mx-auto md:flex-row gap-y-4">
+          <div
+            className={
+              'flex flex-col gap-3 px-2 mx-auto text-left md:flex-row gap-y-4 py-8 ' +
+              (activeSection === 'home' && ' text-neutral')
+            }
+          >
             {SECTIONS.map((section, i) => (
               <MenuItem
                 key={section}
@@ -58,15 +66,15 @@ const Sidebar = ({ goToSection, activeSection }) => {
         )}
         <motion.div
           layout="position"
-          className="flex items-center justify-center py-1 px-0.5 md:hidden"
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          key={open}
+          transition={{ delay: 0.3, duration: 0.4 }}
+          className="flex items-center justify-center p-1 md:hidden"
+          onClick={() => setOpen(!open)}
         >
           <label className="burger" htmlFor="burger">
-            <input
-              type="checkbox"
-              id="burger"
-              checked={open}
-              onChange={() => setOpen(!open)}
-            />
+            <input type="checkbox" id="burger" checked={open} />
             <span></span>
             <span></span>
             <span></span>

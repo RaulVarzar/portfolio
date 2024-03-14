@@ -14,25 +14,34 @@ export const MenuItem = ({
   activeSection,
   sectionIndex,
   goToSection,
+  dark,
 }) => {
   return (
     <motion.li
       // variants={itemVariants}
       initial={{ x: 80, opacity: 0 }}
-      animate={{ x: 0, opacity: 1 }}
-      transition={{
-        delay: 0.3 + sectionIndex * 0.35,
-        damping: 10,
-        duration: 0.6,
+      animate={{
+        x: 0,
+        opacity: 1,
+        transition: {
+          delay: 0.3 + sectionIndex * 0.35,
+          damping: 10,
+          duration: 0.6,
+        },
+      }}
+      whileHover={{
+        y: 2,
+        scale: 0.98,
+        transition: { delay: 0, duration: 0.25 },
       }}
       layout
       key={section}
-      className="relative flex flex-row items-center justify-center w-full px-6 py-2 cursor-pointer group "
+      className="relative flex flex-row items-center justify-start w-full gap-1 px-5 py-2 cursor-pointer group "
       onClick={() => goToSection(section)}
     >
       {activeSection && (
         <motion.div
-          className="absolute z-50 flex w-full h-full text-sm font-thin align-baseline top-0.5 text-accent left-2.5 tracking-none roboto"
+          className="absolute z-50 flex justify-between h-full text-sm font-thin align-baseline top-3 -left-1 w-fit text-accent tracking-none roboto"
           layoutId="background"
           transition={{
             layout: {
@@ -45,16 +54,19 @@ export const MenuItem = ({
             },
           }}
         >
-          {sectionIndex}
+          {/* {sectionIndex} */}
+          <span className="font-black tracking-tighter ">&#47;&#47;</span>
         </motion.div>
       )}
       <motion.span
         layout="position"
         className={
           'transition-colors duration-300 group-hover:scale-110 roboto text-md font-normal tracking-[0px] ' +
-          (activeSection
-            ? ' scale-110 text-accent'
-            : ' opacity-60 group-hover:opacity-100 text-base-content')
+          (activeSection && !dark
+            ? ' scale-110 text-accent '
+            : activeSection && dark
+            ? ' text-accent  '
+            : !activeSection && dark && ' invert opacity-70')
         }
       >
         {section}
