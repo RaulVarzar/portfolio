@@ -1,44 +1,26 @@
-import {
-  useScroll,
-  useTransform,
-  motion,
-  useSpring,
-  useInView,
-} from 'framer-motion';
-import { forwardRef, useEffect, useRef } from 'react';
-import ChatIcon from './ChatIcon';
-import Form from './Form';
+import { useScroll, useTransform, motion } from "framer-motion";
+import { useRef } from "react";
+import ChatIcon from "./ChatIcon";
+import Form from "./Form";
 
-const Footer = forwardRef(({ makeActive }, ref) => {
+const Footer = () => {
   const activeRef = useRef(null);
-  const isInView = useInView(activeRef);
-  useEffect(() => {
-    if (isInView) {
-      makeActive('contact');
-    }
-  }, [isInView]);
 
   const cardRef = useRef(null);
 
   const { scrollYProgress } = useScroll({
     target: cardRef,
-    offset: ['start end', 'end end'],
+    offset: ["start end", "end end"],
   });
 
-  const spring = useSpring(scrollYProgress, {
-    stiffness: 80,
-    damping: 20,
-    mass: 0.2,
-  });
+  const cardScale = useTransform(scrollYProgress, [0, 1], [0.7, 1]);
+  const cardY = useTransform(scrollYProgress, [0, 1], ["10vh", "0vh"]);
 
-  const cardScale = useTransform(spring, [0, 1], [0.7, 1]);
-  const cardY = useTransform(spring, [0, 1], ['10vh', '0vh']);
-
-  const y = useTransform(spring, [0.3, 1], ['10vh', '0vh']);
-  const opacity = useTransform(spring, [0.1, 1], ['10%', '100%']);
+  const y = useTransform(scrollYProgress, [0.3, 1], ["10vh", "0vh"]);
+  const opacity = useTransform(scrollYProgress, [0.1, 1], ["10%", "100%"]);
 
   return (
-    <div ref={ref} className="flex items-center min-h-screen px-2">
+    <section className="flex items-center min-h-screen relative px-2 bg-base-100 ">
       <motion.div
         style={{ scale: cardScale, y: cardY }}
         ref={cardRef}
@@ -54,7 +36,7 @@ const Footer = forwardRef(({ makeActive }, ref) => {
             transition={{
               delay: 0.4,
               duration: 0.8,
-              type: 'tween',
+              type: "tween",
             }}
             className="flex flex-row items-center pt-6 pr-2 text-right max-lg:justify-center lg:items-end gap-x-6 lg:flex-col text-neutral-content"
           >
@@ -69,8 +51,7 @@ const Footer = forwardRef(({ makeActive }, ref) => {
           <Form />
         </motion.div>
       </motion.div>
-    </div>
+    </section>
   );
-});
-
+};
 export default Footer;

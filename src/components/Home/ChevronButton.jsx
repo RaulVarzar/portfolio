@@ -1,4 +1,4 @@
-import { motion } from 'framer-motion';
+import { motion } from "framer-motion";
 
 const ChevronButton = ({ goToSection }) => {
   return (
@@ -8,8 +8,8 @@ const ChevronButton = ({ goToSection }) => {
         y: 0,
         opacity: 1,
       }}
-      transition={{ ease: 'easeOut', duration: 1, delay: 1.5 }}
-      className="absolute left-0 right-0 z-50 flex justify-center mx-auto cursor-pointer w-fit bottom-6 md:bottom-10"
+      transition={{ ease: "easeOut", duration: 1, delay: 1.5 }}
+      className="relative left-0 right-0 z-50 flex justify-center mx-auto cursor-pointer w-fit "
       onClick={goToSection}
     >
       <div className="flex items-center justify-center h-10 overflow-hidden border-2 rounded-full w-7">
@@ -23,7 +23,7 @@ const ChevronButton = ({ goToSection }) => {
             repeat: Infinity,
             duration: 2.5,
             repeatDelay: 0.2,
-            repeatType: 'loop',
+            repeatType: "loop",
             ease: [0, 0.5, 0.8, 1],
           }}
           className="w-2.5 h-2.5 rounded-full bg-neutral-content"

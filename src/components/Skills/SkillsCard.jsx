@@ -1,12 +1,37 @@
-import { motion, useScroll, useSpring, useTransform } from 'framer-motion';
-import { useRef } from 'react';
+import {
+  motion,
+  useInView,
+  useScroll,
+  useSpring,
+  useTransform,
+} from "framer-motion";
+import { useRef } from "react";
+import { IconText } from "./IconText";
 
-const SkillsCard = ({ title, large, icon, subtitle }) => {
+const dividerVariants = {
+  hidden: { width: "0%" },
+  visible: {
+    width: "100%",
+    transition: { duration: 0.9, delay: 0.25 },
+  },
+};
+
+const titleVariants = {
+  hidden: { opacity: "0%", y: "50%" },
+  visible: {
+    opacity: "100%",
+    y: "0%",
+    transition: { duration: 0.4, delay: 0.4 },
+  },
+};
+
+const SkillsCard = ({ title, icon, text, reverse }) => {
   const ref = useRef(null);
+  const rowRef = useRef(null);
 
   const { scrollYProgress } = useScroll({
     target: ref,
-    offset: ['start end', 'end 0.85'],
+    offset: ["start end", "end 0.85"],
   });
 
   const contentSpring = useSpring(scrollYProgress, {
@@ -16,41 +41,57 @@ const SkillsCard = ({ title, large, icon, subtitle }) => {
     mass: 0.2,
   });
 
-  const cardY = useTransform(contentSpring, [0, 1], ['15vh', '0vh']);
+  const cardY = useTransform(contentSpring, [0, 1], ["5vh", "0vh"]);
+  const opacity = useTransform(contentSpring, [0, 1], ["0%", "100%"]);
 
-  const cardScale = useTransform(contentSpring, [0, 0.8], ['85%', '100%']);
-  const opacity = useTransform(contentSpring, [0, 1], ['0%', '100%']);
+  const { scrollYProgress: rowProgress } = useScroll({
+    target: ref,
+    offset: ["start end", "end start"],
+  });
+
+  const leftLimit = reverse ? "10%" : "-10%";
+  const rightLimit = reverse ? "-10%" : "10%";
+  const x = useTransform(rowProgress, [0, 1], [leftLimit, rightLimit]);
+
+  const isInView = useInView(ref, {
+    margin: "0% 0% -10% 0%",
+  });
 
   return (
     <motion.div
       ref={ref}
       style={{ y: cardY, opacity }}
-      className="relative flex flex-col justify-center h-full max-w-5xl gap-2 p-2 sm:px-10 text-base-content"
+      className="relative flex items-center flex-col w-full justify-center gap-2 p-2 sm:px-10 text-base-content"
     >
-      <motion.div className="flex items-start gap-3 md:gap-6">
-        <i
-          className={
-            'text-3xl opacity-30 xl:text-4xl text-neutral ' + ` ${icon}`
-          }
-        ></i>
-        <div className="flex flex-col md:gap-1">
-          <span className="text-sm font-semibold leading-none uppercase opacity-60 text-base-content lg:text-base">
-            {title}
-          </span>
-          <h3 className="text-2xl font-bold leading-none tracking-wide uppercase text-accent md:text-3xl xl:text-4xl">
-            {subtitle}
-          </h3>
-          {large && (
-            <p className="mt-3 text-sm leading-tight tracking-tight text-base-content lg:text-base opacity-90">
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut unde
-              quas debitis explicabo aperiam! Delectus dolores aperiam,
-              blanditiis exercitationem consequatur.
-            </p>
-          )}
-        </div>
+      <motion.div
+        className="divider place-self-center h-24 text-md font-extralight tracking-wide"
+        // initial="hidden"
+        animate={isInView ? "visible" : "hidden"}
+        variants={dividerVariants}
+      >
+        <motion.h1
+          animate={isInView ? "visible" : "hidden"}
+          variants={titleVariants}
+          className="text-neutral"
+        >
+          {title}
+        </motion.h1>
+      </motion.div>
+      <motion.div
+        ref={rowRef}
+        style={{ x }}
+        className="flex items-center gap-2 py-4 md:py-8 lg:py-12 xl:py-24"
+      >
+        <IconText text={text} icon={icon} />
+        <IconText text={text} icon={icon} />
+        <IconText text={text} icon={icon} />
+        <IconText text={text} icon={icon} />
+        <IconText text={text} icon={icon} />
+        <IconText text={text} icon={icon} />
+        <IconText text={text} icon={icon} />
       </motion.div>
 
-      {large && (
+      {/* {large && (
         <>
           <div className="divider h-fit"></div>
           <h3 className="text-center text-md">My React knowledge</h3>
@@ -69,7 +110,7 @@ const SkillsCard = ({ title, large, icon, subtitle }) => {
             </li>
           </ul>
         </>
-      )}
+      )} */}
     </motion.div>
   );
 };

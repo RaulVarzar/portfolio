@@ -1,20 +1,20 @@
-import React, { useEffect, useRef, useState } from 'react';
-import emailjs from '@emailjs/browser';
-import { AnimatePresence, motion } from 'framer-motion';
+import React, { useEffect, useRef, useState } from "react";
+import emailjs from "@emailjs/browser";
+import { AnimatePresence, motion } from "framer-motion";
 
 const Form = () => {
   const [error, setError] = useState(false);
   const [success, setSuccess] = useState(false);
   const [loading, setLoading] = useState(false);
 
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [message, setMessage] = useState('');
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [message, setMessage] = useState("");
 
   const resetForm = () => {
-    setName('');
-    setEmail('');
-    setMessage('');
+    setName("");
+    setEmail("");
+    setMessage("");
   };
 
   useEffect(() => {
@@ -32,19 +32,19 @@ const Form = () => {
 
     emailjs
       .sendForm(
-        'service_86b16ld',
-        'template_zcbtlko',
+        "service_86b16ld",
+        "template_zcbtlko",
         form.current,
-        'taFxVEHpZaCSDSpKM'
+        "taFxVEHpZaCSDSpKM"
       )
       .then(
         (result) => {
-          setSuccess('Your message was sent!');
+          setSuccess("Your message was sent!");
           setLoading(false);
           resetForm();
         },
         (error) => {
-          setError('Failed to send email. Please try again later');
+          setError("Failed to send email. Please try again later");
           setLoading(false);
         }
       );
@@ -60,7 +60,7 @@ const Form = () => {
         <motion.div
           initial={{ opacity: 0, y: 80 }}
           whileInView={{ opacity: [0, 1, 1, 1], y: 0 }}
-          transition={{ delay: 0.3, duration: 0.8, type: 'tween' }}
+          transition={{ delay: 0.3, duration: 0.8, type: "tween" }}
           className="relative z-0 group"
         >
           <input
@@ -79,7 +79,7 @@ const Form = () => {
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.6, duration: 0.6, type: 'tween' }}
+          transition={{ delay: 0.6, duration: 0.6, type: "tween" }}
           className="relative z-0 group"
         >
           <input
@@ -101,7 +101,7 @@ const Form = () => {
           transition={{
             delay: 0.9,
             duration: 0.4,
-            type: 'tween',
+            type: "tween",
           }}
           className="relative z-0 group"
         >
@@ -144,7 +144,7 @@ const Form = () => {
             key={success}
             initial={{ y: 50, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
-            transition={{ duration: 0.4, type: 'spring' }}
+            transition={{ duration: 0.4, type: "spring" }}
             exit={{ y: 0, opacity: 0 }}
             role="alert"
             className="py-2 mx-auto mt-6 text-base border-0 w-fit alert bg-success text-base-300"
