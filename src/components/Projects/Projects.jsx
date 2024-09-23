@@ -13,6 +13,14 @@ const variants = {
     transition: { duration: 0.6, delay: 0.1 },
   },
 };
+const buttonVariants = {
+  hidden: { opacity: 0, scale: 0.9, transition: { duration: 0.4 } },
+  visible: {
+    opacity: 1,
+    scale: 1,
+    transition: { duration: 0.6, delay: 0.5 },
+  },
+};
 
 const Projects = () => {
   const sectionRef = useRef(null);
@@ -21,58 +29,49 @@ const Projects = () => {
     target: sectionRef,
     offset: ["end", "end start"],
   });
-  const opacity = useTransform(scrollYProgress, [0, 0.3], ["100%", "0%"]);
+  const opacity = useTransform(scrollYProgress, [0, 0.5], ["100%", "0%"]);
+  const titleY = useTransform(scrollYProgress, [0, 0.3], ["0vg", "-20vh"]);
 
   const isInView = useInView(sectionRef, {
-    margin: "0% 0% -60% 0%",
+    margin: "0% 0% -61% 0%",
   });
 
-  // TO DO : MAKE TITLE APPEAR LETTER BY LETTER
-
   return (
-    <div
-      ref={sectionRef}
-      className="relative overflow-hidden w-full bg-base-100 "
-    >
-      <div className="flex flex-row r">
-        <motion.div
-          style={{ opacity }}
-          className="fixed inset-y-0 w-1/2 flex-col gap-1 h-fit flex place-self-center items-end justify-center px-24 mx-auto overflow-hidden"
-        >
-          <motion.div className="h-fit overflow-hidden">
-            <motion.h3
-              variants={variants}
-              animate={isInView ? "visible" : "hidden"}
-              className="text-2xl font-black tracking-wide leading-none  text-center sm:text-3xl md:text-4xl lg:text-6xl"
-            >
-              MY PROJECTS
-            </motion.h3>
-          </motion.div>
-          <motion.button
-            transition={{ delay: 0.3, duration: 0.4 }}
+    <div className="relative flex flex-col md:flex-row  w-full bg-base-100">
+      <motion.div
+        style={{ opacity, titleY }}
+        className="sticky top-0 md:top-[40vh] max-md:pt-12 items-center justify-start md:items-end h-[40vh] md:h-[60vh] inset-y-0 w-full md:w-5/12 flex-col gap-0.5 flex md:pr-12 lg:pr-16 2xl:pr-24 mx-auto overflow-hidden"
+      >
+        <motion.div className="h-fit overflow-hidden flex justify-end">
+          <motion.h3
             variants={variants}
             animate={isInView ? "visible" : "hidden"}
-            className="flex text-sm font-normal align-middle tracking-wide uppercase transition-all duration-300 btn-sm rounded-md  text-primary  border-accent border-none btn hover:btn-outline btn-ghost hover:text-base-100"
+            className="text-3xl font-bold sm:font-black tracking-wide leading-none  text-center  md:text-4xl lg:text-5xl xl:text-6xl"
           >
-            View all
-            <FaGithub />
-          </motion.button>
+            MY PROJECTS
+          </motion.h3>
         </motion.div>
+        <motion.button
+          transition={{ delay: 0.3, duration: 0.4 }}
+          variants={buttonVariants}
+          animate={isInView ? "visible" : "hidden"}
+          className="flex text-sm font-light w-fit tracking-wide uppercase btn-sm rounded-md  text-primary  border-accent border-none btn hover:btn-outline btn-ghost hover:text-base-100"
+        >
+          View all
+          <FaGithub />
+        </motion.button>
+      </motion.div>
 
-        <div className=" w-1/2"></div>
-        <motion.div className="flex w-1/2 pt-[50vh] pb-[20vh] justify-start flex-col px-2  mx-auto gap-x-4 gap-y-6 md:flex-row h-fit lg:gap-x-6 ">
-          <motion.div className="flex flex-col gap-y-6">
-            {projects.map((project, i) => (
-              <ProjectCard project={project} i={i} key={project.title} />
-            ))}
-          </motion.div>
-          {/* <motion.div className="flex flex-col gap-y-6">
-            {rightRow.map((project, i) => (
-              <ProjectCard project={project} i={i} key={project.title} />
-            ))}
-          </motion.div> */}
-        </motion.div>
-      </div>
+      {/* <div className=" w-5/12"></div> */}
+
+      <motion.div
+        ref={sectionRef}
+        className="relative flex flex-col w-full md:w-7/12 items-center h-fit md:py-[10vh]"
+      >
+        {projects.map((project, i) => (
+          <ProjectCard project={project} i={i} key={project.title} />
+        ))}
+      </motion.div>
     </div>
   );
 };

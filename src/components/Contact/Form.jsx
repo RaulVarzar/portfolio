@@ -69,10 +69,10 @@ const Form = () => {
             value={name}
             onChange={(e) => setName(e.target.value)}
             required
-            className="peer px-4 block w-full appearance-none opacity-60 group-hover:opacity-100 focus:border-accent transition duration-300  border-b-2  bg-transparent py-2.5 text-base text-gray-200 md:text-xl focus:outline-none focus:ring-0"
+            className="peer px-4 block w-full appearance-none opacity-60 group-hover:opacity-100 focus:border-primary transition duration-300  border-b-2  bg-transparent py-2.5 text-base text-gray-200 md:text-xl focus:outline-none focus:ring-0"
             placeholder=" "
           />
-          <label className="absolute text-sm top-0 opacity-60 group-hover:opacity-100 peer-focus:opacity-100 peer-focus:text-accent -z-10 origin-[0] -translate-y-6  transform md:text-base text-neutral-content duration-300 peer-placeholder-shown:translate-y-0 peer-placeholder-shown:scale-100 peer-focus:left-0 peer-focus:-translate-y-6 peer-focus:scale-75 ">
+          <label className="absolute text-sm top-0 opacity-60 group-hover:opacity-100 peer-focus:opacity-100 peer-focus:text-primary -z-10 origin-[0] -translate-y-6  transform md:text-base text-neutral-content duration-300 peer-placeholder-shown:translate-y-0 peer-placeholder-shown:scale-100 peer-focus:left-0 peer-focus:-translate-y-6 peer-focus:scale-75 ">
             Name
           </label>
         </motion.div>
@@ -88,10 +88,10 @@ const Form = () => {
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             name="email"
-            className="peer px-4 block w-full appearance-none opacity-60 group-hover:opacity-100 focus:border-accent transition duration-300  border-b-2  bg-transparent py-2.5 text-base text-gray-200 md:text-xl focus:outline-none focus:ring-0"
+            className="peer px-4 block w-full appearance-none opacity-60 group-hover:opacity-100 focus:border-primary transition duration-300  border-b-2  bg-transparent py-2.5 text-base text-gray-200 md:text-xl focus:outline-none focus:ring-0"
             placeholder=" "
           />
-          <label className="absolute top-0 text-sm opacity-60 group-hover:opacity-100  peer-focus:text-accent peer-focus:opacity-100 -z-10 origin-[0] -translate-y-6  transform md:text-base text-neutral-content duration-300 peer-placeholder-shown:translate-y-0 peer-placeholder-shown:scale-100 peer-focus:left-0 peer-focus:-translate-y-6 peer-focus:scale-75 ">
+          <label className="absolute top-0 text-sm opacity-60 group-hover:opacity-100  peer-focus:text-primary peer-focus:opacity-100 -z-10 origin-[0] -translate-y-6  transform md:text-base text-neutral-content duration-300 peer-placeholder-shown:translate-y-0 peer-placeholder-shown:scale-100 peer-focus:left-0 peer-focus:-translate-y-6 peer-focus:scale-75 ">
             Email address
           </label>
         </motion.div>
@@ -111,10 +111,10 @@ const Form = () => {
             required
             value={message}
             onChange={(e) => setMessage(e.target.value)}
-            className="peer px-4 block w-full appearance-none opacity-60 group-hover:opacity-100 transition duration-300  border-b-2  bg-transparent py-2.5 text-base text-gray-200 md:text-xl focus:outline-none focus:ring-0 focus:border-accent"
+            className="peer px-4 block w-full appearance-none opacity-60 group-hover:opacity-100 transition duration-300  border-b-2  bg-transparent py-2.5 text-base text-gray-200 md:text-xl focus:outline-none focus:ring-0 focus:border-primary"
             placeholder=" "
           ></textarea>
-          <label className="absolute top-0 text-sm opacity-60 group-hover:opacity-100  peer-focus:text-accent peer-focus:opacity-100 -z-10 origin-[0] -translate-y-6  transform md:text-base text-neutral-content duration-300 peer-placeholder-shown:translate-y-0 peer-placeholder-shown:scale-100 peer-focus:left-0 peer-focus:-translate-y-6 peer-focus:scale-75 ">
+          <label className="absolute top-0 text-sm opacity-60 group-hover:opacity-100  peer-focus:text-primary peer-focus:opacity-100 -z-10 origin-[0] -translate-y-6  transform md:text-base text-neutral-content duration-300 peer-placeholder-shown:translate-y-0 peer-placeholder-shown:scale-100 peer-focus:left-0 peer-focus:-translate-y-6 peer-focus:scale-75 ">
             Your message
           </label>
         </motion.div>
@@ -127,7 +127,7 @@ const Form = () => {
             transition: { delay: 1.2, duration: 0.8 },
           }}
           type="submit"
-          className="flex mx-auto mt-5 text-sm font-normal tracking-wide uppercase transition-all duration-300 rounded-md shadow-md text-base-content border-base-content hover:font-semibold hover:gap-2 group btn btn-md btn-outline hover:border-opacity-0 hover:bg-base-content hover:text-accent hover:scale-105"
+          className="flex mx-auto mt-5 text-sm font-normal tracking-wide uppercase transition-all duration-300 rounded-md shadow-md text-base-content border-base-content hover:font-semibold hover:gap-2 group btn btn-md btn-outline hover:border-opacity-0 hover:bg-base-content hover:text-primary hover:scale-105"
         >
           Send message
           <i className="transition-transform duration-300 fa-regular fa-paper-plane group-hover:rotate-45"></i>

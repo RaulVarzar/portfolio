@@ -1,32 +1,31 @@
-import { motion, useScroll, useSpring, useTransform } from "framer-motion";
+import {
+  motion,
+  useInView,
+  useScroll,
+  useSpring,
+  useTransform,
+} from "framer-motion";
 import "./button.css";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { getRelativeCoordinates } from "../../util/getMouseCoordinates";
 
 const ProjectCard = ({ project }) => {
   const { title, description, github, demo, photo } = project;
 
   const cardRef = useRef(null);
+  const containerRef = useRef(null);
 
   const { scrollYProgress } = useScroll({
-    target: cardRef,
+    target: containerRef,
     offset: ["start end", "end start"],
   });
 
-  const scale = useTransform(
-    scrollYProgress,
-    [0, 0.4, 0.6, 1],
-    ["0.8", "1", "1", "1"]
-  );
-  const x = useTransform(scrollYProgress, [0, 0.5, 1], ["20%", "0%", "0%"]);
+  const { scrollY } = useScroll({
+    target: containerRef,
+  });
+  const scale = useTransform(scrollYProgress, [0, 0.6], ["80%", "100%"]);
 
-  const opacity = useTransform(
-    scrollYProgress,
-    [0, 0.3, 0.7, 1],
-    ["0", "1", "1", "1"]
-  );
-
-  const imgScale = useTransform(scrollYProgress, [0, 0.35], ["125%", "100%"]);
+  const imgScale = useTransform(scrollYProgress, [0, 0.35], ["110%", "100%"]);
   const imgOpacity = useTransform(scrollYProgress, [0, 0.35], ["50%", "100%"]);
 
   const [mousePosition, setMousePosition] = useState(null);
@@ -34,14 +33,52 @@ const ProjectCard = ({ project }) => {
     setMousePosition(getRelativeCoordinates(e, cardRef.current));
   };
 
+  // Animation for blurring out the card after reaching the sticky position
+  const [maxScrollY, setMaxScrollY] = useState(Infinity);
+  const [cardStyle, setCardStyle] = useState({
+    scale: 1,
+    blur: 0,
+    brightness: 1,
+  });
+  const isInView = useInView(containerRef, {
+    margin: `0% 0% -90% 0%`,
+  });
+
+  useEffect(() => {
+    if (isInView) {
+      setMaxScrollY(scrollY.get());
+    }
+  }, [isInView]);
+
+  scrollY.on("change", (scrollY) => {
+    let animationValue = 1;
+    if (scrollY > maxScrollY) {
+      animationValue = Math.max(0, 1 - (scrollY - maxScrollY) / 7000);
+    }
+
+    setCardStyle({
+      scale: animationValue,
+      blur: (1 - animationValue) * 30,
+      brightness: animationValue * 100,
+    });
+  });
+  //////////////////////////////////////////////////
+
   return (
-    <motion.div style={{ x, opacity, scale }}>
+    <motion.div
+      ref={containerRef}
+      className="sticky top-[20vh] h-[60vh] md:top-[10vh] md:h-[80vh] flex max-md:px-3 items-center"
+    >
       <motion.div
         ref={cardRef}
         onMouseMove={(e) => handleMouseMove(e)}
-        whileHover={{ scale: 1.02, transition: { duration: 0.3 } }}
+        whileHover={!isInView && { scale: 1.02, transition: { duration: 0.3 } }}
         onMouseLeave={() => setMousePosition(null)}
-        className="relative justify-between w-full h-full max-w-2xl overflow-hidden transition-colors duration-300 border-2 border-opacity-0 shadow-md bg-opacity-0 hover:border-opacity-15 group border-neutral items-between bg-base-200 rounded-2xl"
+        style={{
+          scale: cardStyle.scale,
+          filter: `blur(${cardStyle.blur}px) brightness(${cardStyle.brightness}%)`,
+        }}
+        className="top-24 justify-between w-2xl h-fit max-w-4xl overflow-hidden border-2 border-opacity-20 group hover:border-opacity-35 shadow-md rounded-lg group border-neutral items-between bg-base-300 bg-opacity-100  backdrop-blur-2xl"
       >
         {mousePosition && (
           <motion.span
@@ -57,28 +94,28 @@ const ProjectCard = ({ project }) => {
           />
         )}
         <div className="flex flex-col overflow-hidden gap-4 p-2 text-left md:p-4 md:gap-6 grow">
-          <motion.div className="z-10 rounded-sm overflow-hidden">
-            <motion.img
-              style={{ scale: imgScale, opacity: imgOpacity }}
-              src={project.photo}
-              alt={photo}
-              className={"object-cover w-full aspect-video group-hover:hidden"}
-            />
+          <motion.div className="z-10 aspect-video overflow-hidden rounded-md">
             <img
               src={project.gif}
               alt={photo}
               className={
-                "object-cover w-full z-10 rounded-xl aspect-video hidden group-hover:flex"
+                "object-cover hidden group-hover:flex top-0 left-0 w-full z-50    h-full"
               }
+            />
+            <motion.img
+              style={{ scale: imgScale, opacity: imgOpacity }}
+              src={project.photo}
+              alt={photo}
+              className={"object-cover w-full "}
             />
           </motion.div>
 
           <div className="flex flex-col grow md:gap-0.5">
-            <h3 className="z-10 flex px-4 justify-start w-full overflow-hidden text-base font-semibold tracking-wider leading-7 text-left uppercase transition-all duration-300 opacity-70 group-hover:-translate-y-0.5 group-hover:opacity-100 group-hover:-translate-x-1 text-base-content group-hover:text-slate-100 xl:text-xl ">
+            <h3 className="z-10 flex px-4 justify-start w-full overflow-hidden text-base font-semibold tracking-wider leading-7 text-left uppercase transition-all duration-300 opacity-70 group-hover:opacity-100  text-base-content group-hover:text-slate-100 xl:text-xl ">
               {title}
             </h3>
             {/* <div className="w-full h-0.5 p-0 my-2 opacity-50 bg-base-content group-hover:bg-neutral-content transition-colors duration-300"></div> */}
-            <p className="z-10 px-4 py-1 text-sm leading-tight tracking-tight transition-all duration-300 opacity-40 xl:text-base text-base-content group-hover:text-neutral-content group-hover:translate-y-0.5 group-hover:scale-102 group-hover:opacity-80">
+            <p className="z-10 px-4 py-1 text-sm leading-tight tracking-tight transition-all duration-300 opacity-40 xl:text-base text-base-content group-hover:text-neutral-content  group-hover:opacity-70">
               {description}
             </p>
             <div className="z-50 flex py-2 flex-row items-center w-fit gap-0 transition-opacity duration-200 opacity-60 justify-evenly group-hover:opacity-100">
@@ -86,7 +123,7 @@ const ProjectCard = ({ project }) => {
                 <a
                   href={github}
                   target="_blank"
-                  className="flex items-center justify-between gap-2 px-4  py-2 transition duration-300 rounded-md group-hover:scale-105 opacity-70 group-hover:opacity-100 hover:scale-110 xl:py-3 text-base-content hover:text-primary"
+                  className="flex items-center justify-between gap-2 px-4  py-2 transition  duration-300 group-hover:scale-105 group-hover:opacity-100 rounded-md opacity-70   xl:py-3 text-base-content hover:text-primary"
                 >
                   <i className="text-md sm:text-lg fa-brands fa-github"></i>
                   <p className="text-xs sm:text-sm ">Github</p>
@@ -96,7 +133,7 @@ const ProjectCard = ({ project }) => {
                 <a
                   href={demo}
                   target="_blank"
-                  className="flex items-center justify-between gap-2 px-4 py-2 transition duration-300 rounded-md group-hover:scale-105 opacity-70 group-hover:opacity-100 hover:scale-110 xl:py-3 text-base-content hover:text-primary"
+                  className="flex items-center justify-between gap-2 px-4  py-2 transition  duration-300 group-hover:scale-105 group-hover:opacity-100 rounded-md opacity-70   xl:py-3 text-base-content hover:text-primary"
                 >
                   <i className="text-base sm:text-md fa-solid fa-arrow-up-right-from-square"></i>
                   <p className="text-xs sm:text-sm ">Demo</p>

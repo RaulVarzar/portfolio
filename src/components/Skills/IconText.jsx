@@ -36,7 +36,7 @@ export const IconText = ({ text, icon }) => {
       <motion.span
         ref={ref}
         style={{ scale }}
-        className="text-4xl opacity-30 md:text-5xl xl:text-6xl text-accent px-4 sm:px-8 md:px-10 lg:px-12 brightness-150 "
+        className="text-4xl opacity-30 md:text-5xl xl:text-6xl text-primary px-4 sm:px-8 md:px-10 lg:px-12 brightness-150 "
       >
         {icon === "react" && <FaReact />}
         {icon === "next" && <RiNextjsFill />}

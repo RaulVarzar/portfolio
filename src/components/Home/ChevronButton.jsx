@@ -9,10 +9,14 @@ const ChevronButton = ({ goToSection }) => {
         opacity: 1,
       }}
       transition={{ ease: "easeOut", duration: 1, delay: 1.5 }}
-      className="relative left-0 right-0 z-50 flex justify-center mx-auto cursor-pointer w-fit "
+      className="relative left-0 right-0 z-50 flex justify-center mx-auto cursor-pointer w-fit  "
       onClick={goToSection}
     >
-      <div className="flex items-center justify-center h-10 overflow-hidden border-2 rounded-full w-7">
+      <motion.div
+        whileHover={{ scale: 1.08, transition: { duration: 0.25 } }}
+        whileTap={{ scale: 0.92 }}
+        className="flex items-center justify-center h-10 overflow-hidden border-2 rounded-full w-7"
+      >
         <motion.div
           animate={{
             x: 0,
@@ -28,7 +32,7 @@ const ChevronButton = ({ goToSection }) => {
           }}
           className="w-2.5 h-2.5 rounded-full bg-neutral-content"
         ></motion.div>
-      </div>
+      </motion.div>
     </motion.div>
   );
 };

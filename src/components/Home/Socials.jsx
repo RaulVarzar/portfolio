@@ -64,9 +64,9 @@ export const Socials = () => {
   useEffect(() => {
     return scrollY.on("change", () => update());
   });
-  console.log(hovering);
+
   return (
-    <div className="flex fixed inset-0 flex-row w-fit h-fit mx-auto font-thin text-base-content tracking-tighter text-lg py-3 md:py-5 xl:py-6">
+    <div className="flex fixed inset-0 flex-row w-fit h-fit mx-auto font-extralight text-base-content tracking-tighter text-md md:text-xl sm:text-lg py-3 md:py-5 xl:py-6">
       <motion.a
         href="https://github.com/RaulVarzar"
         target="_blank"
@@ -82,7 +82,7 @@ export const Socials = () => {
             hovering === 1
               ? "opacity-100 scale-110 brightness-125"
               : "opacity-75"
-          } ${hovering && hovering != 1 && "brightness-50 "}`}
+          } ${hovering && hovering != 1 && "brightness-75  "}`}
         >
           github
         </h1>
@@ -97,7 +97,7 @@ export const Socials = () => {
             }}
             initial={{ y: "-200%", opacity: 0 }}
             animate={{ y: "0%", opacity: 1 }}
-            className="absolute -bottom-2 inset-x-0 w-1.5 h-1.5 mx-auto bg-opacity-90 bg-primary  rounded-full "
+            className="absolute -bottom-2 inset-x-0 w-1.5 h-1.5 mx-auto brightness-125 bg-secondary  rounded-full "
           ></motion.span>
         )}
       </motion.a>
@@ -117,7 +117,7 @@ export const Socials = () => {
             hovering === 2
               ? "opacity-100 scale-110 brightness-125"
               : "opacity-75"
-          } ${hovering && hovering != 2 && "brightness-50 "}`}
+          } ${hovering && hovering != 2 && "brightness-75 "}`}
         >
           behance
         </h1>
@@ -132,7 +132,7 @@ export const Socials = () => {
             }}
             initial={{ y: "-200%", opacity: 0 }}
             animate={{ y: "0%", opacity: 1 }}
-            className="absolute -bottom-2 inset-x-0 mx-auto bg-opacity-90 bg-primary w-1.5 h-1.5 rounded-full "
+            className="absolute -bottom-2 inset-x-0 w-1.5 h-1.5 mx-auto brightness-125 bg-secondary  rounded-full "
           ></motion.span>
         )}
       </motion.a>
@@ -151,7 +151,7 @@ export const Socials = () => {
             hovering === 3
               ? "opacity-100 scale-110 brightness-125"
               : "opacity-75"
-          } ${hovering && hovering != 3 && "brightness-50 "}`}
+          } ${hovering && hovering != 3 && "brightness-75 "}`}
         >
           instagram
         </h1>
@@ -166,7 +166,7 @@ export const Socials = () => {
             }}
             initial={{ y: "-200%", opacity: 0 }}
             animate={{ y: "0%", opacity: 1 }}
-            className="absolute -bottom-2 inset-x-0 mx-auto bg-opacity-90 bg-primary w-1.5 h-1.5 rounded-full "
+            className="absolute -bottom-2 inset-x-0 w-1.5 h-1.5 mx-auto brightness-125 bg-secondary  rounded-full "
           ></motion.span>
         )}
       </motion.a>

@@ -35,7 +35,7 @@ const Home = forwardRef(({ makeActive, goToSection }, ref) => {
   const y = useTransform(scrollYProgress, [0, 1], ["0vh", "-15vh"]);
   const chevronOpacity = useTransform(
     scrollYProgress,
-    [0.1, 0.15],
+    [0.1, 0.13],
     ["100%", "0%"]
   );
 
@@ -45,13 +45,13 @@ const Home = forwardRef(({ makeActive, goToSection }, ref) => {
     <>
       <motion.section
         style={{ filter: "brightness(100%)" }}
-        className="grid w-full sticky top-0  max-md:min-h-[100svh] sm:h-[95vh] bg-accent place-content-center justify-center"
+        className="grid w-full sticky top-0  min-h-[100svh] bg-accent place-content-center justify-center"
       >
         <Socials />
         <motion.div style={{ y: sectionY, scale: sectionScale }}>
           <motion.div className="relative flex flex-col justify-center py-8 pb-8 md:pb-12 ">
-            <motion.div className="flex flex-col-reverse items-center content-center justify-center gap-4 align-middle h-fit xl:flex-row">
-              <motion.div className="px-2 roboto">
+            <motion.div className="flex flex-col-reverse items-center content-center justify-center gap-4 align-middle h-fit xl:flex-row ">
+              <motion.div className="px-2 roboto ">
                 <Tilt
                   tiltReverse={true}
                   transitionEasing="cubic-bezier(.03,.98,.52,.99)"
@@ -63,7 +63,7 @@ const Home = forwardRef(({ makeActive, goToSection }, ref) => {
                 >
                   <motion.div
                     ref={ref}
-                    className="relative flex flex-col max-w-5xl gap-0 py-2 sm:px-4 md:pr-12 md:pl-10 xl:py-12 h-fit xl:pl-12 xl:pr-16 2xl:pr-20 roboto "
+                    className="relative flex flex-col max-w-5xl gap-0 py-2 sm:px-4 max-sm:pl-3  md:pr-12 md:pl-10 xl:py-12 h-fit xl:pl-12 xl:pr-16 2xl:pr-20 roboto "
                   >
                     <HtmlElement
                       tag={"header"}
@@ -154,7 +154,7 @@ const Home = forwardRef(({ makeActive, goToSection }, ref) => {
           </motion.div>
         </motion.div>
         <motion.div
-          className="fixed bottom-[8vh] inset-x-0"
+          className="fixed bottom-6 sm:bottom-[8vh] inset-x-0"
           style={{ opacity: chevronOpacity }}
         >
           <ChevronButton goToSection={goToSection} />
