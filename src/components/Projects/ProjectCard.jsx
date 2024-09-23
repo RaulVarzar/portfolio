@@ -1,11 +1,4 @@
-import {
-  motion,
-  useInView,
-  useScroll,
-  useSpring,
-  useTransform,
-} from "framer-motion";
-import "./button.css";
+import { motion, useInView, useScroll, useTransform } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 import { getRelativeCoordinates } from "../../util/getMouseCoordinates";
 
@@ -78,7 +71,7 @@ const ProjectCard = ({ project }) => {
           scale: cardStyle.scale,
           filter: `blur(${cardStyle.blur}px) brightness(${cardStyle.brightness}%)`,
         }}
-        className="top-24 justify-between w-2xl h-fit max-w-4xl overflow-hidden border-2 border-opacity-20 group hover:border-opacity-35 shadow-md rounded-lg group border-neutral items-between bg-base-300 bg-opacity-100  backdrop-blur-2xl"
+        className="justify-between max-w-4xl overflow-hidden border-2 rounded-lg shadow-md top-24 w-2xl h-fit border-opacity-20 group hover:border-opacity-35 border-neutral items-between bg-base-200 backdrop-blur-2xl"
       >
         {mousePosition && (
           <motion.span
@@ -93,8 +86,8 @@ const ProjectCard = ({ project }) => {
             className="absolute w-24 h-24 rounded-full md:w-48 md:h-48 blur-3xl -top-12 -left-12 md:-top-24 md:-left-24 bg-primary brightness-150"
           />
         )}
-        <div className="flex flex-col overflow-hidden gap-4 p-2 text-left md:p-4 md:gap-6 grow">
-          <motion.div className="z-10 aspect-video overflow-hidden rounded-md">
+        <div className="flex flex-col gap-4 p-2 overflow-hidden text-left md:p-4 md:gap-6 grow">
+          <motion.div className="z-10 overflow-hidden rounded-md aspect-video">
             <img
               src={project.gif}
               alt={photo}
@@ -111,19 +104,19 @@ const ProjectCard = ({ project }) => {
           </motion.div>
 
           <div className="flex flex-col grow md:gap-0.5">
-            <h3 className="z-10 flex px-4 justify-start w-full overflow-hidden text-base font-semibold tracking-wider leading-7 text-left uppercase transition-all duration-300 opacity-70 group-hover:opacity-100  text-base-content group-hover:text-slate-100 xl:text-xl ">
+            <h3 className="z-10 flex justify-start w-full px-4 overflow-hidden text-base font-semibold leading-7 tracking-wider text-left uppercase transition-all duration-300 opacity-70 group-hover:opacity-100 text-base-content group-hover:text-slate-100 xl:text-xl ">
               {title}
             </h3>
             {/* <div className="w-full h-0.5 p-0 my-2 opacity-50 bg-base-content group-hover:bg-neutral-content transition-colors duration-300"></div> */}
-            <p className="z-10 px-4 py-1 text-sm leading-tight tracking-tight transition-all duration-300 opacity-40 xl:text-base text-base-content group-hover:text-neutral-content  group-hover:opacity-70">
+            <p className="z-10 px-4 py-1 text-sm leading-tight tracking-tight transition-all duration-300 opacity-40 xl:text-base text-base-content group-hover:text-neutral-content group-hover:opacity-70">
               {description}
             </p>
-            <div className="z-50 flex py-2 flex-row items-center w-fit gap-0 transition-opacity duration-200 opacity-60 justify-evenly group-hover:opacity-100">
+            <div className="z-50 flex flex-row items-center gap-0 py-2 transition-opacity duration-200 w-fit opacity-60 justify-evenly group-hover:opacity-100">
               {github.length > 0 && (
                 <a
                   href={github}
                   target="_blank"
-                  className="flex items-center justify-between gap-2 px-4  py-2 transition  duration-300 group-hover:scale-105 group-hover:opacity-100 rounded-md opacity-70   xl:py-3 text-base-content hover:text-primary"
+                  className="flex items-center justify-between gap-2 px-4 py-2 transition duration-300 rounded-md group-hover:scale-105 group-hover:opacity-100 opacity-70 xl:py-3 text-base-content hover:text-primary"
                 >
                   <i className="text-md sm:text-lg fa-brands fa-github"></i>
                   <p className="text-xs sm:text-sm ">Github</p>
@@ -133,7 +126,7 @@ const ProjectCard = ({ project }) => {
                 <a
                   href={demo}
                   target="_blank"
-                  className="flex items-center justify-between gap-2 px-4  py-2 transition  duration-300 group-hover:scale-105 group-hover:opacity-100 rounded-md opacity-70   xl:py-3 text-base-content hover:text-primary"
+                  className="flex items-center justify-between gap-2 px-4 py-2 transition duration-300 rounded-md group-hover:scale-105 group-hover:opacity-100 opacity-70 xl:py-3 text-base-content hover:text-primary"
                 >
                   <i className="text-base sm:text-md fa-solid fa-arrow-up-right-from-square"></i>
                   <p className="text-xs sm:text-sm ">Demo</p>

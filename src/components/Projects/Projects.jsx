@@ -36,17 +36,29 @@ const Projects = () => {
     margin: "0% 0% -61% 0%",
   });
 
+  const borderRadius = useTransform(
+    scrollYProgress,
+    [0.2, 0.95],
+    ["0vw", "8vw"]
+  );
+  const scale = useTransform(scrollYProgress, [0.2, 0.95], ["100%", "92%"]);
+  const y = useTransform(scrollYProgress, [0.9, 1], ["0vh", "-40vh"]);
+
   return (
-    <div className="relative flex flex-col md:flex-row  w-full bg-base-100">
+    <motion.div
+      ref={sectionRef}
+      style={{ borderRadius, scale, y }}
+      className="relative z-20 flex flex-col w-full md:flex-row bg-base-100"
+    >
       <motion.div
         style={{ opacity, titleY }}
-        className="sticky top-0 md:top-[40vh] max-md:pt-12 items-center justify-start md:items-end h-[40vh] md:h-[60vh] inset-y-0 w-full md:w-5/12 flex-col gap-0.5 flex md:pr-12 lg:pr-16 2xl:pr-24 mx-auto overflow-hidden"
+        className="sticky top-0 md:top-[40vh] max-md:pt-12 items-center justify-start md:items-end h-[40vh] md:h-[60vh] inset-y-0 w-full md:w-5/12 flex-col gap-0.5 md:gap-1.5 flex md:pr-12 lg:pr-16 2xl:pr-24 mx-auto overflow-hidden"
       >
-        <motion.div className="h-fit overflow-hidden flex justify-end">
+        <motion.div className="flex justify-end overflow-hidden h-fit">
           <motion.h3
             variants={variants}
             animate={isInView ? "visible" : "hidden"}
-            className="text-3xl font-bold sm:font-black tracking-wide leading-none  text-center  md:text-4xl lg:text-5xl xl:text-6xl"
+            className="text-3xl font-bold leading-none tracking-wide text-center sm:font-black md:text-4xl lg:text-5xl xl:text-6xl"
           >
             MY PROJECTS
           </motion.h3>
@@ -55,24 +67,21 @@ const Projects = () => {
           transition={{ delay: 0.3, duration: 0.4 }}
           variants={buttonVariants}
           animate={isInView ? "visible" : "hidden"}
-          className="flex text-sm font-light w-fit tracking-wide uppercase btn-sm rounded-md  text-primary  border-accent border-none btn hover:btn-outline btn-ghost hover:text-base-100"
+          className="flex text-sm font-semibold tracking-wide uppercase border-none rounded-md sm:text-md w-fit btn-sm text-primary border-accent btn hover:btn-outline btn-ghost hover:text-base-100"
         >
           View all
           <FaGithub />
         </motion.button>
       </motion.div>
 
-      {/* <div className=" w-5/12"></div> */}
+      {/* <div className="w-5/12 "></div> */}
 
-      <motion.div
-        ref={sectionRef}
-        className="relative flex flex-col w-full md:w-7/12 items-center h-fit md:py-[10vh]"
-      >
+      <motion.div className="relative flex flex-col w-full md:w-7/12 items-center h-fit md:pt-[30vh] md:pb-[10vh]">
         {projects.map((project, i) => (
           <ProjectCard project={project} i={i} key={project.title} />
         ))}
       </motion.div>
-    </div>
+    </motion.div>
   );
 };
 

@@ -57,44 +57,46 @@ const Form = () => {
       className="flex flex-col justify-center w-full mt-10"
     >
       <motion.div className="flex flex-col gap-8 w-full  md:w-[650px] lg:w-[650px] 2xl:w-[700px] ">
-        <motion.div
-          initial={{ opacity: 0, y: 80 }}
-          whileInView={{ opacity: [0, 1, 1, 1], y: 0 }}
-          transition={{ delay: 0.3, duration: 0.8, type: "tween" }}
-          className="relative z-0 group"
-        >
-          <input
-            type="text"
-            name="name"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-            required
-            className="peer px-4 block w-full appearance-none opacity-60 group-hover:opacity-100 focus:border-primary transition duration-300  border-b-2  bg-transparent py-2.5 text-base text-gray-200 md:text-xl focus:outline-none focus:ring-0"
-            placeholder=" "
-          />
-          <label className="absolute text-sm top-0 opacity-60 group-hover:opacity-100 peer-focus:opacity-100 peer-focus:text-primary -z-10 origin-[0] -translate-y-6  transform md:text-base text-neutral-content duration-300 peer-placeholder-shown:translate-y-0 peer-placeholder-shown:scale-100 peer-focus:left-0 peer-focus:-translate-y-6 peer-focus:scale-75 ">
-            Name
-          </label>
-        </motion.div>
-        <motion.div
-          initial={{ opacity: 0, y: 50 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.6, duration: 0.6, type: "tween" }}
-          className="relative z-0 group"
-        >
-          <input
-            type="email"
-            required
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            name="email"
-            className="peer px-4 block w-full appearance-none opacity-60 group-hover:opacity-100 focus:border-primary transition duration-300  border-b-2  bg-transparent py-2.5 text-base text-gray-200 md:text-xl focus:outline-none focus:ring-0"
-            placeholder=" "
-          />
-          <label className="absolute top-0 text-sm opacity-60 group-hover:opacity-100  peer-focus:text-primary peer-focus:opacity-100 -z-10 origin-[0] -translate-y-6  transform md:text-base text-neutral-content duration-300 peer-placeholder-shown:translate-y-0 peer-placeholder-shown:scale-100 peer-focus:left-0 peer-focus:-translate-y-6 peer-focus:scale-75 ">
-            Email address
-          </label>
-        </motion.div>
+        <div className="flex flex-col justify-between w-full gap-8 md:flex-row">
+          <motion.div
+            initial={{ opacity: 0, y: 80 }}
+            whileInView={{ opacity: [0, 1, 1, 1], y: 0 }}
+            transition={{ delay: 0.3, duration: 0.8, type: "tween" }}
+            className="relative z-0 w-full group"
+          >
+            <input
+              type="text"
+              name="name"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              required
+              className="peer px-4 block w-full appearance-none opacity-60 group-hover:opacity-100 focus:border-primary transition duration-300  border-b-2  bg-transparent py-2.5 text-base text-gray-200 md:text-xl focus:outline-none focus:ring-0"
+              placeholder=" "
+            />
+            <label className="absolute text-sm top-0 opacity-60 group-hover:opacity-100 peer-focus:opacity-100 peer-focus:text-primary -z-10 origin-[0] -translate-y-6  transform md:text-base text-neutral-content duration-300 peer-placeholder-shown:translate-y-0 peer-placeholder-shown:scale-100 peer-focus:left-0 peer-focus:-translate-y-6 peer-focus:scale-75 ">
+              Name
+            </label>
+          </motion.div>
+          <motion.div
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.6, duration: 0.6, type: "tween" }}
+            className="relative z-0 w-full group"
+          >
+            <input
+              type="email"
+              required
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              name="email"
+              className="peer px-4 block w-full appearance-none opacity-60 group-hover:opacity-100 focus:border-primary transition duration-300  border-b-2  bg-transparent py-2.5 text-base text-gray-200 md:text-xl focus:outline-none focus:ring-0"
+              placeholder=" "
+            />
+            <label className="absolute top-0 text-sm opacity-60 group-hover:opacity-100  peer-focus:text-primary peer-focus:opacity-100 -z-10 origin-[0] -translate-y-6  transform md:text-base text-neutral-content duration-300 peer-placeholder-shown:translate-y-0 peer-placeholder-shown:scale-100 peer-focus:left-0 peer-focus:-translate-y-6 peer-focus:scale-75 ">
+              Email address
+            </label>
+          </motion.div>
+        </div>
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}

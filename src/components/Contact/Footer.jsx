@@ -19,12 +19,17 @@ const Footer = () => {
   const y = useTransform(scrollYProgress, [0.3, 1], ["10vh", "0vh"]);
   const opacity = useTransform(scrollYProgress, [0.1, 1], ["10%", "100%"]);
 
+  const sectionY = useTransform(scrollYProgress, [0, 0.4], ["10%", "0%"]);
+
   return (
-    <section className="flex items-center min-h-screen relative px-2 bg-base-100 ">
+    <motion.section
+      // style={{ y: sectionY }}
+      className=" bottom-0  mx-auto w-10/12 min-h-[40vh] px-2 bg-accent  -z-0 "
+    >
       <motion.div
         style={{ scale: cardScale, y: cardY }}
         ref={cardRef}
-        className="flex items-center justify-center mx-auto overflow-hidden md:min-h-[80vh] rounded-3xl w-full 3xl:max-w-8xl backdrop-brightness-110 border-2 border-base-content border-opacity-5 py-8 md:py-16 xl:py-36 text-base-content"
+        className="flex items-center justify-center w-full py-4 mx-auto overflow-hidden bg-base-20 rounded-t-3xl 3xl:max-w-8xl text-base-content"
       >
         <motion.div
           style={{ y, opacity }}
@@ -51,7 +56,7 @@ const Footer = () => {
           <Form />
         </motion.div>
       </motion.div>
-    </section>
+    </motion.section>
   );
 };
 export default Footer;

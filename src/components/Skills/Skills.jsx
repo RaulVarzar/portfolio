@@ -26,8 +26,8 @@ const Skills = () => {
   );
   const bgY = useTransform(
     scrollYProgress,
-    [0, 0.94, 0.98],
-    ["-1.4%", "-1.4%", "0%"]
+    [0, 0.85, 0.95],
+    ["0%", "0%", "3vh"]
   );
 
   const titleScale = useTransform(
@@ -41,13 +41,13 @@ const Skills = () => {
     <motion.div>
       <motion.div
         style={{ scale: 1, borderRadius: bgRadius, y: bgY }}
-        className="absolute w-full  h-screen bg-secondary top-[100vh] left-0 -z-0"
+        className="absolute w-full z-0 h-[15vh] bg-secondary -top-[2vh] left-0 "
       ></motion.div>
 
       <motion.section
         ref={sectionRef}
         style={{ scale: 1, borderRadius, y: sectionY }}
-        className="relative flex flex-col py-8 overflow-hidden min-h-[100vh] text-4xl md:py-12 bg-gradient-to-b from-base-200 to-base-100 place-content-center"
+        className="relative flex flex-col py-8 overflow-hidden min-h-[100vh] text-4xl z-20 md:py-12 bg-base-100 place-content-center"
       >
         <motion.div
           className="relative mx-auto"
@@ -56,7 +56,7 @@ const Skills = () => {
           <Title />
         </motion.div>
 
-        <motion.div className="flex  flex-col px-4 sm:gap-y-12 place-content-center w-full  roboto">
+        <motion.div className="flex flex-col w-full px-4 sm:gap-y-12 place-content-center roboto">
           <SkillsCard
             title={"Front-end frameworks"}
             text={"ReactJS"}

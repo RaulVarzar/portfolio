@@ -69,9 +69,9 @@ export default {
           accent: "#2a275d",
           primary: "#511ab7",
           secondary: "#4c39ac",
-          "base-100": "#121217",
-          "base-200": "#17171c",
-          "base-300": "#1c1c21",
+          "base-100": "#0e0e11",
+          "base-200": "#111213",
+          "base-300": "#18181b",
 
           // accent: "#311d6d",
           // accent: "#1c3738",
