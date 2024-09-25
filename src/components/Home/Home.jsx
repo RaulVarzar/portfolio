@@ -45,7 +45,7 @@ const Home = forwardRef(({ makeActive, goToSection }, ref) => {
     <>
       <motion.section
         style={{ filter: "brightness(100%)" }}
-        className="grid w-full sticky top-0  min-h-[100svh] bg-accent place-content-center justify-center"
+        className="grid w-full sticky top-0  min-h-[100svh]  bg-accent place-content-center justify-center"
       >
         <Socials />
         <motion.div style={{ y: sectionY, scale: sectionScale }}>

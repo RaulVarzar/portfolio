@@ -71,7 +71,7 @@ const ProjectCard = ({ project }) => {
           scale: cardStyle.scale,
           filter: `blur(${cardStyle.blur}px) brightness(${cardStyle.brightness}%)`,
         }}
-        className="justify-between max-w-4xl overflow-hidden border-2 rounded-lg shadow-md top-24 w-2xl h-fit border-opacity-20 group hover:border-opacity-35 border-neutral items-between bg-base-200 backdrop-blur-2xl"
+        className="justify-between max-w-4xl overflow-hidden borde shadow-md top-24 w-2xl h-fit rounded-xl border-opacity-0 group hover:border-opacity-35 border-neutral items-between bg-base-200 backdrop-blur-2xl"
       >
         {mousePosition && (
           <motion.span
@@ -86,8 +86,8 @@ const ProjectCard = ({ project }) => {
             className="absolute w-24 h-24 rounded-full md:w-48 md:h-48 blur-3xl -top-12 -left-12 md:-top-24 md:-left-24 bg-primary brightness-150"
           />
         )}
-        <div className="flex flex-col gap-4 p-2 overflow-hidden text-left md:p-4 md:gap-6 grow">
-          <motion.div className="z-10 overflow-hidden rounded-md aspect-video">
+        <div className="flex flex-col gap-4 p-- overflow-hidden text-left md:gap-6 grow">
+          <motion.div className="z-10 overflow-hidden  aspect-video">
             <img
               src={project.gif}
               alt={photo}
@@ -103,7 +103,7 @@ const ProjectCard = ({ project }) => {
             />
           </motion.div>
 
-          <div className="flex flex-col grow md:gap-0.5">
+          <div className=" flex-col grow md:gap-0.5 flex px-2 py-2 md:px-5 md:py-3">
             <h3 className="z-10 flex justify-start w-full px-4 overflow-hidden text-base font-semibold leading-7 tracking-wider text-left uppercase transition-all duration-300 opacity-70 group-hover:opacity-100 text-base-content group-hover:text-slate-100 xl:text-xl ">
               {title}
             </h3>

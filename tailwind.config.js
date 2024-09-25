@@ -71,10 +71,11 @@ export default {
           secondary: "#4c39ac",
           "base-100": "#0e0e11",
           "base-200": "#111213",
-          "base-300": "#18181b",
+          "base-300": "#141619",
 
           // accent: "#311d6d",
           // accent: "#1c3738",
+          error: "#8d0801",
           "neutral-content": "#c4c3d5",
           "base-content": "#aaaab1",
           //   error: '#602b1f',

@@ -36,18 +36,14 @@ const Projects = () => {
     margin: "0% 0% -61% 0%",
   });
 
-  const borderRadius = useTransform(
-    scrollYProgress,
-    [0.2, 0.95],
-    ["0vw", "8vw"]
-  );
-  const scale = useTransform(scrollYProgress, [0.2, 0.95], ["100%", "92%"]);
-  const y = useTransform(scrollYProgress, [0.9, 1], ["0vh", "-40vh"]);
+  const borderRadius = useTransform(scrollYProgress, [0, 0.15], ["0vw", "3vw"]);
+  const scale = useTransform(scrollYProgress, [0, 0.15], ["100%", "98%"]);
+  const y = useTransform(scrollYProgress, [0, 0.15], ["0%", "1%"]);
 
   return (
     <motion.div
       ref={sectionRef}
-      style={{ borderRadius, scale, y }}
+      // style={{ borderRadius, scale, y }}
       className="relative z-20 flex flex-col w-full md:flex-row bg-base-100"
     >
       <motion.div
@@ -76,7 +72,7 @@ const Projects = () => {
 
       {/* <div className="w-5/12 "></div> */}
 
-      <motion.div className="relative flex flex-col w-full md:w-7/12 items-center h-fit md:pt-[30vh] md:pb-[10vh]">
+      <motion.div className="relative flex flex-col w-full pb-[25vh] md:w-7/12 items-center h-fit md:pt-[30vh] md:pb-[30vh]">
         {projects.map((project, i) => (
           <ProjectCard project={project} i={i} key={project.title} />
         ))}
