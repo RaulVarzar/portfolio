@@ -20,7 +20,7 @@ const App = () => {
     <>
       <ScrollContext>
         <Home ref={home} goToSection={() => goToSection("skills")} />
-        <motion.div className="relative bg-accent">
+        <motion.div className="relative bg-primary">
           <div ref={skills}>
             <Skills />
           </div>

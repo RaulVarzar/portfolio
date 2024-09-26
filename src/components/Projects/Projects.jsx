@@ -36,9 +36,9 @@ const Projects = () => {
     margin: "0% 0% -61% 0%",
   });
 
-  const borderRadius = useTransform(scrollYProgress, [0, 0.15], ["0vw", "3vw"]);
-  const scale = useTransform(scrollYProgress, [0, 0.15], ["100%", "98%"]);
-  const y = useTransform(scrollYProgress, [0, 0.15], ["0%", "1%"]);
+  const borderRadius = useTransform(scrollYProgress, [0, 0.1], ["0vw", "3vw"]);
+  const scale = useTransform(scrollYProgress, [0, 0.1], ["100%", "99%"]);
+  const y = useTransform(scrollYProgress, [0, 0.1], ["0%", "0%"]);
 
   return (
     <motion.div
