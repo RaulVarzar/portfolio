@@ -88,13 +88,13 @@ const ProjectCard = ({ project }) => {
         )}
         <div className="flex flex-col gap-4 p-- overflow-hidden text-left md:gap-6 grow">
           <motion.div className="z-10 overflow-hidden  aspect-video">
-            <img
+            {/* <img
               src={project.gif}
               alt={photo}
               className={
                 "object-cover hidden group-hover:flex top-0 left-0 w-full z-50    h-full"
               }
-            />
+            /> */}
             <motion.img
               style={{ scale: imgScale, opacity: imgOpacity }}
               src={project.photo}

@@ -24,6 +24,7 @@ const buttonVariants = {
 
 const Projects = () => {
   const sectionRef = useRef(null);
+  const scrollableRef = useRef(null);
 
   const { scrollYProgress } = useScroll({
     target: sectionRef,
@@ -36,9 +37,11 @@ const Projects = () => {
     margin: "0% 0% -61% 0%",
   });
 
-  const borderRadius = useTransform(scrollYProgress, [0, 0.1], ["0vw", "3vw"]);
-  const scale = useTransform(scrollYProgress, [0, 0.1], ["100%", "99%"]);
-  const y = useTransform(scrollYProgress, [0, 0.1], ["0%", "0%"]);
+  const { scrollYProgress: totalProgress } = useScroll({
+    target: scrollableRef,
+    offset: ["start", "end"],
+  });
+  const progressBarWidth = useTransform(totalProgress, [0, 1], ["0%", "100%"]);
 
   return (
     <motion.div
@@ -48,7 +51,7 @@ const Projects = () => {
     >
       <motion.div
         style={{ opacity, titleY }}
-        className="sticky top-0 md:top-[40vh] max-md:pt-12 items-center justify-start md:items-end h-[40vh] md:h-[60vh] inset-y-0 w-full md:w-5/12 flex-col gap-0.5 md:gap-1.5 flex md:pr-12 lg:pr-16 2xl:pr-24 mx-auto overflow-hidden"
+        className="sticky top-0 md:top-[40vh] max-md:pt-12 items-center justify-start md:items-end h-[40vh] md:h-[60vh] inset-y-0 w-fit md:w-5/12 flex-col gap-0.5 md:gap-1.5 flex md:pr-12 lg:pr-16 2xl:pr-24 mx-auto overflow-hidden"
       >
         <motion.div className="flex justify-end overflow-hidden h-fit">
           <motion.h3
@@ -68,11 +71,20 @@ const Projects = () => {
           View all
           <FaGithub />
         </motion.button>
+        <div className="h-2 w-96 mt-2 bg-base-300 relative rounded-xl overflow-hidden">
+          <motion.div
+            style={{ width: progressBarWidth }}
+            className="bg-accent w-full h-full left-0 top-0 absolute"
+          ></motion.div>
+        </div>
       </motion.div>
 
       {/* <div className="w-5/12 "></div> */}
 
-      <motion.div className="relative flex flex-col w-full pb-[25vh] md:w-7/12 items-center h-fit md:pt-[30vh] md:pb-[30vh]">
+      <motion.div
+        ref={scrollableRef}
+        className="relative flex flex-col w-full pb-[25vh] md:w-7/12 items-center h-fit md:pt-[30vh] md:pb-[30vh]"
+      >
         {projects.map((project, i) => (
           <ProjectCard project={project} i={i} key={project.title} />
         ))}
