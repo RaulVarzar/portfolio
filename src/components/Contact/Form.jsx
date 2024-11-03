@@ -52,11 +52,11 @@ const Form = ({ closeForm }) => {
   };
 
   return (
-    <motion.div className="flex flex-col justify-center">
+    <motion.div className="flex flex-col justify-center gap-8">
       <form
         ref={form}
         onSubmit={sendEmail}
-        className="flex flex-col justify-center w-full py-12 mx-auto"
+        className="flex flex-col justify-center w-full pt-20 mx-auto"
       >
         <motion.div className="flex flex-col gap-8 w-full  md:w-[650px] lg:w-[650px] 2xl:w-[700px] ">
           <div className="flex flex-col justify-between w-full gap-8 md:flex-row">

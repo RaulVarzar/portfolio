@@ -1,11 +1,12 @@
 import profilePhoto from "../../assets/profile-pic.jpg";
-import { motion, useInView, useScroll, useTransform } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
 import HtmlElement from "./HtmlElement";
-import { forwardRef, useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import ChevronButton from "./ChevronButton";
 import Tilt from "react-parallax-tilt";
 import BubbleText from "../BubbleText/BubbleText";
 import { Socials } from "./Socials";
+import useScreenSize from "../../hooks/useScreenSize";
 
 const variants = {
   hide: { opacity: 0, x: -40 },
@@ -21,16 +22,17 @@ const variants = {
   },
 };
 
-const Home = forwardRef(({ makeActive, goToSection }, ref) => {
+const Home = ({ goToSection }) => {
+  const screenSize = useScreenSize();
+
   const [zoomInText, setZoomInText] = useState(false);
-  const isInView = useInView(ref);
   const scrollProgressRef = useRef(null);
   const { scrollYProgress } = useScroll({
     target: scrollProgressRef,
     offset: ["start end", "end start"],
   });
-  const sectionY = useTransform(scrollYProgress, [0, 1], ["0vh", "-15vh"]);
-  const sectionScale = useTransform(scrollYProgress, [0, 1], ["100%", "90%"]);
+  // const sectionY = useTransform(scrollYProgress, [0, 1], ["0vh", "-25vh"]);
+  const sectionScale = useTransform(scrollYProgress, [0, 1], ["100%", "83%"]);
 
   const y = useTransform(scrollYProgress, [0, 1], ["0vh", "-15vh"]);
   const chevronOpacity = useTransform(
@@ -39,32 +41,24 @@ const Home = forwardRef(({ makeActive, goToSection }, ref) => {
     ["100%", "0%"]
   );
 
-  const brightness = 55;
-
   return (
     <>
-      <motion.section
-        style={{ filter: "brightness(100%)" }}
-        className="grid w-full sticky top-0  min-h-[100svh]  bg-accent place-content-center justify-center"
-      >
+      <motion.section className="grid w-full sticky top-0 min-h-[100vh]  bg-accent place-content-center justify-center">
         <Socials />
-        <motion.div style={{ y: sectionY, scale: sectionScale }}>
+        <motion.div style={{ scale: sectionScale }}>
           <motion.div className="relative flex flex-col justify-center py-8 pb-8 md:pb-12 ">
             <motion.div className="flex flex-col-reverse items-center content-center justify-center gap-4 align-middle h-fit xl:flex-row ">
               <motion.div className="px-2 roboto ">
                 <Tilt
                   tiltReverse={true}
                   transitionEasing="cubic-bezier(.03,.98,.52,.99)"
-                  tiltMaxAngleX={7}
-                  tiltMaxAngleY={7}
+                  tiltMaxAngleX={6}
+                  tiltMaxAngleY={6}
                   perspective={1000}
-                  onEnter={() => setZoomInText(true)}
+                  onEnter={() => screenSize.width > 1080 && setZoomInText(true)}
                   onLeave={() => setZoomInText(false)}
                 >
-                  <motion.div
-                    ref={ref}
-                    className="relative flex flex-col max-w-5xl gap-0 py-2 sm:px-4 max-sm:pl-3  md:pr-12 md:pl-10 xl:py-12 h-fit xl:pl-12 xl:pr-16 2xl:pr-20 roboto "
-                  >
+                  <motion.div className="relative flex flex-col max-w-5xl gap-0 py-2 sm:px-4 max-sm:pl-3  md:pr-12 md:pl-10 xl:py-12 h-fit xl:pl-12 xl:pr-16 2xl:pr-20 roboto ">
                     <HtmlElement
                       tag={"header"}
                       blur={zoomInText}
@@ -140,11 +134,11 @@ const Home = forwardRef(({ makeActive, goToSection }, ref) => {
                 }}
                 className="p-2"
               >
-                <motion.div className=" scale-100 flex flex-col bg-base-content overflow-hidden group delay-100 elevation-4 rounded-3xl  hover:rounded-3xl p-2 transition-all duration-500 ease-in-out hover:scale-105">
-                  <div className="overflow-hidden rounded-2xl">
+                <motion.div className=" scale-100 flex flex-col bg-base-content overflow-hidden group  elevation-4 rounded-[30px]  p-2 transition-all duration-300 ease-in-out hover:scale-105">
+                  <div className="overflow-hidden rounded-[25px]">
                     <img
                       src={profilePhoto}
-                      className="z-50 object-cover h-40 transition-all duration-500 ease-in-out delay-100 w-36 md:h-52 md:w-48 xl:h-80 xl:w-64 lg:scale-110 group-hover:scale-100"
+                      className="z-50 object-cover h-40 transition-all duration-500 ease-in-out  w-36 md:h-52 md:w-48 xl:h-96 xl:w-80 lg:scale-110 group-hover:scale-100"
                       alt="profile-pic"
                     />
                   </div>
@@ -164,6 +158,5 @@ const Home = forwardRef(({ makeActive, goToSection }, ref) => {
       <div ref={scrollProgressRef} className="h-0 relative"></div>
     </>
   );
-});
-
+};
 export default Home;

@@ -3,10 +3,6 @@ import Lenis from "lenis";
 
 const SmoothScrollerContext = createContext();
 
-const useSmoothScroller = () => {
-  useContext(SmoothScrollerContext);
-};
-
 const ScrollContext = ({ children }) => {
   const [lenisRef, setLenis] = useState(null);
   const [rafState, setRaf] = useState(null);

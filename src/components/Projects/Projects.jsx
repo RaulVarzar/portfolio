@@ -34,7 +34,7 @@ const Projects = () => {
   const titleY = useTransform(scrollYProgress, [0, 0.3], ["0vg", "-20vh"]);
 
   const isInView = useInView(sectionRef, {
-    margin: "0% 0% -61% 0%",
+    margin: "0% 0% -91% 0%",
   });
 
   const { scrollYProgress: totalProgress } = useScroll({
@@ -46,18 +46,17 @@ const Projects = () => {
   return (
     <motion.div
       ref={sectionRef}
-      // style={{ borderRadius, scale, y }}
-      className="relative z-20 flex flex-col w-full md:flex-row bg-base-100"
+      className="relative z-20  flex max-sm:pt-[50vh] pt-[10vh]  flex-col w-full md:flex-row bg-base-100"
     >
       <motion.div
         style={{ opacity, titleY }}
-        className="sticky top-0 md:top-[40vh] max-md:pt-12 items-center justify-start md:items-end h-[40vh] md:h-[60vh] inset-y-0 w-fit md:w-5/12 flex-col gap-0.5 md:gap-1.5 flex md:pr-12 lg:pr-16 2xl:pr-24 mx-auto overflow-hidden"
+        className="sticky top-0  z-30 max-sm:bg-base-200 w-full md:top-[20vh] max-md:pt-12 items-center justify-start md:items-end sm:h-[40vh] md:h-[60vh] inset-y-0 sm:w-fit md:w-6/12 flex-col gap-0.5 md:gap-1.5 flex md:pr-8 lg:pr-12 mx-auto overflow-hidden"
       >
         <motion.div className="flex justify-end overflow-hidden h-fit">
           <motion.h3
             variants={variants}
             animate={isInView ? "visible" : "hidden"}
-            className="text-3xl font-bold leading-none tracking-wide text-center sm:font-black md:text-4xl lg:text-5xl xl:text-6xl"
+            className="text-3xl font-bold leading-none tracking-wide text-center sm:font-black md:text-5xl lg:text-6xl xl:text-7xl 2xl:text-8xl"
           >
             MY PROJECTS
           </motion.h3>
@@ -71,7 +70,7 @@ const Projects = () => {
           View all
           <FaGithub />
         </motion.button>
-        <div className="h-2 w-96 mt-2 bg-base-300 relative rounded-xl overflow-hidden">
+        <div className="h-2 w-full sm:w-96 mt-2 bg-base-300 relative rounded-xl overflow-hidden">
           <motion.div
             style={{ width: progressBarWidth }}
             className="bg-accent w-full h-full left-0 top-0 absolute"
@@ -79,11 +78,9 @@ const Projects = () => {
         </div>
       </motion.div>
 
-      {/* <div className="w-5/12 "></div> */}
-
       <motion.div
         ref={scrollableRef}
-        className="relative flex flex-col w-full pb-[25vh] md:w-7/12 items-center h-fit md:pt-[30vh] md:pb-[30vh]"
+        className="relative  flex flex-col w-full pb-[20vh] md:w-6/12 items-center h-fit pt-[40vh] md:pt-[80vh] "
       >
         {projects.map((project, i) => (
           <ProjectCard project={project} i={i} key={project.title} />

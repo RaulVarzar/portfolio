@@ -22,8 +22,9 @@ const variants = {
     y: 0,
     transition: {
       type: "spring",
-      damping: 12,
-      mass: 0.6,
+      damping: 15,
+      mass: 0.2,
+      stiffness: 80,
     },
   },
 };
@@ -54,12 +55,12 @@ export const Title = () => {
         initial="hidden"
         animate={isInView ? "visible" : "hidden"}
         transition={{
-          staggerChildren: 0.05,
+          staggerChildren: 0.1,
         }}
-        className="text-3xl font-black flex flex-row tracking-wide uppercase  text-neutral-content sm:text-4xl md:text-5xl lg:text-7xl"
+        className="text-5xl font-black flex flex-row tracking-wide uppercase  text-neutral-content sm:text-6xl md:text-8xl lg:text-9xl"
       >
         {TITLE.map((letter, i) => (
-          <motion.span className="min-w-4" key={i} variants={variants}>
+          <motion.span className="min-w-2" key={i} variants={variants}>
             {letter}
           </motion.span>
         ))}

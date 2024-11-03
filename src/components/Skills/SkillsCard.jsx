@@ -1,10 +1,4 @@
-import {
-  motion,
-  useInView,
-  useScroll,
-  useSpring,
-  useTransform,
-} from "framer-motion";
+import { motion, useInView, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
 import { IconText } from "./IconText";
 
@@ -33,16 +27,7 @@ const SkillsCard = ({ title, icon, text, reverse }) => {
     target: ref,
     offset: ["start end", "end 0.85"],
   });
-
-  const contentSpring = useSpring(scrollYProgress, {
-    stiffness: 80,
-    damping: 20,
-    // restDelta: 0.001,
-    mass: 0.2,
-  });
-
-  const cardY = useTransform(contentSpring, [0, 1], ["5vh", "0vh"]);
-  const opacity = useTransform(contentSpring, [0, 1], ["0%", "100%"]);
+  const opacity = useTransform(scrollYProgress, [0, 1], ["0%", "100%"]);
 
   const { scrollYProgress: rowProgress } = useScroll({
     target: ref,
@@ -60,7 +45,7 @@ const SkillsCard = ({ title, icon, text, reverse }) => {
   return (
     <motion.div
       ref={ref}
-      style={{ y: cardY, opacity }}
+      style={{ opacity }}
       className="relative flex items-center flex-col w-full justify-center gap-2 p-2 sm:px-10 text-base-content"
     >
       <motion.div
@@ -72,7 +57,7 @@ const SkillsCard = ({ title, icon, text, reverse }) => {
         <motion.h1
           animate={isInView ? "visible" : "hidden"}
           variants={titleVariants}
-          className="text-neutral"
+          className="text-neutral text-sm sm:text-base"
         >
           {title}
         </motion.h1>

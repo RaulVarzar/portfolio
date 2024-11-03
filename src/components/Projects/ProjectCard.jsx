@@ -1,93 +1,108 @@
 import { motion, useInView, useScroll, useTransform } from "framer-motion";
-import { useEffect, useRef, useState } from "react";
-import { getRelativeCoordinates } from "../../util/getMouseCoordinates";
+import { useRef } from "react";
+
+const titleVariants = {
+  hidden: {
+    opacity: 0,
+    y: "-40%",
+    filter: "blur(6px)",
+  },
+  visible: {
+    opacity: 1,
+    y: "0%",
+    filter: "blur(0px)",
+    transition: {
+      ease: [0.25, 0.1, 0.25, 1],
+      delay: 0,
+      duration: 1,
+    },
+  },
+  exit: {
+    y: "20%",
+    opacity: 0,
+    transition: {
+      ease: [0.45, 0.1, 0.25, 1],
+      duration: 0.25,
+      delay: 0.1,
+    },
+  },
+};
+
+const descriptionVariants = {
+  hidden: {
+    opacity: 0,
+    y: "-5%",
+    filter: "blur(5px)",
+  },
+  visible: {
+    opacity: 1,
+    y: "0%",
+    filter: "blur(0px)",
+    transition: {
+      ease: [0.25, 0.1, 0.25, 1],
+      delay: 0.35,
+      duration: 0.9,
+    },
+  },
+  exit: {
+    y: "20%",
+    opacity: 0,
+    transition: {
+      ease: [0.45, 0.1, 0.25, 1],
+      duration: 0.25,
+      delay: 0.1,
+    },
+  },
+};
 
 const ProjectCard = ({ project }) => {
   const { title, description, github, demo, photo } = project;
 
   const cardRef = useRef(null);
+  const textRef = useRef(null);
+
   const containerRef = useRef(null);
 
   const { scrollYProgress } = useScroll({
     target: containerRef,
-    offset: ["start end", "end start"],
+    offset: ["start end", "center"],
   });
 
-  const { scrollY } = useScroll({
-    target: containerRef,
-  });
-  const scale = useTransform(scrollYProgress, [0, 0.6], ["80%", "100%"]);
+  const cardX = useTransform(scrollYProgress, [0, 0.8], ["10vw", "0vw"]);
+  const cardY = useTransform(scrollYProgress, [0, 0.8], ["15vh", "0vh"]);
+  const cardScale = useTransform(scrollYProgress, [0, 0.8], ["110%", "100%"]);
+  const cardOpacity = useTransform(scrollYProgress, [0, 0.6], ["0%", "100%"]);
 
-  const imgScale = useTransform(scrollYProgress, [0, 0.35], ["110%", "100%"]);
+  const imgScale = useTransform(scrollYProgress, [0, 0.8], ["120%", "100%"]);
   const imgOpacity = useTransform(scrollYProgress, [0, 0.35], ["50%", "100%"]);
 
-  const [mousePosition, setMousePosition] = useState(null);
-  const handleMouseMove = (e) => {
-    setMousePosition(getRelativeCoordinates(e, cardRef.current));
-  };
-
-  // Animation for blurring out the card after reaching the sticky position
-  const [maxScrollY, setMaxScrollY] = useState(Infinity);
-  const [cardStyle, setCardStyle] = useState({
-    scale: 1,
-    blur: 0,
-    brightness: 1,
-  });
-  const isInView = useInView(containerRef, {
-    margin: `0% 0% -90% 0%`,
+  // TITLE ANIMATIONS
+  const isInView = useInView(textRef, {
+    margin: `0% 0% -10% 0%`,
   });
 
-  useEffect(() => {
-    if (isInView) {
-      setMaxScrollY(scrollY.get());
-    }
-  }, [isInView]);
-
-  scrollY.on("change", (scrollY) => {
-    let animationValue = 1;
-    if (scrollY > maxScrollY) {
-      animationValue = Math.max(0, 1 - (scrollY - maxScrollY) / 7000);
-    }
-
-    setCardStyle({
-      scale: animationValue,
-      blur: (1 - animationValue) * 30,
-      brightness: animationValue * 100,
-    });
-  });
-  //////////////////////////////////////////////////
-
+  /////////////
   return (
     <motion.div
       ref={containerRef}
-      className="sticky top-[20vh] h-[60vh] md:top-[10vh] md:h-[80vh] flex max-md:px-3 items-center"
+      className=" w-full min-h-[50vh] overflow-hidden md:min-h-[70vh] border-b- border-neutral flex max-md:px-3 items-center"
     >
       <motion.div
         ref={cardRef}
-        onMouseMove={(e) => handleMouseMove(e)}
-        whileHover={!isInView && { scale: 1.02, transition: { duration: 0.3 } }}
-        onMouseLeave={() => setMousePosition(null)}
         style={{
-          scale: cardStyle.scale,
-          filter: `blur(${cardStyle.blur}px) brightness(${cardStyle.brightness}%)`,
+          x: cardX,
+          y: cardY,
+          scale: cardScale,
+          opacity: cardOpacity,
+          // filter: `blur(${cardStyle.blur}px) brightness(${cardStyle.brightness}%)`,
         }}
-        className="justify-between max-w-4xl overflow-hidden borde shadow-md top-24 w-2xl h-fit rounded-xl border-opacity-0 group hover:border-opacity-35 border-neutral items-between bg-base-200 backdrop-blur-2xl"
+        className="justify-between  p-8 max-w-3xl mx-auto overflow-hidden top-24  h-fit group "
       >
-        {mousePosition && (
-          <motion.span
-            initial={{ opacity: 0 }}
-            animate={{
-              x: mousePosition.x,
-              y: mousePosition.y,
-              opacity: 0.2,
-              transition: { duration: 0.2 },
-            }}
-            transition={{ type: "spring" }}
-            className="absolute w-24 h-24 rounded-full md:w-48 md:h-48 blur-3xl -top-12 -left-12 md:-top-24 md:-left-24 bg-primary brightness-150"
-          />
-        )}
-        <div className="flex flex-col gap-4 p-- overflow-hidden text-left md:gap-6 grow">
-          <motion.div className="z-10 overflow-hidden  aspect-video">
+        <div className="flex  flex-col gap-3  text-left md:gap-4 grow">
+          <motion.div
+            style={{ scale: imgScale }}
+            className="z-20 overflow-hidden rounded-2xl  aspect-video "
+          >
             {/* <img
               src={project.gif}
               alt={photo}
@@ -96,43 +111,61 @@ const ProjectCard = ({ project }) => {
               }
             /> */}
             <motion.img
-              style={{ scale: imgScale, opacity: imgOpacity }}
+              style={{ opacity: imgOpacity }}
               src={project.photo}
               alt={photo}
               className={"object-cover w-full "}
             />
           </motion.div>
 
-          <div className=" flex-col grow md:gap-0.5 flex px-2 py-2 md:px-5 md:py-3">
-            <h3 className="z-10 flex justify-start w-full px-4 overflow-hidden text-base font-semibold leading-7 tracking-wider text-left uppercase transition-all duration-300 opacity-70 group-hover:opacity-100 text-base-content group-hover:text-slate-100 xl:text-xl ">
-              {title}
-            </h3>
-            {/* <div className="w-full h-0.5 p-0 my-2 opacity-50 bg-base-content group-hover:bg-neutral-content transition-colors duration-300"></div> */}
-            <p className="z-10 px-4 py-1 text-sm leading-tight tracking-tight transition-all duration-300 opacity-40 xl:text-base text-base-content group-hover:text-neutral-content group-hover:opacity-70">
-              {description}
-            </p>
-            <div className="z-50 flex flex-row items-center gap-0 py-2 transition-opacity duration-200 w-fit opacity-60 justify-evenly group-hover:opacity-100">
-              {github.length > 0 && (
-                <a
-                  href={github}
-                  target="_blank"
-                  className="flex items-center justify-between gap-2 px-4 py-2 transition duration-300 rounded-md group-hover:scale-105 group-hover:opacity-100 opacity-70 xl:py-3 text-base-content hover:text-primary"
-                >
-                  <i className="text-md sm:text-lg fa-brands fa-github"></i>
-                  <p className="text-xs sm:text-sm ">Github</p>
-                </a>
-              )}
-              {demo.length > 0 && (
-                <a
-                  href={demo}
-                  target="_blank"
-                  className="flex items-center justify-between gap-2 px-4 py-2 transition duration-300 rounded-md group-hover:scale-105 group-hover:opacity-100 opacity-70 xl:py-3 text-base-content hover:text-primary"
-                >
-                  <i className="text-base sm:text-md fa-solid fa-arrow-up-right-from-square"></i>
-                  <p className="text-xs sm:text-sm ">Demo</p>
-                </a>
-              )}
+          <div className="gap-y-1 flex flex-row-reverse items-start">
+            <div
+              ref={textRef}
+              className=" flex-col items-center sm:items-end grow md:gap-0.5 flex  py-1"
+            >
+              <motion.h3
+                variants={titleVariants}
+                initial="hidden"
+                animate={isInView ? "visible" : "exit"}
+                className="z-10 flex justify-start overflow-hidden text-2xl  font-semibold leading-10 tracking-wider text-left uppercase  opacity-85 group-hover:opacity-100 text-base-content group-hover:text-slate-100 xl:text-4xl "
+              >
+                {title}
+              </motion.h3>
+              {/* <div className="w-full h-0.5 p-0 my-2 opacity-50 bg-base-content group-hover:bg-neutral-content transition-colors duration-300"></div> */}
+              <motion.p
+                variants={descriptionVariants}
+                initial="hidden"
+                animate={isInView ? "visible" : "exit"}
+                className="z-10 py-1 text-sm max-w-xl  text-center text-balance sm:text-right font-light leading-tight tracking-wide  opacity-60 xl:text-base text-base-content group-hover:text-neutral-content group-hover:opacity-70"
+              >
+                {description}
+              </motion.p>
+              <div className="z-50 flex flex-row items-center gap-6 py-2 transition-opacity duration-200 w-fit opacity-60 justify-evenly group-hover:opacity-100">
+                {github.length > 0 && (
+                  <a
+                    href={github}
+                    target="_blank"
+                    className="flex items-center justify-between gap-2  py-2 transition duration-300 rounded-md group-hover:scale-105 group-hover:opacity-100 opacity-70 xl:py-3 text-base-content hover:text-primary"
+                  >
+                    <i className="text-md sm:text-lg fa-brands fa-github"></i>
+                    <p className="text-sm  ">Github</p>
+                  </a>
+                )}
+                {demo.length > 0 && (
+                  <a
+                    href={demo}
+                    target="_blank"
+                    className="flex items-center justify-between gap-2 py-2 transition duration-300 rounded-md group-hover:scale-105 group-hover:opacity-100 opacity-70 xl:py-3 text-base-content hover:text-primary"
+                  >
+                    <i className="text-base sm:text-md fa-solid fa-arrow-up-right-from-square"></i>
+                    <p className="text-sm ">Demo</p>
+                  </a>
+                )}
+              </div>
             </div>
+            {/* <div className=" text-8xl leading-10 mt-5 opacity-10 text-secondary font-thin tracking-tighter">
+              04
+            </div> */}
           </div>
         </div>
       </motion.div>
