@@ -37,6 +37,7 @@ export default {
         "5xl": "3.2rem",
         "6xl": "4rem",
         "7xl": "4.6rem",
+        xxl: "10rem",
       },
       borderRadius: {
         "4xl": "40px",
@@ -69,9 +70,9 @@ export default {
           accent: "#2a275d",
           primary: "#511ab7",
           secondary: "#4c39ac",
-          "base-100": "#0f0f10",
-          "base-200": "#111112",
-          "base-300": "#141619",
+          "base-100": "#0C0C0D",
+          "base-200": "#0e0e10",
+          "base-300": "#101013",
 
           // accent: "#311d6d",
           // accent: "#1c3738",

@@ -3,7 +3,7 @@ import { useRef } from "react";
 import Home from "./components/Home/Home";
 import Projects from "./components/Projects/Projects";
 import Skills from "./components/Skills/Skills";
-import Footer from "./components/Contact/Footer";
+import Footer from "./components/Footer/Footer";
 
 import ScrollContext from "./components/SmoothScroll";
 
@@ -16,14 +16,14 @@ const App = () => {
 
   return (
     <ScrollContext>
-      <Home goToSection={() => goToSection("skills")} />
-      <div className="relative bg-primary">
+      <div className="relative z-10">
+        <Home goToSection={() => goToSection("skills")} />
         <div ref={skills}>
           <Skills />
         </div>
         <Projects />
-        <Footer />
       </div>
+      <Footer />
     </ScrollContext>
   );
 };

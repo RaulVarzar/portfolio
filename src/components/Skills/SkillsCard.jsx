@@ -6,7 +6,7 @@ const dividerVariants = {
   hidden: { width: "0%" },
   visible: {
     width: "100%",
-    transition: { duration: 0.9, delay: 0.25 },
+    transition: { duration: 0.7, delay: 0.25 },
   },
 };
 
@@ -15,7 +15,16 @@ const titleVariants = {
   visible: {
     opacity: "100%",
     y: "0%",
-    transition: { duration: 0.4, delay: 0.4 },
+    transition: { duration: 0.4, delay: 0.3 },
+  },
+};
+
+const textVariants = {
+  hidden: { opacity: "0%", y: "10%" },
+  visible: {
+    opacity: "100%",
+    y: "0%",
+    transition: { duration: 0.25, delay: 0.5 },
   },
 };
 
@@ -46,10 +55,10 @@ const SkillsCard = ({ title, icon, text, reverse }) => {
     <motion.div
       ref={ref}
       style={{ opacity }}
-      className="relative flex items-center flex-col w-full justify-center gap-2 p-2 sm:px-10 text-base-content"
+      className="relative flex flex-col items-center justify-center w-full gap-2 p-2 sm:px-10 text-base-content"
     >
       <motion.div
-        className="divider place-self-center h-24 text-md font-extralight tracking-wide"
+        className="h-24 tracking-wide divider place-self-center text-md font-extralight"
         // initial="hidden"
         animate={isInView ? "visible" : "hidden"}
         variants={dividerVariants}
@@ -57,7 +66,7 @@ const SkillsCard = ({ title, icon, text, reverse }) => {
         <motion.h1
           animate={isInView ? "visible" : "hidden"}
           variants={titleVariants}
-          className="text-neutral text-sm sm:text-base"
+          className="text-sm text-neutral sm:text-base"
         >
           {title}
         </motion.h1>
@@ -65,6 +74,8 @@ const SkillsCard = ({ title, icon, text, reverse }) => {
       <motion.div
         ref={rowRef}
         style={{ x }}
+        variants={textVariants}
+        animate={isInView ? "visible" : "hidden"}
         className="flex items-center gap-2 py-4 md:py-8 lg:py-12 xl:py-24"
       >
         <IconText text={text} icon={icon} />
@@ -75,27 +86,6 @@ const SkillsCard = ({ title, icon, text, reverse }) => {
         <IconText text={text} icon={icon} />
         <IconText text={text} icon={icon} />
       </motion.div>
-
-      {/* {large && (
-        <>
-          <div className="divider h-fit"></div>
-          <h3 className="text-center text-md">My React knowledge</h3>
-          <ul className="flex flex-wrap items-center justify-center text-xs sm:text-sm md:text-base gap-x-2 gap-y-1 xl:text-md">
-            <li className="px-4 py-1.5 sm:px-6 sm:py-2.5 text-white rounded-4xl border-1 border-opacity-20 border-base-content w-fit bg-base-content bg-opacity-5">
-              React Router
-            </li>
-            <li className="px-4 py-1.5 sm:px-6 sm:py-2.5 text-white rounded-4xl border-1 border-opacity-20 border-base-content w-fit bg-base-content bg-opacity-5">
-              Redux Toolkit
-            </li>
-            <li className="px-4 py-1.5 sm:px-6 sm:py-2.5 text-white rounded-4xl border-1 border-opacity-20 border-base-content w-fit bg-base-content bg-opacity-5">
-              TanStack Query
-            </li>
-            <li className="px-4 py-1.5 sm:px-6 sm:py-2.5 text-white rounded-4xl border-1 border-opacity-20 border-base-content w-fit bg-base-content bg-opacity-5">
-              Next.JS
-            </li>
-          </ul>
-        </>
-      )} */}
     </motion.div>
   );
 };

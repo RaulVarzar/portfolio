@@ -43,7 +43,7 @@ const Home = ({ goToSection }) => {
 
   return (
     <>
-      <motion.section className="grid w-full sticky top-0 min-h-[100vh]  bg-accent place-content-center justify-center">
+      <motion.section className="grid w-full z-10 sticky top-0 min-h-[100vh]  bg-accent place-content-center justify-center">
         <Socials />
         <motion.div style={{ scale: sectionScale }}>
           <motion.div className="relative flex flex-col justify-center py-8 pb-8 md:pb-12 ">
@@ -58,7 +58,7 @@ const Home = ({ goToSection }) => {
                   onEnter={() => screenSize.width > 1080 && setZoomInText(true)}
                   onLeave={() => setZoomInText(false)}
                 >
-                  <motion.div className="relative flex flex-col max-w-5xl gap-0 py-2 sm:px-4 max-sm:pl-3  md:pr-12 md:pl-10 xl:py-12 h-fit xl:pl-12 xl:pr-16 2xl:pr-20 roboto ">
+                  <motion.div className="relative flex flex-col max-w-5xl gap-0 py-2 sm:px-4 max-sm:pl-3 md:pr-12 md:pl-10 xl:py-12 h-fit xl:pl-12 xl:pr-16 2xl:pr-20 roboto ">
                     <HtmlElement
                       tag={"header"}
                       blur={zoomInText}
@@ -138,7 +138,7 @@ const Home = ({ goToSection }) => {
                   <div className="overflow-hidden rounded-[25px]">
                     <img
                       src={profilePhoto}
-                      className="z-50 object-cover h-40 transition-all duration-500 ease-in-out  w-36 md:h-52 md:w-48 xl:h-96 xl:w-80 lg:scale-110 group-hover:scale-100"
+                      className="z-50 object-cover h-40 transition-all duration-500 ease-in-out w-36 md:h-52 md:w-48 xl:h-96 xl:w-80 lg:scale-110 group-hover:scale-100"
                       alt="profile-pic"
                     />
                   </div>
@@ -155,7 +155,7 @@ const Home = ({ goToSection }) => {
         </motion.div>
       </motion.section>
 
-      <div ref={scrollProgressRef} className="h-0 relative"></div>
+      <div ref={scrollProgressRef} className="relative h-0"></div>
     </>
   );
 };

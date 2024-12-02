@@ -38,7 +38,7 @@ const Skills = () => {
   const titleY = useTransform(scrollYProgress, [0, 0.3], ["10vh", "0vh"]);
 
   return (
-    <motion.div>
+    <>
       <motion.div
         style={{ scale: 1, borderRadius: bgRadius, y: bgY }}
         className="absolute w-full z-0 h-[15vh] bg-secondary -top-[2vh] left-0 "
@@ -47,7 +47,7 @@ const Skills = () => {
       <motion.section
         ref={sectionRef}
         style={{ scale: 1, borderRadius, y: sectionY }}
-        className="relative flex flex-col py-8 overflow-hidden min-h-[100vh] text-4xl z-20 md:py-12 bg-base-100 place-content-center"
+        className="relative flex flex-col bg-base-100 py-8 overflow-hidden min-h-[100vh] z-10 text-4xl  md:py-12 place-content-center"
       >
         <motion.div
           className="relative mx-auto"
@@ -81,7 +81,7 @@ const Skills = () => {
           />
         </motion.div>
       </motion.section>
-    </motion.div>
+    </>
   );
 };
 
