@@ -22,7 +22,7 @@ const Projects = () => {
 
       <motion.div
         ref={scrollableRef}
-        className="relative  flex flex-col w-full pb-[5vh] md:w-6/12 items-center h-fit pt-[40vh] md:pt-[30vh] "
+        className="relative  flex flex-col w-full  pb-[5vh] md:w-6/12 items-center h-fit pt-[40vh] md:pt-[30vh] "
       >
         {projects.map((project, i) => (
           <ProjectCard project={project} i={i} key={project.title} />
@@ -73,7 +73,7 @@ const Header = ({ trackedRef, progress }) => {
         <motion.h3
           variants={variants}
           animate={isInView ? "visible" : "hidden"}
-          className="text-3xl font-bold leading-none tracking-wide text-center sm:font-black md:text-5xl lg:text-6xl xl:text-7xl 2xl:text-8xl"
+          className="text-3xl font-bold leading-none tracking-wide text-center md:text-5xl lg:text-6xl xl:text-7xl 2xl:text-8xl"
         >
           MY PROJECTS
         </motion.h3>
@@ -82,7 +82,7 @@ const Header = ({ trackedRef, progress }) => {
         transition={{ delay: 0.3, duration: 0.4 }}
         variants={buttonVariants}
         animate={isInView ? "visible" : "hidden"}
-        className="flex text-sm font-semibold tracking-wide uppercase border-none rounded-md sm:text-md w-fit btn-sm text-primary border-accent btn hover:btn-outline btn-ghost hover:text-base-100"
+        className="flex text-sm font-semibold tracking-wide uppercase border-none rounded-md sm:text-base xl:text-xl w-fit btn-sm text-primary border-accent btn hover:btn-outline btn-ghost hover:text-base-100"
       >
         View all
         <FaGithub />
@@ -91,7 +91,7 @@ const Header = ({ trackedRef, progress }) => {
         <motion.div
           variants={progressBarVariants}
           animate={isInView ? "visible" : "hidden"}
-          className="relative w-full h-2 mt-2 overflow-hidden sm:w-96 bg-base-300 rounded-xl"
+          className="relative w-full h-3 mt-2 overflow-hidden sm:w-96 bg-base-300 rounded-sm"
         >
           <motion.div
             style={{ width: progressBarWidth }}

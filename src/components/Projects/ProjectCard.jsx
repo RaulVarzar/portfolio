@@ -24,29 +24,6 @@ const titleVariants = {
   },
 };
 
-const descriptionVariants = {
-  hidden: {
-    opacity: 0,
-    y: "-15%",
-    filter: "blur(5px)",
-    transition: {
-      ease: [0.45, 0.1, 0.25, 1],
-      duration: 0.25,
-      delay: 0.1,
-    },
-  },
-  visible: {
-    opacity: 1,
-    y: "0%",
-    filter: "blur(0px)",
-    transition: {
-      ease: [0.25, 0.1, 0.25, 1],
-      delay: 0.4,
-      duration: 0.9,
-    },
-  },
-};
-
 const ProjectCard = ({ project }) => {
   const { title, description, github, demo, photo } = project;
 
@@ -77,7 +54,7 @@ const ProjectCard = ({ project }) => {
   return (
     <motion.div
       ref={containerRef}
-      className=" w-full min-h-[50vh] overflow-hidden md:min-h-[55vh] border-b- border-neutral flex max-md:px-3 items-center"
+      className=" w-full min-h-[50vh] overflow-hidden md:min-h-[55vh]  flex max-md:px-3 items-center"
     >
       <motion.div
         ref={cardRef}
@@ -112,7 +89,7 @@ const ProjectCard = ({ project }) => {
           <div className="flex flex-row-reverse items-start gap-y-1">
             <div
               ref={textRef}
-              className=" flex-col items-center sm:items-end grow md:gap-0.5 flex  py-1"
+              className=" flex-col items-start sm:items-end grow md:gap-0.5 flex  py-1"
             >
               <motion.h3
                 variants={titleVariants}
@@ -122,15 +99,8 @@ const ProjectCard = ({ project }) => {
               >
                 {title}
               </motion.h3>
-              {/* <div className="w-full h-0.5 p-0 my-2 opacity-50 bg-base-content group-hover:bg-neutral-content transition-colors duration-300"></div> */}
-              <motion.p
-                variants={descriptionVariants}
-                initial="hidden"
-                animate={isInView ? "visible" : "hidden"}
-                className="z-10 max-w-xl py-1 text-sm font-light leading-tight tracking-wider text-center text-balance sm:text-right opacity-60 xl:text-base text-base-content group-hover:text-neutral-content group-hover:opacity-70"
-              >
-                {description}
-              </motion.p>
+
+              <Description visible={isInView} description={description} />
               <div className="z-50 flex flex-row items-center gap-6 py-2 transition-opacity duration-200 w-fit opacity-60 justify-evenly group-hover:opacity-100">
                 {github.length > 0 && (
                   <a
@@ -165,3 +135,39 @@ const ProjectCard = ({ project }) => {
 };
 
 export default ProjectCard;
+
+const Description = ({ visible, description }) => {
+  const descriptionVariants = {
+    hidden: {
+      opacity: 0,
+      y: "-15%",
+      filter: "blur(5px)",
+      transition: {
+        ease: [0.45, 0.1, 0.25, 1],
+        duration: 0.25,
+        delay: 0.1,
+      },
+    },
+    visible: {
+      opacity: 1,
+      y: "0%",
+      filter: "blur(0px)",
+      transition: {
+        ease: [0.25, 0.1, 0.25, 1],
+        delay: 0.4,
+        duration: 0.9,
+      },
+    },
+  };
+
+  return (
+    <motion.p
+      variants={descriptionVariants}
+      initial="hidden"
+      animate={visible ? "visible" : "hidden"}
+      className="z-10 max-w-xl py-1 text-sm font-light leading-tight tracking-wider text-left text-balance sm:text-right opacity-60 xl:text-base text-base-content group-hover:text-neutral-content group-hover:opacity-70"
+    >
+      {description}
+    </motion.p>
+  );
+};

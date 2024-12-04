@@ -33,7 +33,7 @@ const Socials = ({ isInView }) => {
       variants={variants}
       initial="hidden"
       animate={isInView ? "visible" : "hidden"}
-      className="flex flex-row justify-between font-medium w-fit max-md:text-center sm:gap-4 md:flex-row gap-y-3 max-sm:pt-8 text-md sm:text-xl lg:text-2xl xl:text-3xl"
+      className="flex flex-row justify-between font-normal w-full  max-md:text-center sm:gap-4 md:flex-row gap-y-3 text-base sm:text-lg lg:text-xl xl:text-2xl"
     >
       {SOCIALS.map((item) => (
         <motion.li
@@ -43,7 +43,7 @@ const Socials = ({ isInView }) => {
         >
           <motion.a
             href={item.link}
-            className="px-8 py-4 transition-all duration-500 bg-opacity-0 rounded-sm hover:bg-opacity-15 text-neutral-content bg-secondary "
+            className="md:px-8 px-2 border sm:px-4 py-2 md:py-3 transition-all duration-500 bg-opacity-5 rounded-xl border-base-content border-opacity-20 hover:bg-opacity-25 text-neutral-content bg-secondary "
           >
             {item.title}
           </motion.a>

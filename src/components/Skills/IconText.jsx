@@ -43,7 +43,7 @@ export const IconText = ({ text, icon }) => {
         {icon === "framer" && <CgFramer />}
       </motion.span>
       <motion.div style={{}} className="flex flex-col">
-        <h3 className="text-2xl font-light whitespace-nowrap leading-none tracking-tight px-8 sm:px-16  md:px-20 xl:px-32 uppercase text-base-content md:text-3xl xl:text-7xl">
+        <h3 className="text-2xl font-medium whitespace-nowrap leading-none tracking-wide px-8 sm:px-16 roboto md:px-20 xl:px-32 uppercase text-base-content md:text-3xl xl:text-6xl">
           {text}
         </h3>
       </motion.div>

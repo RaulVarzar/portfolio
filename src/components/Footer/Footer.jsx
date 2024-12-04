@@ -3,7 +3,6 @@ import Form from "./Form";
 import Header from "./Header";
 import Socials from "./Socials";
 import { motion, useInView } from "framer-motion";
-import ChatIcon from "./ChatIcon";
 
 export default function Footer() {
   const ref = useRef(null);
@@ -16,8 +15,8 @@ export default function Footer() {
       <div ref={ref} className="-z-[999] h-0" />
       <div className="sticky bottom-0 min-h-[36vh] flex flex-col  z-0 bg-accent">
         <Bars isInView={isInView} />
-        <footer className="static bottom-0 flex flex-col justify-between gap-0 pb-24 mx-auto lg:gap-x-30 xl:gap-x-36 gap-x-24 items-evenly md:flex-row">
-          <motion.div className="flex flex-col items-start justify-center pt-8 pb-10 mx-auto gap-y-2 md:gap-y-4">
+        <footer className="static pt-8 md:pt-16 xl:pt-20 bottom-0 flex flex-col justify-between gap-0 pb-12 sm:pb-24 mx-auto lg:gap-x-30 xl:gap-x-36 gap-x-24 items-start md:flex-row">
+          <motion.div className="flex flex-col items-start w-full justify-center pt- pb-10 mx-auto md:gap-y-4">
             <Header isInView={isInView} />
             <Socials isInView={isInView} />
           </motion.div>
@@ -26,7 +25,7 @@ export default function Footer() {
             initial={{ y: "100%", opacity: 0 }}
             animate={{ y: "0%", opacity: 1 }}
             exit={{ y: "100%", transition: { delay: 0 } }}
-            className="relative z-0 flex flex-col mx-auto w-fit"
+            className="relative  z-0 flex flex-col mx-auto w-fit"
           >
             <Form isInView={isInView} closeForm={() => toggleForm(false)} />
           </motion.div>

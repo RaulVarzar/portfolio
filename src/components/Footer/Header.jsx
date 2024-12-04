@@ -1,6 +1,8 @@
 import { motion } from "framer-motion";
 import splitStringUsingRegex from "../../util/splitString";
 
+import ChatIcon from "./ChatIcon";
+
 const Header = ({ isInView }) => {
   const headerVariants = {
     visible: {
@@ -30,18 +32,17 @@ const Header = ({ isInView }) => {
       variants={headerVariants}
       initial="hidden"
       animate={isInView ? "visible" : "hidden"}
-      className="flex flex-row px-0 overflow-hidden text-6xl font-semibold tracking-tight md:text-9xl xl:text-xxl"
+      className="flex flex-row px-0 overflow-hidden text-6xl  w-full justify-center tracking-tight md:text-8xl xl:text-9xl"
     >
       {TITLE.map((letter, i) => (
         <motion.h1
           variants={letterVariants}
-          className="min-w-2 md:min-w-3 xl:min-w-4"
+          className="pr-0.5 min-w-2 md:min-w-3 xl:min-w-5 font-bold leading-tight"
           key={i}
         >
           {letter}
         </motion.h1>
       ))}
-      {/* Let's talk */}
     </motion.span>
   );
 };
