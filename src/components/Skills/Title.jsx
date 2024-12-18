@@ -47,9 +47,9 @@ export const Title = () => {
 
   return (
     <motion.div
-      style={{ y, scale }}
+      style={{ scale }}
       ref={ref}
-      className="relative overflow-hidden mx-auto mt-4 md:mt-8  my-[10vh]"
+      className="relative origin-bottom overflow-hidden mx-auto  my-[10vh] xl:my-[15vh]"
     >
       <motion.h1
         initial="hidden"
@@ -57,7 +57,7 @@ export const Title = () => {
         transition={{
           staggerChildren: 0.1,
         }}
-        className="text-5xl font-black flex flex-row tracking-wide uppercase  text-neutral-content sm:text-6xl md:text-8xl lg:text-9xl"
+        className="flex flex-row text-5xl font-bold tracking-wide uppercase text-neutral-content sm:text-6xl md:text-8xl lg:text-9xl"
       >
         {TITLE.map((letter, i) => (
           <motion.span className="min-w-2" key={i} variants={variants}>

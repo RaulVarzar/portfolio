@@ -32,12 +32,12 @@ const Header = ({ isInView }) => {
       variants={headerVariants}
       initial="hidden"
       animate={isInView ? "visible" : "hidden"}
-      className="flex flex-row px-0 overflow-hidden text-6xl  w-full justify-center tracking-tight md:text-8xl xl:text-9xl"
+      className="flex flex-row justify-center w-full px-0 overflow-hidden text-4xl tracking-tight uppercase md:justify-start sm:text-6xl md:text-8xl 2xl:text-9xl"
     >
       {TITLE.map((letter, i) => (
         <motion.h1
           variants={letterVariants}
-          className="pr-0.5 min-w-2 md:min-w-3 xl:min-w-5 font-bold leading-tight"
+          className="pr-0.5 font-black md:font-bold leading-none min-w-2 md:min-w-3 xl:min-w-5"
           key={i}
         >
           {letter}

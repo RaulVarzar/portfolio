@@ -48,7 +48,7 @@ const SkillsCard = ({ title, icon, text, reverse }) => {
   const x = useTransform(rowProgress, [0, 1], [leftLimit, rightLimit]);
 
   const isInView = useInView(ref, {
-    margin: "0% 0% -10% 0%",
+    margin: "1000% 0% -10% 0%",
   });
 
   return (

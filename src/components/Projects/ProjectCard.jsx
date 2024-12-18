@@ -64,7 +64,7 @@ const ProjectCard = ({ project }) => {
           scale: cardScale,
           opacity: cardOpacity,
         }}
-        className="justify-between max-w-3xl p-8 mx-auto overflow-hidden top-24 h-fit group "
+        className="justify-between max-w-3xl p-2 mx-auto overflow-hidden md:p-4 lg:p-6 top-24 h-fit group "
       >
         <div className="flex flex-col gap-3 text-left md:gap-4 grow">
           <motion.div
@@ -75,7 +75,7 @@ const ProjectCard = ({ project }) => {
               src={project.gif}
               alt={photo}
               className={
-                "object-cover hidden max-sm:hidden group-hover:flex top-0 left-0 w-full z-50    h-full"
+                "object-cover hidden max-sm:hidden sm:group-hover:flex top-0 left-0 w-full z-50    h-full"
               }
             />
             <motion.img
@@ -89,19 +89,19 @@ const ProjectCard = ({ project }) => {
           <div className="flex flex-row-reverse items-start gap-y-1">
             <div
               ref={textRef}
-              className=" flex-col items-start sm:items-end grow md:gap-0.5 flex  py-1"
+              className=" flex-col items-start sm:items-end grow md:gap-0.5 flex"
             >
               <motion.h3
                 variants={titleVariants}
                 initial="hidden"
                 animate={isInView ? "visible" : "hidden"}
-                className="z-10 flex justify-start overflow-hidden text-2xl font-bold leading-10 xl:leading-[48px] tracking-wider text-left uppercase opacity-85 group-hover:opacity-100 text-base-content group-hover:text-slate-100 md:text-4xl xl:text-5xl "
+                className="z-10 flex justify-start overflow-hidden text-2xl font-bold   leading-none xl:leading-[48px] tracking-wider text-left uppercase opacity-85 group-hover:opacity-100 text-base-content group-hover:text-slate-100 md:text-4xl xl:text-5xl "
               >
                 {title}
               </motion.h3>
 
               <Description visible={isInView} description={description} />
-              <div className="z-50 flex flex-row items-center gap-6 py-2 transition-opacity duration-200 w-fit opacity-60 justify-evenly group-hover:opacity-100">
+              <div className="z-50 flex flex-row items-center gap-6 py-1 transition-opacity duration-200 w-fit opacity-60 justify-evenly group-hover:opacity-100">
                 {github.length > 0 && (
                   <a
                     href={github}

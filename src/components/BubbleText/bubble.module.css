@@ -1,28 +1,27 @@
 .hoverText {
-  transition: 0.5s font-weight, 0.35s color;
-  /* text-shadow: -1px -1px 0 #444, 1px -1px 0 #444, -1px 1px 0 #444,
-    1px 1px 0 #444; */
-  color: #aaa;
+  transition: 0.5s all, 0.35s color;
   font-weight: 400;
   top: 0;
   position: relative;
 }
 
 .hoverText:hover {
-  font-weight: 800;
-  color: #fff;
+  filter: brightness(200%);
+  transform: scale(1.2);
+  transition: 0.25s ease-in-out;
 }
 
 /* First to the right and left*/
 .hoverText:hover + .hoverText,
 .hoverText:has(+ .hoverText:hover) {
-  color: #ddd;
-  font-weight: 600;
+  filter: brightness(135%);
+  transform: scale(1.1);
+  transition: 0.3s ease-in-out;
 }
 
 /* Second to the right and left*/
 .hoverText:hover + .hoverText + .hoverText,
 .hoverText:has(+ .hoverText + .hoverText:hover) {
-  color: #d6d6d6;
-  font-weight: 500;
+  filter: brightness(125%);
+  transition: 0.35s ease-in-out;
 }

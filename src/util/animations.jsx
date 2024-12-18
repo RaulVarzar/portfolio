@@ -282,3 +282,34 @@ export const WordReveal = ({ children, delay, duration, offset }) => {
     </>
   );
 };
+
+export const TextReveal = ({ duration, children, threshold }) => {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { amount: threshold || 0.99 });
+
+  return (
+    <motion.div ref={ref} className="overflow-hidden">
+      <motion.div
+        initial={{ y: "120%", opacity: 0 }}
+        animate={
+          isInView
+            ? {
+                y: 0,
+                opacity: 1,
+                transition: {
+                  duration: duration || 1,
+                  ease: [0.3, 0, 0.1, 1],
+                },
+              }
+            : {
+                y: "110%",
+                opacity: 0,
+                transition: { delay: 0.2, duration: 0.6 },
+              }
+        }
+      >
+        {children}
+      </motion.div>
+    </motion.div>
+  );
+};

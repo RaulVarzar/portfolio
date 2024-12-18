@@ -75,7 +75,7 @@ const Form = ({ isInView }) => {
       <form
         ref={form}
         onSubmit={sendEmail}
-        className="flex flex-col justify-center w-full  mx-auto"
+        className="flex flex-col justify-center w-full mx-auto"
       >
         <motion.div className="flex flex-col gap-8 w-full   lg:min-w-[500px] ">
           <div className="flex flex-col justify-between w-full gap-2 ">
@@ -84,21 +84,21 @@ const Form = ({ isInView }) => {
               initial="hidden"
               animate={isInView ? "visible" : "hidden"}
               custom={0}
-              className="relative py-2 sm:py-4 md:py-6 border-b border-opacity-45 border-base-content"
+              className="relative py-2 border-b sm:py-4 md:py-6 border-opacity-45 border-base-content"
             >
-              <label className="flex flex-row-reverse items-center w-full gap-1 md:gap-8 px-4 sm:px-8 py-6 text-xl bg-transparent outline-none input focus:outline-none peer-focus:outline-none focus:border-transparent focus:ring-0 focus-within:ring:0 focus-within:border-transparent focus-within:outline-none sm:text-3xl">
+              <label className="flex flex-row-reverse items-center w-full gap-1 px-2 py-6 text-xl bg-transparent outline-none sm:px-4 md:gap-8 md:px-8 input focus:outline-none peer-focus:outline-none focus:border-transparent focus:ring-0 focus-within:ring:0 focus-within:border-transparent focus-within:outline-none sm:text-3xl">
                 <input
                   type="text"
                   name="name"
                   value={name}
                   onChange={(e) => setName(e.target.value)}
                   required
-                  className={`grow peer bg-transparent text-lg md:text-xl xl:text-2xl focus:placeholder-transparent  ${
+                  className={`grow peer bg-transparent text-base md:text-xl xl:text-2xl focus:placeholder-transparent  ${
                     name.length > 0 ? " opacity-100" : "opacity-30"
                   }`}
                   placeholder="Ion Popescu"
                 />
-                <span className="font-semibold transition-opacity text-lg sm:text-xl lg:text-2xl duration-300 opacity-100 text-neutral-content min-w-20 sm:min-w-28 peer-focus:opacity-60">
+                <span className="text-base font-semibold transition-opacity duration-300 opacity-100 sm:text-xl lg:text-2xl text-neutral-content min-w-20 sm:min-w-28 peer-focus:opacity-60">
                   Nume
                 </span>
               </label>
@@ -109,21 +109,21 @@ const Form = ({ isInView }) => {
               initial="hidden"
               animate={isInView ? "visible" : "hidden"}
               custom={1}
-              className="relative py-2 sm:py-4 md:py-6 border-b border-opacity-45 border-base-content"
+              className="relative py-2 border-b sm:py-4 md:py-6 border-opacity-45 border-base-content"
             >
-              <label className="flex flex-row-reverse items-center w-full gap-1 md:gap-8 px-4 sm:px-8 py-6 text-xl bg-transparent outline-none input focus:outline-none peer-focus:outline-none focus:border-transparent focus:ring-0 focus-within:ring:0 focus-within:border-transparent focus-within:outline-none sm:text-3xl">
+              <label className="flex flex-row-reverse items-center w-full gap-1 px-2 py-6 text-xl bg-transparent outline-none sm:px-4 md:gap-8 md:px-8 input focus:outline-none peer-focus:outline-none focus:border-transparent focus:ring-0 focus-within:ring:0 focus-within:border-transparent focus-within:outline-none sm:text-3xl">
                 <input
                   type="email"
                   required
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   name="email"
-                  className={`grow peer bg-transparent text-lg md:text-xl xl:text-2xl focus:placeholder-transparent  ${
+                  className={`grow peer bg-transparent text-base md:text-xl xl:text-2xl focus:placeholder-transparent  ${
                     email.length > 0 ? " opacity-100" : "opacity-30"
                   }`}
                   placeholder="example@email.com"
                 />
-                <span className="font-semibold transition-opacity text-lg sm:text-xl lg:text-2xl duration-300 opacity-100 text-neutral-content min-w-20 sm:min-w-28 peer-focus:opacity-60">
+                <span className="text-base font-semibold transition-opacity duration-300 opacity-100 sm:text-xl lg:text-2xl text-neutral-content min-w-20 sm:min-w-28 peer-focus:opacity-60">
                   Email
                 </span>
               </label>
@@ -133,45 +133,53 @@ const Form = ({ isInView }) => {
               initial="hidden"
               animate={isInView ? "visible" : "hidden"}
               custom={2}
-              className="relative py-2 sm:py-4 md:py-6 border-b border-opacity-45 border-base-content"
+              className="relative py-2 border-b sm:py-4 md:py-6 border-opacity-45 border-base-content"
             >
-              <label className="flex flex-row-reverse items-center w-full gap-1 md:gap-8 px-4 sm:px-8 py-6 text-xl bg-transparent outline-none input focus:outline-none peer-focus:outline-none focus:border-transparent focus:ring-0 focus-within:ring:0 focus-within:border-transparent focus-within:outline-none sm:text-3xl">
+              <label className="flex flex-row-reverse items-center w-full gap-1 px-2 py-6 text-xl bg-transparent outline-none sm:px-4 md:gap-8 md:px-8 input focus:outline-none peer-focus:outline-none focus:border-transparent focus:ring-0 focus-within:ring:0 focus-within:border-transparent focus-within:outline-none sm:text-3xl">
                 <input
                   name="message"
                   rows="5"
                   required
                   value={message}
                   onChange={(e) => setMessage(e.target.value)}
-                  className={`grow peer bg-transparent text-lg md:text-xl xl:text-2xl focus:placeholder-transparent  ${
+                  className={`grow peer bg-transparent text-base md:text-xl xl:text-2xl focus:placeholder-transparent  ${
                     message.length > 0 ? " opacity-100" : "opacity-30"
                   }`}
                   placeholder="Buna ziua! ...."
                 />
-                <span className="font-semibold transition-opacity text-lg sm:text-xl lg:text-2xl duration-300 opacity-100 text-neutral-content min-w-20 sm:min-w-28 peer-focus:opacity-60">
+                <span className="text-base font-semibold transition-opacity duration-300 opacity-100 sm:text-xl lg:text-2xl text-neutral-content min-w-20 sm:min-w-28 peer-focus:opacity-60">
                   Mesaj
                 </span>
               </label>
             </motion.div>
           </div>
         </motion.div>
-        {!loading && !error && !success && (
+        {!error && !success && (
           <motion.button
             variants={variants}
+            layout
             initial="hidden"
             animate={isInView ? "visible" : "hidden"}
             custom={3}
             type="submit"
-            className="flex flex-row justify-center items-center px-6 gap-2 md:gap-3 xl:gap-4 py-3 mx-auto mt-5 text-base md:text-lg font-medium tracking-wide uppercase border-2 group rounded-xl border-base-content border-opacity-20 hover:bg-opacity-100 bg-opacity-0 text-neutral-content  hover:text-accent bg-neutral-content "
+            className="z-40 px-6 py-3 mx-auto mt-5 text-base bg-opacity-100 rounded-lg md:gap-3 xl:gap-4 md:text-lg group text-accent bg-neutral-content "
           >
-            Send message
-            <i className="transition-transform duration-300 fa-regular fa-paper-plane group-hover:rotate-45"></i>
+            {!loading && (
+              <div className="flex flex-row items-center justify-center gap-2 ">
+                <span className="font-medium tracking-wide uppercase">
+                  Send message
+                </span>
+                <i className="transition-transform duration-300 fa-regular fa-paper-plane group-hover:rotate-45"></i>
+              </div>
+            )}
+            {loading && (
+              <div className="flex items-center justify-center ">
+                <span className=" bg-accent loading-lg loading loading-spinner"></span>
+              </div>
+            )}
           </motion.button>
         )}
-        {loading && (
-          <div className="flex items-center justify-center mt-4 ">
-            <span className=" bg-primary loading-lg loading loading-spinner"></span>
-          </div>
-        )}
+
         <AnimatePresence mode="popLayout">
           {success && (
             <motion.div
@@ -181,7 +189,7 @@ const Form = ({ isInView }) => {
               transition={{ duration: 0.4, type: "spring" }}
               exit={{ y: 0, opacity: 0 }}
               role="alert"
-              className="py-2 mx-auto mt-6 text-base border-0 w-fit alert bg-success text-base-300"
+              className="py-2 mx-auto mt-6 border-0 rounded-lg text-neutral-content w-fit alert bg-emerald-800"
             >
               <i className="fa-solid fa-check"></i>
               <span className="text-base">{success}</span>

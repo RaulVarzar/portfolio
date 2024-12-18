@@ -1,4 +1,6 @@
 import { motion } from "framer-motion";
+import { FaSquareGithub, FaSquareInstagram } from "react-icons/fa6";
+import { FaBehanceSquare } from "react-icons/fa";
 
 const Socials = ({ isInView }) => {
   const variants = {
@@ -33,22 +35,26 @@ const Socials = ({ isInView }) => {
       variants={variants}
       initial="hidden"
       animate={isInView ? "visible" : "hidden"}
-      className="flex flex-row justify-between font-normal w-full  max-md:text-center sm:gap-4 md:flex-row gap-y-3 text-base sm:text-lg lg:text-xl xl:text-2xl"
+      className="flex flex-row justify-start gap-3 mx-auto text-base font-light w-fit md:w-full md:gap-4 max-md:text-center md:flex-row md:text-lg lg:text-xl text-neutral-content"
     >
       {SOCIALS.map((item) => (
         <motion.li
           key={item.link}
           variants={childrenVariants}
-          className="group"
+          className="flex flex-row items-center gap-3 px-4 py-3 border rounded-lg md:px-5 sm:px-4 md:py-2 group border-base-content bg-opacity-5 border-opacity-20 hover:bg-opacity-25 text-neutral-content bg-secondary"
         >
+          <FaSquareGithub />
           <motion.a
             href={item.link}
-            className="md:px-8 px-2 border sm:px-4 py-2 md:py-3 transition-all duration-500 bg-opacity-5 rounded-xl border-base-content border-opacity-20 hover:bg-opacity-25 text-neutral-content bg-secondary "
+            className="transition-all duration-500 max-sm:hidden"
           >
             {item.title}
           </motion.a>
         </motion.li>
       ))}
+      {/* <FaSquareGithub />
+      <FaBehanceSquare />
+      <FaSquareInstagram /> */}
     </motion.ul>
   );
 };

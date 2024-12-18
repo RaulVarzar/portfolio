@@ -1,5 +1,7 @@
 import { motion, useScroll } from "framer-motion";
 import { useEffect, useState } from "react";
+import { FaSquareGithub, FaSquareInstagram } from "react-icons/fa6";
+import { FaBehanceSquare } from "react-icons/fa";
 
 const variants = {
   hidden: { opacity: 0, y: "-150%", scale: 0.85, transition: { delay: 0 } },
@@ -66,110 +68,90 @@ export const Socials = () => {
   });
 
   return (
-    <div className="flex fixed inset-0 flex-row w-fit h-fit mx-auto font-extralight text-base-content tracking-tighter text-md md:text-xl sm:text-lg py-3 md:py-5 xl:py-6">
-      <motion.a
-        href="https://github.com/RaulVarzar"
-        target="_blank"
-        variants={variants}
-        initial="hidden"
-        animate={hidden ? "hidden" : "visible"}
-        onHoverStart={() => setHovering(1)}
-        onHoverEnd={() => setHovering(null)}
-        className="relative px-4 sm:px-8 py-2 cursor-pointer"
+    <div className="inset-0 flex flex-row py-3 mx-auto tracking-tighter  w-fit h-fit">
+      <SocialLink
+        link={"https://github.com/RaulVarzar"}
+        title={"github"}
+        id={1}
+        hovering={hovering}
+        setHovering={setHovering}
+        hidden={hidden}
       >
-        <h1
-          className={` transition-all duration-300 ${
-            hovering === 1
-              ? "opacity-100 scale-110 brightness-125"
-              : "opacity-75"
-          } ${hovering && hovering != 1 && "brightness-75  "}`}
-        >
-          github
-        </h1>
-        {hovering === 1 && (
-          <motion.span
-            layoutId="socials"
-            transition={{
-              type: "spring",
-              stiffness: 60,
-              damping: 5,
-              mass: 0.2,
-            }}
-            initial={{ y: "-200%", opacity: 0 }}
-            animate={{ y: "0%", opacity: 1 }}
-            className="absolute -bottom-2 inset-x-0 w-1.5 h-1.5 mx-auto brightness-125 bg-secondary  rounded-full "
-          ></motion.span>
-        )}
-      </motion.a>
+        <FaSquareGithub />
+      </SocialLink>
 
-      <motion.a
-        href="https://behance.net/varzarr"
-        target="_blank"
-        variants={variants2}
-        initial="hidden"
-        animate={hidden ? "hidden" : "visible"}
-        onHoverStart={() => setHovering(2)}
-        onHoverEnd={() => setHovering(null)}
-        className="relative px-4 sm:px-8 py-2 cursor-pointer"
+      <SocialLink
+        link={"https://behance.net/varzarr"}
+        title={"behance"}
+        id={2}
+        hovering={hovering}
+        setHovering={setHovering}
+        hidden={hidden}
       >
-        <h1
-          className={` transition-all duration-300 ${
-            hovering === 2
-              ? "opacity-100 scale-110 brightness-125"
-              : "opacity-75"
-          } ${hovering && hovering != 2 && "brightness-75 "}`}
-        >
-          behance
-        </h1>
-        {hovering === 2 && (
-          <motion.span
-            layoutId="socials"
-            transition={{
-              type: "spring",
-              stiffness: 60,
-              damping: 5,
-              mass: 0.2,
-            }}
-            initial={{ y: "-200%", opacity: 0 }}
-            animate={{ y: "0%", opacity: 1 }}
-            className="absolute -bottom-2 inset-x-0 w-1.5 h-1.5 mx-auto brightness-125 bg-secondary  rounded-full "
-          ></motion.span>
-        )}
-      </motion.a>
-      <motion.a
-        href="https://instagram.com/raulvarzar"
-        target="_blank"
-        variants={variants3}
-        initial="hidden"
-        animate={hidden ? "hidden" : "visible"}
-        onHoverStart={() => setHovering(3)}
-        onHoverEnd={() => setHovering(null)}
-        className="relative px-4 sm:px-8 py-2 cursor-pointer"
+        <FaBehanceSquare />
+      </SocialLink>
+
+      <SocialLink
+        link={"https://instagram.com/raulvarzar"}
+        title={"instagram"}
+        id={3}
+        hovering={hovering}
+        setHovering={setHovering}
+        hidden={hidden}
       >
-        <h1
-          className={` transition-all duration-300 ${
-            hovering === 3
-              ? "opacity-100 scale-110 brightness-125"
-              : "opacity-75"
-          } ${hovering && hovering != 3 && "brightness-75 "}`}
-        >
-          instagram
-        </h1>
-        {hovering === 3 && (
-          <motion.span
-            layoutId="socials"
-            transition={{
-              type: "spring",
-              stiffness: 60,
-              damping: 5,
-              mass: 0.2,
-            }}
-            initial={{ y: "-200%", opacity: 0 }}
-            animate={{ y: "0%", opacity: 1 }}
-            className="absolute -bottom-2 inset-x-0 w-1.5 h-1.5 mx-auto brightness-125 bg-secondary  rounded-full "
-          ></motion.span>
-        )}
-      </motion.a>
+        <FaSquareInstagram />
+      </SocialLink>
     </div>
+  );
+};
+
+const SocialLink = ({
+  title,
+  children,
+  id,
+  link,
+  hovering,
+  setHovering,
+  hidden,
+}) => {
+  return (
+    <motion.a
+      href={link}
+      target="_blank"
+      variants={variants}
+      initial="hidden"
+      animate={hidden ? "hidden" : "visible"}
+      onHoverStart={() => setHovering(id)}
+      onHoverEnd={() => setHovering(null)}
+      className="relative px-4 pt-1 font-light tracking-wide cursor-pointer sm:px-8 text-neutral-content"
+    >
+      <motion.div
+        className={`flex flex-row items-center gap-3 transition-all duration-300 ${
+          hovering === id &&
+          "opacity-100 scale-105 brightness-125 -translate-y-0.5"
+        } ${hovering && hovering != id && "brightness-75 "}`}
+      >
+        <span className="pt-0.5 text-3xl  sm:text-xl md:text-2xl lg:text-3xl">
+          {children}
+        </span>
+        <h1 className="py-2 max-sm:hidden text-neutral-content text-md md:text-xl lg:text-2xl sm:text-lg md:py-3 xl:py-4">
+          {title}
+        </h1>
+      </motion.div>
+      {hovering === id && (
+        <motion.span
+          layoutId="socials"
+          transition={{
+            type: "spring",
+            stiffness: 60,
+            damping: 5,
+            mass: 0.2,
+          }}
+          initial={{ y: "-200%", opacity: 0 }}
+          animate={{ y: "0%", opacity: 1 }}
+          className="absolute bottom-1 inset-x-0 size-1.5 md:size-2 mx-auto brightness-200 bg-accent  rounded-full "
+        ></motion.span>
+      )}
+    </motion.a>
   );
 };
