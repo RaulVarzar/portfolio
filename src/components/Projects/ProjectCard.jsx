@@ -7,7 +7,7 @@ const titleVariants = {
     y: "-50%",
     filter: "blur(6px)",
     transition: {
-      ease: [0.45, 0.1, 0.25, 1],
+      ease: [0.7, 0, 0.25, 1],
       duration: 0.25,
       delay: 0.1,
     },
@@ -17,7 +17,7 @@ const titleVariants = {
     y: "0%",
     filter: "blur(0px)",
     transition: {
-      ease: [0.25, 0.1, 0.25, 1],
+      ease: [0.7, 0, 0.25, 1],
       delay: 0,
       duration: 1,
     },
@@ -47,7 +47,8 @@ const ProjectCard = ({ project }) => {
 
   // TITLE ANIMATIONS
   const isInView = useInView(textRef, {
-    margin: `0% 0% -10% 0%`,
+    margin: `1000% 0% -10% 0%`,
+    once: true,
   });
 
   /////////////
@@ -69,15 +70,17 @@ const ProjectCard = ({ project }) => {
         <div className="flex flex-col gap-3 text-left md:gap-4 grow">
           <motion.div
             style={{ scale: imgScale }}
-            className="z-20 overflow-hidden rounded-m aspect-video"
+            className="z-20 overflow-hidden rounded-xl aspect-video"
           >
-            <img
-              src={project.gif}
-              alt={photo}
-              className={
-                "object-cover hidden max-sm:hidden sm:group-hover:flex top-0 left-0 w-full z-50    h-full"
-              }
-            />
+            {project.gif.length > 0 ?? (
+              <img
+                src={project.gif}
+                alt={photo}
+                className={
+                  "object-cover hidden max-sm:hidden sm:group-hover:flex top-0 left-0 w-full z-50    h-full"
+                }
+              />
+            )}
             <motion.img
               style={{ opacity: imgOpacity }}
               src={project.photo}
@@ -103,30 +106,11 @@ const ProjectCard = ({ project }) => {
               <Description visible={isInView} description={description} />
               <div className="z-50 flex flex-row items-center gap-6 py-1 transition-opacity duration-200 w-fit opacity-60 justify-evenly group-hover:opacity-100">
                 {github.length > 0 && (
-                  <a
-                    href={github}
-                    target="_blank"
-                    className="flex items-center justify-between gap-2 py-2 transition duration-300 rounded-md group-hover:scale-105 group-hover:opacity-100 opacity-70 xl:py-3 text-base-content hover:text-primary"
-                  >
-                    <i className="text-md sm:text-lg fa-brands fa-github"></i>
-                    <p className="text-sm ">Github</p>
-                  </a>
+                  <CustomLink title="Github" link={github} />
                 )}
-                {demo.length > 0 && (
-                  <a
-                    href={demo}
-                    target="_blank"
-                    className="flex items-center justify-between gap-2 py-2 transition duration-300 rounded-md group-hover:scale-105 group-hover:opacity-100 opacity-70 xl:py-3 text-base-content hover:text-primary"
-                  >
-                    <i className="text-base sm:text-md fa-solid fa-arrow-up-right-from-square"></i>
-                    <p className="text-sm ">Demo</p>
-                  </a>
-                )}
+                {demo.length > 0 && <CustomLink title="Demo" link={demo} />}
               </div>
             </div>
-            {/* <div className="mt-5 font-thin leading-10 tracking-tighter text-8xl opacity-10 text-secondary">
-              04
-            </div> */}
           </div>
         </div>
       </motion.div>
@@ -143,7 +127,7 @@ const Description = ({ visible, description }) => {
       y: "-15%",
       filter: "blur(5px)",
       transition: {
-        ease: [0.45, 0.1, 0.25, 1],
+        ease: [0.7, 0, 0.25, 1],
         duration: 0.25,
         delay: 0.1,
       },
@@ -153,7 +137,7 @@ const Description = ({ visible, description }) => {
       y: "0%",
       filter: "blur(0px)",
       transition: {
-        ease: [0.25, 0.1, 0.25, 1],
+        ease: [0.7, 0, 0.25, 1],
         delay: 0.4,
         duration: 0.9,
       },
@@ -169,5 +153,49 @@ const Description = ({ visible, description }) => {
     >
       {description}
     </motion.p>
+  );
+};
+
+export const CustomLink = ({ title, link }) => {
+  const variants = {
+    hidden: {
+      opacity: 0,
+      y: "-20%",
+      filter: "blur(4px)",
+      transition: {
+        ease: [0.7, 0, 0.25, 1],
+        duration: 0.3,
+        delay: 0,
+      },
+    },
+    visible: {
+      opacity: 1,
+      y: "0%",
+      filter: "blur(0px)",
+      transition: {
+        ease: [0.7, 0, 0.25, 1],
+        delay: 0,
+        duration: 1,
+      },
+    },
+  };
+
+  const ref = useRef(null);
+  const visible = useInView(ref, { margin: "1000% 0% -5% 0%", once: true });
+
+  return (
+    <div ref={ref}>
+      <motion.a
+        href={link}
+        variants={variants}
+        initial="hidden"
+        animate={visible ? "visible" : "hidden"}
+        target="_blank"
+        className="flex items-center justify-between gap-2 py-2 rounded-md group-hover:scale-105 group-hover:opacity-100 opacity-70 xl:py-3 text-base-content hover:text-primary"
+      >
+        <i className="text-base sm:text-md fa-solid fa-arrow-up-right-from-square"></i>
+        <p className="text-sm ">{title}</p>
+      </motion.a>
+    </div>
   );
 };

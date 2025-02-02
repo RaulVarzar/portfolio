@@ -1,18 +1,11 @@
-import {
-  useSpring,
-  useTransform,
-  useVelocity,
-  motion,
-  useScroll,
-} from "framer-motion";
-import { useRef } from "react";
+import { motion } from "framer-motion";
 import { CgFramer } from "react-icons/cg";
 import { FaReact } from "react-icons/fa";
 import { RiTailwindCssFill } from "react-icons/ri";
 import { RiNextjsFill } from "react-icons/ri";
 
 export const IconText = ({ text, icon }) => {
-  const ref = useRef(null);
+  // const ref = useRef(null);
 
   // const { scrollY } = useScroll();
   // const scrollVelocity = useVelocity(scrollY);
@@ -32,21 +25,17 @@ export const IconText = ({ text, icon }) => {
 
   return (
     <>
-      <motion.span
-        ref={ref}
-        // style={{ scale }}
-        className="text-4xl opacity-30 md:text-5xl xl:text-6xl text-primary px-4 sm:px-8 md:px-10 lg:px-12 brightness-150 "
-      >
+      <motion.span className="text-4xl opacity-30 md:text-5xl xl:text-6xl text-primary px-4 sm:px-8 md:px-10 lg:px-12 brightness-150 ">
         {icon === "react" && <FaReact />}
         {icon === "next" && <RiNextjsFill />}
         {icon === "tailwind" && <RiTailwindCssFill />}
         {icon === "framer" && <CgFramer />}
       </motion.span>
-      <motion.div style={{}} className="flex flex-col">
+      <div className="flex flex-col">
         <h3 className="text-2xl font-medium whitespace-nowrap leading-none tracking-wide px-8 sm:px-16 roboto md:px-20 xl:px-32 uppercase text-base-content md:text-3xl xl:text-6xl">
           {text}
         </h3>
-      </motion.div>
+      </div>
     </>
   );
 };

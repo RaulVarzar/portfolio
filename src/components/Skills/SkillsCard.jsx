@@ -76,7 +76,7 @@ const SkillsCard = ({ title, icon, text, reverse }) => {
         style={{ x }}
         variants={textVariants}
         animate={isInView ? "visible" : "hidden"}
-        className="flex items-center gap-2 py-4 md:py-8 lg:py-12 xl:py-24"
+        className="flex items-center gap-2 py-4 md:py-8 lg:py-12 xl:py-24 will-change-transform"
       >
         <IconText text={text} icon={icon} />
         <IconText text={text} icon={icon} />

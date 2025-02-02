@@ -68,7 +68,7 @@ export const Socials = () => {
   });
 
   return (
-    <div className="inset-0 flex flex-row py-3 mx-auto tracking-tighter  w-fit h-fit">
+    <div className="inset-0 flex flex-row py-5 sm:py-4 mx-auto tracking-tighter  w-fit h-fit">
       <SocialLink
         link={"https://github.com/RaulVarzar"}
         title={"github"}

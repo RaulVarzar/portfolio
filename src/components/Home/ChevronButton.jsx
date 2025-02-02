@@ -9,7 +9,7 @@ const ChevronButton = ({ goToSection }) => {
         opacity: 1,
       }}
       transition={{ ease: "easeOut", duration: 1, delay: 1.5 }}
-      className="relative left-0 right-0 z-50 flex justify-center mx-auto cursor-pointer w-fit  "
+      className="relative left-0 max-sm:hidden right-0 z-50 flex justify-center mx-auto cursor-pointer w-fit  "
       onClick={goToSection}
     >
       <motion.div
