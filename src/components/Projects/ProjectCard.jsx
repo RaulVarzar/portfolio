@@ -69,7 +69,7 @@ const ProjectCard = ({ project }) => {
       >
         <div className="flex flex-col gap-3 text-left md:gap-4 grow">
           <motion.div
-            style={{ scale: imgScale }}
+            // style={{ scale: imgScale }}
             className="z-20 overflow-hidden rounded-xl aspect-video"
           >
             {project.gif.length > 0 ?? (
@@ -85,7 +85,7 @@ const ProjectCard = ({ project }) => {
               style={{ opacity: imgOpacity }}
               src={project.photo}
               alt={photo}
-              className={"object-cover w-full"}
+              className={"object-cover w-full h-full"}
             />
           </motion.div>
 
@@ -94,15 +94,15 @@ const ProjectCard = ({ project }) => {
               ref={textRef}
               className=" flex-col items-start sm:items-end grow md:gap-0.5 flex"
             >
-              <motion.h3
+              <motion.div
                 variants={titleVariants}
                 initial="hidden"
                 animate={isInView ? "visible" : "hidden"}
-                className="z-10 flex justify-start overflow-hidden text-2xl font-bold   leading-none xl:leading-[48px] tracking-wider text-left uppercase opacity-85 group-hover:opacity-100 text-base-content group-hover:text-slate-100 md:text-4xl xl:text-5xl "
               >
-                {title}
-              </motion.h3>
-
+                <motion.h3 className="z-10 flex justify-start overflow-hidden text-2xl font-bold   leading-none xl:leading-[48px] tracking-wider text-left uppercase group-hover:brightness-125 transition-all duration-300 text-base-content  md:text-4xl xl:text-5xl ">
+                  {title}
+                </motion.h3>
+              </motion.div>
               <Description visible={isInView} description={description} />
               <div className="z-50 flex flex-row items-center gap-6 py-1 transition-opacity duration-200 w-fit opacity-60 justify-evenly group-hover:opacity-100">
                 {github.length > 0 && (
@@ -145,14 +145,15 @@ const Description = ({ visible, description }) => {
   };
 
   return (
-    <motion.p
+    <motion.div
       variants={descriptionVariants}
       initial="hidden"
       animate={visible ? "visible" : "hidden"}
-      className="z-10 max-w-xl py-1 text-sm font-light leading-tight tracking-wider text-left text-balance sm:text-right opacity-60 xl:text-base text-base-content group-hover:text-neutral-content group-hover:opacity-70"
     >
-      {description}
-    </motion.p>
+      <p className="z-10 max-w-xl py-1 text-sm font-light leading-tight tracking-wider text-left text-balance sm:text-right opacity-60 xl:text-base text-base-content group-hover:text-neutral-content group-hover:opacity-90 transition-all duration-300">
+        {description}
+      </p>
+    </motion.div>
   );
 };
 
