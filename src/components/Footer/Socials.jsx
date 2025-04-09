@@ -41,8 +41,9 @@ const Socials = ({ isInView }) => {
         <motion.li
           key={item.link}
           variants={childrenVariants}
-          className="flex flex-row items-center gap-3 px-4 py-3 border rounded-lg md:px-5 sm:px-4 md:py-2 group border-base-content bg-opacity-5 border-opacity-20 hover:bg-opacity-25 text-neutral-content bg-secondary"
+          className="relative flex flex-row items-center gap-3 px-4 py-3 overflow-hidden border rounded-md md:px-5 sm:px-4 md:py-2 group border-base-content border-opacity-20 text-neutral-content "
         >
+          <div className="absolute inset-0 w-full h-full transition-transform duration-300 translate-y-full bg-opacity-25 group-hover:translate-y-0 bg-secondary -z-10 ease-[cubic-bezier(0.7,0,0.25,1)]"></div>
           <FaSquareGithub />
           <motion.a
             href={item.link}

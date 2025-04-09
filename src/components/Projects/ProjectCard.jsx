@@ -65,12 +65,13 @@ const ProjectCard = ({ project }) => {
           scale: cardScale,
           opacity: cardOpacity,
         }}
-        className="justify-between max-w-3xl p-2 mx-auto overflow-hidden md:p-4 lg:p-6 top-24 h-fit group "
+        className="relative justify-between max-w-3xl p-2 mx-auto mt-24 overflow-hidden cursor-pointer md:p-4 xl:p-5 h-fit group rounded-xl"
       >
-        <div className="flex flex-col gap-3 text-left md:gap-4 grow">
+        <div className="absolute inset-0 w-full h-full transition-opacity duration-300 opacity-0 group-hover:opacity-100 bg-base-200" />
+        <div className="flex flex-col gap-3 text-left md:gap-4 grow ">
           <motion.div
             // style={{ scale: imgScale }}
-            className="z-20 overflow-hidden rounded-xl aspect-video"
+            className="z-20 overflow-hidden border-2 rounded-lg border-opacity-30 aspect-video border-neutral"
           >
             {project.gif.length > 0 ?? (
               <img
@@ -92,14 +93,14 @@ const ProjectCard = ({ project }) => {
           <div className="flex flex-row-reverse items-start gap-y-1">
             <div
               ref={textRef}
-              className=" flex-col items-start sm:items-end grow md:gap-0.5 flex"
+              className="flex flex-col items-start sm:items-end grow"
             >
               <motion.div
                 variants={titleVariants}
                 initial="hidden"
                 animate={isInView ? "visible" : "hidden"}
               >
-                <motion.h3 className="z-10 flex justify-start overflow-hidden text-2xl font-bold   leading-none xl:leading-[48px] tracking-wider text-left uppercase group-hover:brightness-125 transition-all duration-300 text-base-content  md:text-4xl xl:text-5xl ">
+                <motion.h3 className="z-10 flex justify-start overflow-hidden text-2xl font-normal   leading-none xl:leading-[48px] tracking-wider text-left uppercase group-hover:brightness-125 transition-all duration-300 text-base-content  md:text-3xl xl:text-4xl ">
                   {title}
                 </motion.h3>
               </motion.div>
@@ -150,7 +151,7 @@ const Description = ({ visible, description }) => {
       initial="hidden"
       animate={visible ? "visible" : "hidden"}
     >
-      <p className="z-10 max-w-xl py-1 text-sm font-light leading-tight tracking-wider text-left text-balance sm:text-right opacity-60 xl:text-base text-base-content group-hover:text-neutral-content group-hover:opacity-90 transition-all duration-300">
+      <p className="z-10 max-w-xl py-1 text-sm leading-tight tracking-wider text-left transition-all duration-300 font-extralight text-balance sm:text-right opacity-60 xl:text-base text-base-content group-hover:text-neutral-content group-hover:opacity-90">
         {description}
       </p>
     </motion.div>

@@ -162,11 +162,11 @@ const Form = ({ isInView }) => {
             animate={isInView ? "visible" : "hidden"}
             custom={3}
             type="submit"
-            className="z-40 px-6 py-3 mx-auto mt-5 text-base bg-opacity-100 rounded-lg md:gap-3 xl:gap-4 md:text-lg group text-accent bg-neutral-content "
+            className="z-40 px-6 py-3 mx-auto mt-5 text-base bg-opacity-100 rounded-md md:gap-3 xl:gap-4 md:text-lg group text-accent bg-neutral-content "
           >
             {!loading && (
-              <div className="flex flex-row items-center justify-center gap-2 ">
-                <span className="font-medium tracking-wide uppercase">
+              <div className="flex flex-row items-center justify-center gap-3 ">
+                <span className="font-normal tracking-wide uppercase">
                   Send message
                 </span>
                 <i className="transition-transform duration-300 fa-regular fa-paper-plane group-hover:rotate-45"></i>

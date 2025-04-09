@@ -84,7 +84,7 @@ const Header = ({ trackedRef, progress }) => {
         <motion.h3
           variants={variants}
           animate={visible ? "visible" : "hidden"}
-          className="text-3xl font-bold leading-none tracking-wide text-center md:text-5xl lg:text-6xl xl:text-7xl 2xl:text-8xl"
+          className="text-3xl font-medium leading-none tracking-wide text-center md:text-5xl lg:text-6xl xl:text-7xl 2xl:text-8xl"
         >
           MY PROJECTS
         </motion.h3>
@@ -95,7 +95,7 @@ const Header = ({ trackedRef, progress }) => {
         animate={visible ? "visible" : "hidden"}
         href="https://github.com/RaulVarzar"
         target="_blank"
-        className="flex mx-1 text-sm  font-semibold tracking-wide uppercase border-none rounded-md sm:mx-5 md:mx-0 sm:text-base xl:text-xl w-fit btn-sm text-primary border-accent btn hover:btn-outline btn-ghost hover:text-base-100"
+        className="flex mx-1 text-sm font-semibold tracking-wide uppercase border-none rounded-md sm:mx-5 md:mx-0 sm:text-base xl:text-xl w-fit btn-sm text-primary border-accent btn hover:btn-outline btn-ghost hover:text-base-100"
       >
         View all
         <FaGithub />
