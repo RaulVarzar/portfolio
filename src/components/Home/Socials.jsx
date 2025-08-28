@@ -68,7 +68,7 @@ export const Socials = () => {
   });
 
   return (
-    <div className="inset-0 flex flex-row py-5 sm:py-4 mx-auto tracking-tighter  w-fit h-fit">
+    <div className="inset-0 flex flex-row py-5 mx-auto tracking-tighter sm:py-4 w-fit h-fit">
       <SocialLink
         link={"https://github.com/RaulVarzar"}
         title={"github"}
@@ -123,18 +123,18 @@ const SocialLink = ({
       animate={hidden ? "hidden" : "visible"}
       onHoverStart={() => setHovering(id)}
       onHoverEnd={() => setHovering(null)}
-      className="relative px-4 pt-1 font-light tracking-wide cursor-pointer sm:px-8 text-neutral-content"
+      className="relative px-4 pt-1 font-light tracking-wide cursor-pointer sm:px-6 lg:px-8 text-neutral-content"
     >
       <motion.div
-        className={`flex flex-row items-center gap-3 transition-all duration-300 ${
+        className={`flex flex-row items-center gap-2 transition-all duration-300 ${
           hovering === id &&
           "opacity-100 scale-105 brightness-125 -translate-y-0.5"
         } ${hovering && hovering != id && "brightness-75 "}`}
       >
-        <span className="pt-0.5 text-3xl  sm:text-xl md:text-2xl lg:text-3xl">
+        <span className="pt-0.5 text-3xl  sm:text-xl md:text-xl lg:text-2xl">
           {children}
         </span>
-        <h1 className="py-2 max-sm:hidden text-neutral-content text-md md:text-xl lg:text-2xl sm:text-lg md:py-3 xl:py-4">
+        <h1 className="py-2 max-sm:hidden text-neutral-content text-md sm:text-lg lg:text-xl md:py-3 xl:py-4">
           {title}
         </h1>
       </motion.div>

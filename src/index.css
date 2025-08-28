@@ -58,15 +58,15 @@ body {
 }
 
 ::-webkit-scrollbar {
-  height: 5px;
-  width: 10px;
+  height: 3px;
+  width: 5px;
   background: #111;
 }
 
 ::-webkit-scrollbar-thumb {
   background: #4c39ac;
   border-radius: 2px;
-  width: 12px;
+  width: 5px;
 }
 
 ::-webkit-scrollbar-corner {
@@ -120,4 +120,36 @@ body {
 .stroke-text {
   text-shadow: -1px -1px 0 #444, 1px -1px 0 #444, -1px 1px 0 #444,
     1px 1px 0 #444;
+}
+
+.fade-in-out {
+  position: relative;
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    transparent 2%,
+    black 15%,
+    black 85%,
+    transparent 98%
+  );
+  -webkit-mask-repeat: no-repeat;
+  -webkit-mask-size: 100% 100%;
+  mask-image: linear-gradient(
+    to bottom,
+    transparent 2%,
+    black 15%,
+    black 85%,
+    transparent 98%
+  );
+  mask-repeat: no-repeat;
+  mask-size: 100% 100%;
+}
+
+.fade-out {
+  position: relative;
+  -webkit-mask-image: linear-gradient(to bottom, black 80%, transparent 98%);
+  -webkit-mask-repeat: no-repeat;
+  -webkit-mask-size: 100% 100%;
+  mask-image: linear-gradient(to bottom, black 80%, transparent 98%);
+  mask-repeat: no-repeat;
+  mask-size: 100% 100%;
 }

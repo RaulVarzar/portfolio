@@ -66,7 +66,7 @@ const SkillsCard = ({ title, icon, text, reverse }) => {
         <motion.h1
           animate={isInView ? "visible" : "hidden"}
           variants={titleVariants}
-          className="text-sm text-neutral sm:text-base"
+          className="text-sm text-neutral sm:text-md lg:text-xl"
         >
           {title}
         </motion.h1>

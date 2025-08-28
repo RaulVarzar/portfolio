@@ -77,7 +77,7 @@ const Form = ({ isInView }) => {
         onSubmit={sendEmail}
         className="flex flex-col justify-center w-full mx-auto"
       >
-        <motion.div className="flex flex-col gap-8 w-full   lg:min-w-[500px] ">
+        <motion.div className="flex flex-col gap-8 w-full  border border-opacity-45 border-base-content px-10 py-12 lg:min-w-[500px] ">
           <div className="flex flex-col justify-between w-full gap-2 ">
             <motion.div
               variants={variants}
@@ -93,14 +93,14 @@ const Form = ({ isInView }) => {
                   value={name}
                   onChange={(e) => setName(e.target.value)}
                   required
-                  className={`grow peer bg-transparent text-base md:text-xl xl:text-2xl focus:placeholder-transparent  ${
+                  className={`grow peer font-light bg-transparent text-base md:text-xl xl:text-2xl focus:placeholder-transparent  ${
                     name.length > 0 ? " opacity-100" : "opacity-30"
                   }`}
-                  placeholder="Ion Popescu"
+                  placeholder="Name"
                 />
-                <span className="text-base font-semibold transition-opacity duration-300 opacity-100 sm:text-xl lg:text-2xl text-neutral-content min-w-20 sm:min-w-28 peer-focus:opacity-60">
+                {/* <span className="text-base font-semibold transition-opacity duration-300 opacity-100 sm:text-xl lg:text-2xl text-neutral-content min-w-20 sm:min-w-28 peer-focus:opacity-60">
                   Nume
-                </span>
+                </span> */}
               </label>
             </motion.div>
 
@@ -118,14 +118,14 @@ const Form = ({ isInView }) => {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   name="email"
-                  className={`grow peer bg-transparent text-base md:text-xl xl:text-2xl focus:placeholder-transparent  ${
+                  className={`grow peer font-light bg-transparent text-base md:text-xl xl:text-2xl focus:placeholder-transparent  ${
                     email.length > 0 ? " opacity-100" : "opacity-30"
                   }`}
-                  placeholder="example@email.com"
+                  placeholder="E-mail address"
                 />
-                <span className="text-base font-semibold transition-opacity duration-300 opacity-100 sm:text-xl lg:text-2xl text-neutral-content min-w-20 sm:min-w-28 peer-focus:opacity-60">
+                {/* <span className="text-base font-semibold transition-opacity duration-300 opacity-100 sm:text-xl lg:text-2xl text-neutral-content min-w-20 sm:min-w-28 peer-focus:opacity-60">
                   Email
-                </span>
+                </span> */}
               </label>
             </motion.div>
             <motion.div
@@ -142,43 +142,44 @@ const Form = ({ isInView }) => {
                   required
                   value={message}
                   onChange={(e) => setMessage(e.target.value)}
-                  className={`grow peer bg-transparent text-base md:text-xl xl:text-2xl focus:placeholder-transparent  ${
+                  className={`grow peer font-light bg-transparent text-base md:text-xl xl:text-2xl focus:placeholder-transparent  ${
                     message.length > 0 ? " opacity-100" : "opacity-30"
                   }`}
-                  placeholder="Buna ziua! ...."
+                  placeholder="Message"
                 />
-                <span className="text-base font-semibold transition-opacity duration-300 opacity-100 sm:text-xl lg:text-2xl text-neutral-content min-w-20 sm:min-w-28 peer-focus:opacity-60">
+                {/* <span className="text-base font-semibold transition-opacity duration-300 opacity-100 sm:text-xl lg:text-2xl text-neutral-content min-w-20 sm:min-w-28 peer-focus:opacity-60">
                   Mesaj
-                </span>
+                </span> */}
               </label>
             </motion.div>
           </div>
+
+          {!error && !success && (
+            <motion.button
+              variants={variants}
+              layout
+              initial="hidden"
+              animate={isInView ? "visible" : "hidden"}
+              custom={3}
+              type="submit"
+              className="z-40 w-full px-6 py-3 mx-auto mt-2 text-base bg-opacity-100 rounded-sm md:gap-3 xl:gap-4 md:text-lg group text-accent bg-neutral-content "
+            >
+              {!loading && (
+                <div className="flex flex-row items-center justify-center gap-3 ">
+                  <span className="font-normal tracking-wide uppercase">
+                    Send message
+                  </span>
+                  <i className="transition-transform duration-300 fa-regular fa-paper-plane group-hover:rotate-45"></i>
+                </div>
+              )}
+              {loading && (
+                <div className="flex items-center justify-center ">
+                  <span className=" bg-accent loading-lg loading loading-spinner"></span>
+                </div>
+              )}
+            </motion.button>
+          )}
         </motion.div>
-        {!error && !success && (
-          <motion.button
-            variants={variants}
-            layout
-            initial="hidden"
-            animate={isInView ? "visible" : "hidden"}
-            custom={3}
-            type="submit"
-            className="z-40 px-6 py-3 mx-auto mt-5 text-base bg-opacity-100 rounded-md md:gap-3 xl:gap-4 md:text-lg group text-accent bg-neutral-content "
-          >
-            {!loading && (
-              <div className="flex flex-row items-center justify-center gap-3 ">
-                <span className="font-normal tracking-wide uppercase">
-                  Send message
-                </span>
-                <i className="transition-transform duration-300 fa-regular fa-paper-plane group-hover:rotate-45"></i>
-              </div>
-            )}
-            {loading && (
-              <div className="flex items-center justify-center ">
-                <span className=" bg-accent loading-lg loading loading-spinner"></span>
-              </div>
-            )}
-          </motion.button>
-        )}
 
         <AnimatePresence mode="popLayout">
           {success && (

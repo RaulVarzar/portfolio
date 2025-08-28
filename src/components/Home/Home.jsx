@@ -1,5 +1,10 @@
 import profilePhoto from "../../assets/profile-pic.jpg";
-import { motion, useScroll, useTransform } from "framer-motion";
+import {
+  motion,
+  useMotionTemplate,
+  useScroll,
+  useTransform,
+} from "framer-motion";
 import HtmlElement from "./HtmlElement";
 import { useRef, useState } from "react";
 import ChevronButton from "./ChevronButton";
@@ -34,6 +39,9 @@ const Home = ({ goToSection }) => {
   // const sectionY = useTransform(scrollYProgress, [0, 1], ["0vh", "-25vh"]);
   const sectionScale = useTransform(scrollYProgress, [0, 1], ["100%", "83%"]);
 
+  const brightnessRaw = useTransform(scrollYProgress, [0.1, 0.7], [0, 5]);
+  const filter = useMotionTemplate`blur(${brightnessRaw}px)`;
+
   const y = useTransform(scrollYProgress, [0, 1], ["0vh", "-15vh"]);
   const chevronOpacity = useTransform(
     scrollYProgress,
@@ -47,8 +55,8 @@ const Home = ({ goToSection }) => {
         <Socials />
 
         <motion.div
-          style={{ scale: sectionScale }}
-          className="flex flex-col-reverse items-center justify-center h-full gap-4 grow xl:flex-row "
+          style={{ scale: sectionScale, filter }}
+          className="flex flex-col-reverse items-center justify-center h-full gap-4 px-2 sm:px-4 md:px-8 grow xl:flex-row "
         >
           <Tilt
             tiltReverse={true}
@@ -59,62 +67,7 @@ const Home = ({ goToSection }) => {
             onEnter={() => screenSize.width > 1080 && setZoomInText(true)}
             onLeave={() => setZoomInText(false)}
           >
-            <motion.div className="relative flex flex-col max-w-5xl gap-0 py-2 sm:px-4 max-sm:pl-3 md:pr-12 md:pl-10 xl:py-12 h-fit xl:pl-12 xl:pr-16 2xl:pr-20 roboto ">
-              <HtmlElement
-                tag={"header"}
-                blur={zoomInText}
-                variants={variants}
-                animate="show"
-                initial="hide"
-              >
-                <HtmlElement tag={"h3"} blur={zoomInText} variants={variants}>
-                  <motion.h3
-                    className={
-                      "text-lg md:text-xl lg:text-2xl  xl:text-3xl opacity-60 z-50 text-neutral-content transition-all duration-500 ease-[cubic-bezier(.03,.98,.52,.99)]  " +
-                      (zoomInText
-                        ? " scale-110 font-semibold opacity-100"
-                        : " opacity-60")
-                    }
-                  >
-                    Hello, my name is
-                  </motion.h3>
-                </HtmlElement>
-                <HtmlElement variants={variants} tag={"h1"} blur={zoomInText}>
-                  <motion.h3
-                    className={
-                      "text-4xl font-black md:text-5xl lg:text-6xl xl:text-7xl 2xl:text-8xl z-50 text-neutral-content brightness-125 transition-all duration-500  ease-[cubic-bezier(.03,.98,.52,.99)] " +
-                      (zoomInText
-                        ? " scale-115 font-bold opacity-100 brightness-125"
-                        : " opacity-80")
-                    }
-                  >
-                    Raul Vărzar
-                  </motion.h3>
-                </HtmlElement>
-              </HtmlElement>
-              <HtmlElement
-                blur={zoomInText}
-                tag={"p"}
-                animate="show"
-                initial="hide"
-                variants={variants}
-              >
-                <motion.h3
-                  className={
-                    "text-sm md:text-md xl:text-xl  leading-tight font-thin 2xl:text-3xl z-50 text-neutral-content transition-all duration-500 ease-[cubic-bezier(.03,.98,.52,.99)]  " +
-                    (zoomInText
-                      ? " scale-105 font-semibold opacity-90"
-                      : " opacity-70")
-                  }
-                >
-                  <BubbleText
-                    text={
-                      "I am passionate about web design and creating stuff that looks pretty"
-                    }
-                  />
-                </motion.h3>
-              </HtmlElement>
-            </motion.div>
+            <HTMLText zoomInText={zoomInText} />
           </Tilt>
           <ProfilePhoto />
         </motion.div>
@@ -133,6 +86,65 @@ const Home = ({ goToSection }) => {
 };
 export default Home;
 
+const HTMLText = ({ zoomInText }) => {
+  return (
+    <motion.div className="relative flex flex-col max-w-3xl gap-0 py-2 md:max-w-4xl 2xl:max-w-5xl sm:px-4 max-sm:pl-3 md:pr-12 md:pl-10 xl:py-12 h-fit xl:pl-12 xl:pr-16 2xl:pr-20 roboto ">
+      <HtmlElement
+        tag={"header"}
+        blur={zoomInText}
+        variants={variants}
+        animate="show"
+        initial="hide"
+      >
+        <HtmlElement tag={"h3"} blur={zoomInText} variants={variants}>
+          <motion.h3
+            className={
+              "text-lg md:text-xl lg:text-2xl  xl:text-3xl opacity-60 z-50 text-neutral-content transition-all duration-500 ease-[cubic-bezier(.03,.98,.52,.99)]  " +
+              (zoomInText
+                ? " scale-110 font-semibold opacity-100"
+                : " opacity-60")
+            }
+          >
+            Hello, my name is
+          </motion.h3>
+        </HtmlElement>
+        <HtmlElement variants={variants} tag={"h1"} blur={zoomInText}>
+          <motion.h3
+            className={
+              "text-4xl font-black md:text-5xl lg:text-6xl xl:text-6xl 2xl:text-7xl 3xl:text-8xl z-50 text-neutral-content brightness-125 transition-all duration-500  ease-[cubic-bezier(.03,.98,.52,.99)] " +
+              (zoomInText
+                ? " scale-115 font-bold opacity-100 brightness-125"
+                : " opacity-80")
+            }
+          >
+            Raul Vărzar
+          </motion.h3>
+        </HtmlElement>
+      </HtmlElement>
+      <HtmlElement
+        blur={zoomInText}
+        tag={"p"}
+        animate="show"
+        initial="hide"
+        variants={variants}
+      >
+        <motion.h3
+          className={
+            "text-sm md:text-md xl:text-xl  leading-tight font-thin 2xl:text-3xl z-50 text-neutral-content transition-all duration-500 ease-[cubic-bezier(.03,.98,.52,.99)]  " +
+            (zoomInText ? " scale-105 font-semibold opacity-90" : " opacity-70")
+          }
+        >
+          <BubbleText
+            text={
+              "I am passionate about web design and creating stuff that looks pretty"
+            }
+          />
+        </motion.h3>
+      </HtmlElement>
+    </motion.div>
+  );
+};
+
 export const ProfilePhoto = () => {
   return (
     <motion.div
@@ -148,11 +160,11 @@ export const ProfilePhoto = () => {
         },
       }}
     >
-      <motion.div className=" scale-100 flex flex-col bg-neutral-content overflow-hidden group  elevation-4 rounded-[20px] md:rounded-[30px] p-1 md:p-1.5 transition-all duration-300 ease-in-out hover:rotate-2 hover:scale-102">
-        <div className="overflow-hidden rounded-[17px] md:rounded-[25px]">
+      <motion.div className=" scale-100 flex flex-col border-2 border-neutral-content overflow-hidden group  elevation-4 rounded-[8px] md:rounded-[14px] p-1 md:p-1.5 transition-all duration-300 ease-in-out group hover:rotate-2 hover:scale-102">
+        <div className="overflow-hidden rounded-[10px] md:rounded-[11px]">
           <img
             src={profilePhoto}
-            className="z-50 object-cover h-56 transition-all duration-300 ease-in-out w-44 md:h-52 md:w-48 xl:h-96 xl:w-80 lg:scale-105 group-hover:scale-110 hover:-rotate-1"
+            className="z-50 object-cover h-56 transition-all duration-300 ease-in-out w-44 md:h-52 md:w-48 xl:h-96 xl:w-80 lg:scale-105 group-hover:scale-110 group-hover:-rotate-3"
             alt="profile-pic"
           />
         </div>
