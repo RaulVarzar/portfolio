@@ -71,20 +71,20 @@ const Form = ({ isInView }) => {
   };
 
   return (
-    <motion.div className="flex flex-col justify-center gap-8 ">
+    <motion.div className="flex flex-col justify-center w-full gap-8">
       <form
         ref={form}
         onSubmit={sendEmail}
         className="flex flex-col justify-center w-full mx-auto"
       >
-        <motion.div className="flex flex-col gap-8 w-full  border border-opacity-45 border-base-content px-10 py-12 lg:min-w-[500px] ">
-          <div className="flex flex-col justify-between w-full gap-2 ">
+        <motion.div className="flex flex-col gap-8 w-full  px-10 py-12 lg:min-w-[500px] xl:min-w-[540px] bg-accent-conten border-base-content border-2 rounded-3xl bg-opacity-70">
+          <div className="flex flex-col justify-between w-full gap-2 md:gap-4 lg:gap-6 ">
             <motion.div
               variants={variants}
               initial="hidden"
               animate={isInView ? "visible" : "hidden"}
               custom={0}
-              className="relative py-2 border-b sm:py-4 md:py-6 border-opacity-45 border-base-content"
+              className="relative py-2 borde rounded-3xl sm:py-4 md:py-5 backdrop-brightness-90"
             >
               <label className="flex flex-row-reverse items-center w-full gap-1 px-2 py-6 text-xl bg-transparent outline-none sm:px-4 md:gap-8 md:px-8 input focus:outline-none peer-focus:outline-none focus:border-transparent focus:ring-0 focus-within:ring:0 focus-within:border-transparent focus-within:outline-none sm:text-3xl">
                 <input
@@ -94,7 +94,7 @@ const Form = ({ isInView }) => {
                   onChange={(e) => setName(e.target.value)}
                   required
                   className={`grow peer font-light bg-transparent text-base md:text-xl xl:text-2xl focus:placeholder-transparent  ${
-                    name.length > 0 ? " opacity-100" : "opacity-30"
+                    name.length > 0 ? " opacity-100" : "opacity-75"
                   }`}
                   placeholder="Name"
                 />
@@ -109,7 +109,7 @@ const Form = ({ isInView }) => {
               initial="hidden"
               animate={isInView ? "visible" : "hidden"}
               custom={1}
-              className="relative py-2 border-b sm:py-4 md:py-6 border-opacity-45 border-base-content"
+              className="relative py-2 borde rounded-3xl sm:py-4 md:py-5 backdrop-brightness-90"
             >
               <label className="flex flex-row-reverse items-center w-full gap-1 px-2 py-6 text-xl bg-transparent outline-none sm:px-4 md:gap-8 md:px-8 input focus:outline-none peer-focus:outline-none focus:border-transparent focus:ring-0 focus-within:ring:0 focus-within:border-transparent focus-within:outline-none sm:text-3xl">
                 <input
@@ -119,7 +119,7 @@ const Form = ({ isInView }) => {
                   onChange={(e) => setEmail(e.target.value)}
                   name="email"
                   className={`grow peer font-light bg-transparent text-base md:text-xl xl:text-2xl focus:placeholder-transparent  ${
-                    email.length > 0 ? " opacity-100" : "opacity-30"
+                    email.length > 0 ? " opacity-100" : "opacity-75"
                   }`}
                   placeholder="E-mail address"
                 />
@@ -133,7 +133,7 @@ const Form = ({ isInView }) => {
               initial="hidden"
               animate={isInView ? "visible" : "hidden"}
               custom={2}
-              className="relative py-2 border-b sm:py-4 md:py-6 border-opacity-45 border-base-content"
+              className="relative py-2 borde rounded-3xl sm:py-4 md:py-5 backdrop-brightness-90"
             >
               <label className="flex flex-row-reverse items-center w-full gap-1 px-2 py-6 text-xl bg-transparent outline-none sm:px-4 md:gap-8 md:px-8 input focus:outline-none peer-focus:outline-none focus:border-transparent focus:ring-0 focus-within:ring:0 focus-within:border-transparent focus-within:outline-none sm:text-3xl">
                 <input
@@ -143,7 +143,7 @@ const Form = ({ isInView }) => {
                   value={message}
                   onChange={(e) => setMessage(e.target.value)}
                   className={`grow peer font-light bg-transparent text-base md:text-xl xl:text-2xl focus:placeholder-transparent  ${
-                    message.length > 0 ? " opacity-100" : "opacity-30"
+                    message.length > 0 ? " opacity-100" : "opacity-75"
                   }`}
                   placeholder="Message"
                 />
@@ -162,11 +162,11 @@ const Form = ({ isInView }) => {
               animate={isInView ? "visible" : "hidden"}
               custom={3}
               type="submit"
-              className="z-40 w-full px-6 py-3 mx-auto mt-2 text-base bg-opacity-100 rounded-sm md:gap-3 xl:gap-4 md:text-lg group text-accent bg-neutral-content "
+              className="z-40 px-6 py-3 mx-auto mt-2 text-base bg-opacity-100 rounded-full md:px-8 xl:px-12 xl:py-4 md:gap-3 xl:gap-4 md:text-lg group text-accent bg-neutral-content "
             >
               {!loading && (
                 <div className="flex flex-row items-center justify-center gap-3 ">
-                  <span className="font-normal tracking-wide uppercase">
+                  <span className="font-medium tracking-wide uppercase">
                     Send message
                   </span>
                   <i className="transition-transform duration-300 fa-regular fa-paper-plane group-hover:rotate-45"></i>

@@ -45,9 +45,9 @@ const ProjectCard = ({ project }) => {
         }}
         className="relative justify-between max-w-5xl p-2 mx-auto mt-24 overflow-hidden cursor-pointer md:p-4 xl:p-5 h-fit group rounded-xl"
       >
-        <div className="absolute inset-0 w-full h-full transition-opacity duration-300 opacity-0 group-hover:opacity-30 bg-base-300" />
+        {/* <div className="absolute inset-0 w-full h-full transition-opacity duration-300 opacity-0 group-hover:opacity-30 bg-base-300" /> */}
         <div className="flex flex-col gap-0 text-left md:gap-0 grow ">
-          <motion.div className="z-20 p-3 overflow-hidden rounded-t-lg bg-base-300 border- border-opacity-40 fade-out xl:rounded-t-xl aspect-video border-base">
+          <motion.div className="z-20 p-1 overflow-hidden bg-gradient-to- rounded-t-lg from-accent to-secondary bg-opacity-5 fade-out xl:rounded-t-[41px] aspect-video ">
             {/* {project.gif.length > 0 ?? (
               <img
                 src={project.gif}
@@ -61,18 +61,16 @@ const ProjectCard = ({ project }) => {
               style={{ opacity: imgOpacity, scale: 1.01 }}
               src={project.photo}
               alt={photo}
-              className={"object-cover w-full h-full rounded-lg"}
+              className={"object-cover w-full h-full rounded-t-[40px]"}
             />
           </motion.div>
 
-          <div className="flex flex-row-reverse items-start px-3 gap-y-1">
-            <div ref={textRef} className="flex flex-col items-start grow">
-              <Title title={title} visible={isInView} />
-              <Description visible={isInView} description={description} />
-              <div className="z-50 flex flex-row items-center gap-3 py-1 xl:gap-4 w-fit group justify-evenly ">
-                <GithubButton link={github} />
-                {demo.length > 0 && <DemoButton link={demo} />}
-              </div>
+          <div ref={textRef} className="flex flex-col items-start grow">
+            <Title title={title} visible={isInView} />
+            <Description visible={isInView} description={description} />
+            <div className="z-50 flex flex-row items-center gap-3 py-1 mt-2 xl:gap-4 w-fit group justify-evenly ">
+              <GithubButton link={github} />
+              {demo.length > 0 && <DemoButton link={demo} />}
             </div>
           </div>
         </div>

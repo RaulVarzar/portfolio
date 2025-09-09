@@ -41,16 +41,15 @@ const Socials = ({ isInView }) => {
         <motion.li
           key={item.link}
           variants={childrenVariants}
-          className="relative flex flex-row items-center gap-3 px-4 py-3 overflow-hidden border rounded-md md:px-5 sm:px-4 md:py-2 group border-base-content border-opacity-20 text-neutral-content "
+          href={item.link}
+          className="relative flex flex-row items-center justify-center gap-3 px-4 py-3 overflow-hidden border-2 rounded-full cursor-pointer border-opacity- sm:px-4 md:px-6 xl:px-8 md:py-6 group border-base-content text-neutral-content "
         >
           <div className="absolute inset-0 w-full h-full transition-transform duration-300 translate-y-full bg-opacity-25 group-hover:translate-y-0 bg-secondary -z-10 ease-[cubic-bezier(0.7,0,0.25,1)]"></div>
-          <FaSquareGithub />
-          <motion.a
-            href={item.link}
-            className="transition-all duration-500 max-sm:hidden"
-          >
+
+          <motion.span className="leading-none transition-all duration-500 max-sm:hidden">
             {item.title}
-          </motion.a>
+          </motion.span>
+          <FaSquareGithub />
         </motion.li>
       ))}
       {/* <FaSquareGithub />

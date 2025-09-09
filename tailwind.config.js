@@ -68,6 +68,7 @@ export default {
         black: {
           ...require("daisyui/src/theming/themes")["black"],
           accent: "#2a275d",
+          "accent-content": "#23214f",
           primary: "#511ab7",
           secondary: "#4c39ac",
           "base-100": "#0c0c0d",
@@ -78,7 +79,7 @@ export default {
           // accent: "#1c3738",
           error: "#8d0801",
           "neutral-content": "#c4c3d5",
-          "base-content": "#aaaab1",
+          "base-content": "#dddde9",
           //   error: '#602b1f',
           //   success: '#2d8364',
         },

@@ -15,7 +15,7 @@ export default function Footer() {
       <div ref={ref} className="-z-[999] h-0" />
       <div className="sticky bottom-0 min-h-[60vh] flex flex-col justify-center z-0 bg-accent">
         <Bars isInView={isInView} />
-        <footer className="static bottom-0 flex flex-col items-start justify-between gap-0 pt-8 pb-12 mx-auto md:pt-16 xl:pt-20 sm:pb-24 lg:gap-x-30 xl:gap-x-36 gap-x-24 xl:flex-row">
+        <footer className="static bottom-0 flex flex-col items-start justify-center gap-0 pt-8 pb-12 mx-auto md:pt-16 xl:pt-20 sm:pb-24 lg:gap-x-30 xl:gap-x-36 gap-x-24 xl:flex-row">
           <motion.div className="flex flex-col items-start justify-center w-full pb-10 mx-auto md:justify-start gap-y-3 md:gap-y-1">
             <Header isInView={isInView} />
             <Socials isInView={isInView} />
@@ -25,7 +25,7 @@ export default function Footer() {
             initial={{ y: "100%", opacity: 0 }}
             animate={{ y: "0%", opacity: 1 }}
             exit={{ y: "100%", transition: { delay: 0 } }}
-            className="relative z-0 flex flex-col mx-auto w-fit"
+            className="relative z-0 flex w-full mx-auto grow"
           >
             <Form isInView={isInView} closeForm={() => toggleForm(false)} />
           </motion.div>
