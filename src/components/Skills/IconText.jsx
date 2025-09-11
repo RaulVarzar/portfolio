@@ -25,14 +25,14 @@ export const IconText = ({ text, icon }) => {
 
   return (
     <>
-      <motion.span className="text-4xl opacity-30 md:text-5xl xl:text-6xl text-primary px-4 sm:px-8 md:px-10 lg:px-12 brightness-150 ">
+      <motion.span className="px-4 text-4xl opacity-30 md:text-5xl xl:text-6xl text-primary sm:px-8 md:px-10 lg:px-12 brightness-150 ">
         {icon === "react" && <FaReact />}
         {icon === "next" && <RiNextjsFill />}
         {icon === "tailwind" && <RiTailwindCssFill />}
         {icon === "framer" && <CgFramer />}
       </motion.span>
       <div className="flex flex-col">
-        <h3 className="text-2xl font-medium whitespace-nowrap leading-none tracking-wide px-8 sm:px-16 roboto md:px-20 xl:px-32 uppercase text-base-content md:text-3xl xl:text-6xl">
+        <h3 className="px-6 text-4xl font-medium leading-none tracking-wide uppercase whitespace-nowrap sm:px-16 roboto md:px-20 xl:px-32 text-base-content md:text-3xl xl:text-6xl">
           {text}
         </h3>
       </div>

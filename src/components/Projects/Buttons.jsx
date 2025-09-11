@@ -120,6 +120,7 @@ export const ViewAllProjectsButton = ({ visible }) => {
       transition={{ delay: 0.3, duration: 0.4 }}
       variants={variants}
       animate={visible ? "visible" : "hidden"}
+      className="max-lg:mx-auto w-fit"
     >
       <MagneticButton
         amount={[10, 5]}

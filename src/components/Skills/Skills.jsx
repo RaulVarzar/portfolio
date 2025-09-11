@@ -36,7 +36,7 @@ const Skills = () => {
     <motion.section
       ref={sectionRef}
       style={{ scale: sectionScale, borderRadius, y: sectionY, clipPath }}
-      className="relative flex flex-col bg-base-100 max-sm:pb-[40vh] py-8 overflow-hidden min-h-[100vh] z-10 text-4xl  md:py-12 place-content-center"
+      className="relative flex flex-col bg-base-100  py-8 overflow-hidden min-h-[100vh] z-10 text-4xl  md:py-12 place-content-center"
     >
       <motion.div
         className="relative mx-auto"

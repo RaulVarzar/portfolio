@@ -1,15 +1,16 @@
 import { motion, useMotionValue, useSpring } from "framer-motion";
 import { useRef } from "react";
-import { isMobile } from "react-device-detect"; // or however you detect mobile
+import { isMobile } from "react-device-detect";
 
 const MagneticButton = ({
   children,
   amount = [2, 2],
   magnify = 1.05,
-  className,
+  className = "",
   ...props
 }) => {
   const ref = useRef(null);
+  const bounds = useRef({ width: 0, height: 0, left: 0, top: 0 });
 
   // raw values
   const rawX = useMotionValue(0);
@@ -19,15 +20,26 @@ const MagneticButton = ({
   const x = useSpring(rawX, { stiffness: 120, damping: 12, mass: 0.2 });
   const y = useSpring(rawY, { stiffness: 120, damping: 12, mass: 0.2 });
 
+  // Early return for mobile (no magnetic hover on touch devices)
   if (isMobile) {
-    return <motion.div>{children}</motion.div>;
+    return (
+      <div className={className} {...props}>
+        {children}
+      </div>
+    );
   }
 
   const [xOffset, yOffset] = amount;
 
+  const handleEnter = () => {
+    if (ref.current) {
+      bounds.current = ref.current.getBoundingClientRect();
+    }
+  };
+
   const handleMouse = (e) => {
     const { clientX, clientY } = e;
-    const { height, width, left, top } = ref.current.getBoundingClientRect();
+    const { height, width, left, top } = bounds.current;
 
     const moveX = clientX - (left + width / 2);
     const moveY = clientY - (top + height / 2);
@@ -45,6 +57,7 @@ const MagneticButton = ({
     <motion.div
       ref={ref}
       style={{ position: "relative", x, y }}
+      onMouseEnter={handleEnter}
       onMouseMove={handleMouse}
       onMouseLeave={handleReset}
       whileHover={{ scale: magnify }}

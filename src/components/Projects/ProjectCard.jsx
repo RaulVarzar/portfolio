@@ -35,7 +35,7 @@ const ProjectCard = ({ project }) => {
   return (
     <motion.div
       ref={containerRef}
-      className=" w-full min-h-[50vh] overflow-hidden md:min-h-[55vh]  flex max-md:px-3 items-center"
+      className=" w-full md:min-h-[50vh] overflow-hidden xl:min-h-[55vh]  flex max-md:px-3 items-center"
     >
       <motion.div
         ref={cardRef}
@@ -43,7 +43,7 @@ const ProjectCard = ({ project }) => {
           y: cardY,
           scale: cardScale,
         }}
-        className="relative justify-between max-w-5xl p-2 mx-auto mt-24 overflow-hidden cursor-pointer md:p-4 xl:p-5 h-fit group rounded-xl"
+        className="relative justify-between max-w-5xl p-2 mx-auto mt-24 overflow-hidden cursor-pointer md:p-4 xl:p-5 h-fit group "
       >
         {/* <div className="absolute inset-0 w-full h-full transition-opacity duration-300 opacity-0 group-hover:opacity-30 bg-base-300" /> */}
         <div className="flex flex-col gap-0 text-left md:gap-0 grow ">
@@ -61,7 +61,9 @@ const ProjectCard = ({ project }) => {
               style={{ opacity: imgOpacity, scale: 1.01 }}
               src={project.photo}
               alt={photo}
-              className={"object-cover w-full h-full rounded-t-[40px]"}
+              className={
+                "object-cover w-full h-full rounded-t-2xl md:rounded-t-3xl xl:rounded-t-[40px]"
+              }
             />
           </motion.div>
 

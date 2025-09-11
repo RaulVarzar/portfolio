@@ -77,7 +77,7 @@ const Form = ({ isInView }) => {
         onSubmit={sendEmail}
         className="flex flex-col justify-center w-full mx-auto"
       >
-        <motion.div className="flex flex-col gap-8 w-full  px-10 py-12 lg:min-w-[500px] xl:min-w-[540px] bg-accent-conten border-base-content border-2 rounded-3xl bg-opacity-70">
+        <motion.div className="flex flex-col gap-8 w-full  px-10 py-12 lg:min-w-[500px] xl:min-w-[540px] ">
           <div className="flex flex-col justify-between w-full gap-2 md:gap-4 lg:gap-6 ">
             <motion.div
               variants={variants}

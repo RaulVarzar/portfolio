@@ -88,7 +88,7 @@ export default Home;
 
 const HTMLText = ({ zoomInText }) => {
   return (
-    <motion.div className="relative flex flex-col max-w-3xl gap-0 py-2 md:max-w-4xl 2xl:max-w-5xl sm:px-4 max-sm:pl-3 md:pr-12 md:pl-10 xl:py-12 h-fit xl:pl-12 xl:pr-16 2xl:pr-20 roboto ">
+    <motion.div className="relative flex flex-col max-w-3xl gap-0 py-2 roboto md:max-w-4xl 2xl:max-w-5xl sm:px-4 max-sm:pl-3 md:pr-12 md:pl-10 xl:py-12 h-fit xl:pl-12 xl:pr-16 2xl:pr-20 ">
       <HtmlElement
         tag={"header"}
         blur={zoomInText}
@@ -111,7 +111,7 @@ const HTMLText = ({ zoomInText }) => {
         <HtmlElement variants={variants} tag={"h1"} blur={zoomInText}>
           <motion.h3
             className={
-              "text-4xl font-black md:text-5xl lg:text-6xl xl:text-6xl 2xl:text-7xl 3xl:text-8xl z-50 text-neutral-content brightness-125 transition-all duration-500  ease-[cubic-bezier(.03,.98,.52,.99)] " +
+              "text-4xl font-black roboto md:text-5xl lg:text-6xl xl:text-6xl 2xl:text-7xl 3xl:text-8xl z-50 text-neutral-content brightness-125 transition-all duration-500  ease-[cubic-bezier(.03,.98,.52,.99)] " +
               (zoomInText
                 ? " scale-115 font-bold opacity-100 brightness-125"
                 : " opacity-80")
