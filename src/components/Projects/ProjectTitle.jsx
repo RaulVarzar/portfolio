@@ -29,7 +29,7 @@ const Title = ({ title, visible }) => {
       initial="hidden"
       animate={visible ? "visible" : "hidden"}
     >
-      <motion.h3 className="z-10 flex justify-start overflow-hidden text-2xl font-medium leading-tight tracking-wider text-left uppercase transition-all duration-300 text-base-content md:text-3xl xl:text-4xl 2xl:text-5xl">
+      <motion.h3 className="z-10 flex justify-start overflow-hidden text-2xl font-medium leading-tight tracking-wider text-left uppercase transition-all duration-300 text-base-content md:text-2xl xl:text-3xl 2xl:text-4xl">
         {title}
       </motion.h3>
     </motion.div>

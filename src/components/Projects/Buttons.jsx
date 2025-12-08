@@ -3,6 +3,7 @@ import { useRef } from "react";
 import { FaExternalLinkAlt, FaGithub } from "react-icons/fa";
 import { IoLogoGithub } from "react-icons/io5";
 import MagneticButton from "../../util/MagneticButton";
+import { GoArrowUpRight } from "react-icons/go";
 
 export const GithubButton = ({ link }) => {
   const variants = {
@@ -115,6 +116,29 @@ export const ViewAllProjectsButton = ({ visible }) => {
       transition: { duration: 0.6, delay: 0.4, ease: [0.25, 0.1, 0.25, 1] },
     },
   };
+  // motion-wrapped MagneticButton so children variants inherit whileHover
+  const MotionMagneticButton = motion(MagneticButton);
+
+  const bgVariants = {
+    idle: { y: "110%", transition: { duration: 0.43, ease: [0.8, 0, 0.2, 1] } },
+    hover: { y: "0%", transition: { duration: 0.55, ease: [0.8, 0, 0.2, 1] } },
+  };
+  const labelVariants = {
+    idle: { x: 0, transition: { duration: 0.43, ease: [0.8, 0, 0.2, 1] } },
+    hover: { x: 7, transition: { duration: 0.55, ease: [0.8, 0, 0.2, 1] } },
+  };
+  const iconVariants = {
+    idle: {
+      x: 0,
+      scale: 1,
+      transition: { duration: 0.43, ease: [0.8, 0, 0.2, 1] },
+    },
+    hover: {
+      x: -7,
+      scale: 1.2,
+      transition: { duration: 0.55, ease: [0.8, 0, 0.2, 1] },
+    },
+  };
   return (
     <motion.div
       transition={{ delay: 0.3, duration: 0.4 }}
@@ -122,16 +146,27 @@ export const ViewAllProjectsButton = ({ visible }) => {
       animate={visible ? "visible" : "hidden"}
       className="max-lg:mx-auto w-fit"
     >
-      <MagneticButton
-        amount={[10, 5]}
+      <motion.button
+        amount={[18, 12]}
         magnify={1.05}
         href="https://github.com/RaulVarzar"
         target="_blank"
-        className="flex items-center gap-3 px-5 py-2 mx-1 text-sm font-medium tracking-wide uppercase border-2 rounded-full cursor-pointer lg:px-8 lg:py-3 sm:mx-5 md:mx-0 sm:text-base xl:text-lg w-fit text-primary border-primary "
+        initial="idle"
+        whileHover="hover"
+        animate="idle"
+        className="flex relative overflow-hidden items-center  gap-6 px-0.5 py-2 mx-1 text-sm font-normal tracking-wide uppercase border-b cursor-pointer md:gap-10 xl:gap-20 2xl:gap-24 border-base-content border-opacity-20  lg:py-3 sm:mx-5 md:mx-0 sm:text-base xl:text-md w-fit text-neutral-content "
       >
-        View all
-        <FaGithub />
-      </MagneticButton>
+        <motion.span variants={labelVariants} className="z-10">
+          View all
+        </motion.span>
+        <motion.span variants={iconVariants} className="z-10">
+          <GoArrowUpRight />
+        </motion.span>
+        <motion.div
+          variants={bgVariants}
+          className="absolute top-0 left-0 w-full h-full bg-primary -z-10"
+        />
+      </motion.button>
     </motion.div>
   );
 };
