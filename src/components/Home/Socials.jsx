@@ -2,6 +2,7 @@ import { motion, useScroll } from "framer-motion";
 import { useEffect, useState } from "react";
 import { FaSquareGithub, FaSquareInstagram } from "react-icons/fa6";
 import { FaBehanceSquare } from "react-icons/fa";
+import Button from "../Projects/Button";
 
 const variants = {
   hidden: { opacity: 0, y: "-150%", scale: 0.85, transition: { delay: 0 } },
@@ -68,7 +69,7 @@ export const Socials = () => {
   });
 
   return (
-    <div className="inset-0 flex flex-row py-5 mx-auto tracking-tighter sm:py-4 w-fit h-fit">
+    <div className="inset-0 flex flex-row py-1 mx-auto tracking-tighter sm:py-2 w-fit h-fit">
       <SocialLink
         link={"https://github.com/RaulVarzar"}
         title={"github"}
@@ -101,6 +102,10 @@ export const Socials = () => {
       >
         <FaSquareInstagram />
       </SocialLink>
+
+      {/* <Button label={"github"} className={"!py-0 2xl:py-0"}>
+        <FaSquareGithub />
+      </Button> */}
     </div>
   );
 };
@@ -126,7 +131,7 @@ const SocialLink = ({
       className="relative px-4 pt-1 font-light tracking-wide cursor-pointer sm:px-6 lg:px-8 text-neutral-content"
     >
       <motion.div
-        className={`flex flex-row items-center gap-2 transition-all duration-300 ${
+        className={`flex flex-row items-center gap-2 transition-all duration-500 ease-[cubic-bezier(0.7,0,0.25,1)] ${
           hovering === id &&
           "opacity-100 scale-105 brightness-125 -translate-y-0.5"
         } ${hovering && hovering != id && "brightness-75 "}`}
@@ -138,7 +143,7 @@ const SocialLink = ({
           {title}
         </h1>
       </motion.div>
-      {hovering === id && (
+      {/* {hovering === id && (
         <motion.span
           layoutId="socials"
           transition={{
@@ -151,7 +156,7 @@ const SocialLink = ({
           animate={{ y: "0%", opacity: 1 }}
           className="absolute bottom-1 inset-x-0 size-1.5 md:size-2 mx-auto brightness-200 bg-accent  rounded-full "
         ></motion.span>
-      )}
+      )} */}
     </motion.a>
   );
 };

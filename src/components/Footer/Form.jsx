@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import emailjs from "@emailjs/browser";
 import { AnimatePresence, motion } from "framer-motion";
 import { BsChevronCompactDown } from "react-icons/bs";
+import InputField from "./InputField";
 
 const Form = ({ isInView }) => {
   const [error, setError] = useState(false);
@@ -78,106 +79,56 @@ const Form = ({ isInView }) => {
         className="flex flex-col justify-center w-full mx-auto"
       >
         <motion.div className="flex flex-col gap-8 w-full  px-10 py-12 lg:min-w-[500px] xl:min-w-[540px] ">
-          <div className="flex flex-col justify-between w-full gap-2 md:gap-4 lg:gap-6 ">
-            <motion.div
+          <div className="flex flex-col justify-between w-full gap-2 md:gap-3 lg:gap-4 ">
+            <InputField
+              label="Name"
+              name="name"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              placeholder="Your name"
               variants={variants}
               initial="hidden"
               animate={isInView ? "visible" : "hidden"}
               custom={0}
-              className="relative py-2 borde rounded-3xl sm:py-4 md:py-5 backdrop-brightness-90"
-            >
-              <label className="flex flex-row-reverse items-center w-full gap-1 px-2 py-6 text-xl bg-transparent outline-none sm:px-4 md:gap-8 md:px-8 input focus:outline-none peer-focus:outline-none focus:border-transparent focus:ring-0 focus-within:ring:0 focus-within:border-transparent focus-within:outline-none sm:text-3xl">
-                <input
-                  type="text"
-                  name="name"
-                  value={name}
-                  onChange={(e) => setName(e.target.value)}
-                  required
-                  className={`grow peer font-light bg-transparent text-base md:text-xl xl:text-2xl focus:placeholder-transparent  ${
-                    name.length > 0 ? " opacity-100" : "opacity-75"
-                  }`}
-                  placeholder="Name"
-                />
-                {/* <span className="text-base font-semibold transition-opacity duration-300 opacity-100 sm:text-xl lg:text-2xl text-neutral-content min-w-20 sm:min-w-28 peer-focus:opacity-60">
-                  Nume
-                </span> */}
-              </label>
-            </motion.div>
+            />
 
-            <motion.div
+            <InputField
+              label="Email"
+              name="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              placeholder="you@example.com"
+              type="email"
               variants={variants}
               initial="hidden"
               animate={isInView ? "visible" : "hidden"}
               custom={1}
-              className="relative py-2 borde rounded-3xl sm:py-4 md:py-5 backdrop-brightness-90"
-            >
-              <label className="flex flex-row-reverse items-center w-full gap-1 px-2 py-6 text-xl bg-transparent outline-none sm:px-4 md:gap-8 md:px-8 input focus:outline-none peer-focus:outline-none focus:border-transparent focus:ring-0 focus-within:ring:0 focus-within:border-transparent focus-within:outline-none sm:text-3xl">
-                <input
-                  type="email"
-                  required
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  name="email"
-                  className={`grow peer font-light bg-transparent text-base md:text-xl xl:text-2xl focus:placeholder-transparent  ${
-                    email.length > 0 ? " opacity-100" : "opacity-75"
-                  }`}
-                  placeholder="E-mail address"
-                />
-                {/* <span className="text-base font-semibold transition-opacity duration-300 opacity-100 sm:text-xl lg:text-2xl text-neutral-content min-w-20 sm:min-w-28 peer-focus:opacity-60">
-                  Email
-                </span> */}
-              </label>
-            </motion.div>
-            <motion.div
+            />
+
+            <InputField
+              label="Message"
+              name="message"
+              value={message}
+              onChange={(e) => setMessage(e.target.value)}
+              placeholder="Write your message here"
+              isTextarea
+              rows={6}
               variants={variants}
               initial="hidden"
               animate={isInView ? "visible" : "hidden"}
               custom={2}
-              className="relative py-2 borde rounded-3xl sm:py-4 md:py-5 backdrop-brightness-90"
-            >
-              <label className="flex flex-row-reverse items-center w-full gap-1 px-2 py-6 text-xl bg-transparent outline-none sm:px-4 md:gap-8 md:px-8 input focus:outline-none peer-focus:outline-none focus:border-transparent focus:ring-0 focus-within:ring:0 focus-within:border-transparent focus-within:outline-none sm:text-3xl">
-                <input
-                  name="message"
-                  rows="5"
-                  required
-                  value={message}
-                  onChange={(e) => setMessage(e.target.value)}
-                  className={`grow peer font-light bg-transparent text-base md:text-xl xl:text-2xl focus:placeholder-transparent  ${
-                    message.length > 0 ? " opacity-100" : "opacity-75"
-                  }`}
-                  placeholder="Message"
-                />
-                {/* <span className="text-base font-semibold transition-opacity duration-300 opacity-100 sm:text-xl lg:text-2xl text-neutral-content min-w-20 sm:min-w-28 peer-focus:opacity-60">
-                  Mesaj
-                </span> */}
-              </label>
-            </motion.div>
+            />
           </div>
 
           {!error && !success && (
-            <motion.button
+            <motion.div
               variants={variants}
-              layout
               initial="hidden"
-              animate={isInView ? "visible" : "hidden"}
               custom={3}
-              type="submit"
-              className="z-40 px-6 py-3 mx-auto mt-2 text-base bg-opacity-100 rounded-full md:px-8 xl:px-12 xl:py-4 md:gap-3 xl:gap-4 md:text-lg group text-accent bg-neutral-content "
+              animate={isInView ? "visible" : "hidden"}
             >
-              {!loading && (
-                <div className="flex flex-row items-center justify-center gap-3 ">
-                  <span className="font-medium tracking-wide uppercase">
-                    Send message
-                  </span>
-                  <i className="transition-transform duration-300 fa-regular fa-paper-plane group-hover:rotate-45"></i>
-                </div>
-              )}
-              {loading && (
-                <div className="flex items-center justify-center ">
-                  <span className=" bg-accent loading-lg loading loading-spinner"></span>
-                </div>
-              )}
-            </motion.button>
+              <SubmitButton loading={loading} />
+            </motion.div>
           )}
         </motion.div>
 
@@ -203,3 +154,48 @@ const Form = ({ isInView }) => {
 };
 
 export default Form;
+
+const SubmitButton = ({ loading }) => {
+  const bgVariants = {
+    idle: { y: "100%" },
+    hover: { y: "0%", transition: { duration: 0.28, ease: [0, 0, 0.2, 1] } },
+  };
+
+  return (
+    <motion.button
+      type="submit"
+      initial="idle"
+      animate="idle"
+      whileHover="hover"
+      className="relative z-40 w-full px-6 py-3 mx-auto mt-2 overflow-hidden transition-colors duration-200 bg-transparent border rounded-sm border-base-content border-opacity-10 hover:border-opacity-5 text-neutral-content"
+    >
+      {!loading && (
+        <div className="flex flex-row items-center justify-center gap-3 ">
+          <span className="font-medium tracking-wide uppercase">
+            Send message
+          </span>
+          <i className="transition-transform duration-300 fa-regular fa-paper-plane group-hover:rotate-45"></i>
+        </div>
+      )}
+      {loading && (
+        <div className="flex items-center justify-center ">
+          <span className=" bg-accent loading-lg loading loading-spinner"></span>
+        </div>
+      )}
+      <motion.div
+        variants={{
+          idle: { y: "100%" },
+          hover: {
+            y: "0%",
+            transition: { duration: 0.28, ease: [0, 0, 0.2, 1] },
+          },
+        }}
+        className="absolute bottom-0 left-0 w-full h-full bg-primary -z-10"
+      />
+      <motion.div
+        variants={bgVariants}
+        className="absolute bottom-0 left-0 w-full h-full bg-accent -z-10"
+      />
+    </motion.button>
+  );
+};

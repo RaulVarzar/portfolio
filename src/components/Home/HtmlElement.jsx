@@ -12,8 +12,8 @@ const HtmlElement = ({ tag, children, blur, variants, ...props }) => {
     >
       <span
         className={
-          "text-sm md:text-lg xl:text-xl text-left ml-0 text-neutral-content w-fit opacity-25 transition-all ease-[cubic-bezier(.03,.98,.52,.99)] " +
-          (blur && " blur-xs scale-90")
+          "text-md md:text-lg xl:text-xl 2xl:text-3xl text-left ml-0 text-neutral-content w-fit opacity-25 transition-all duration-300 ease-[cubic-bezier(0.8, 0, 0.2, 1)] " +
+          (blur && " blur-xs scale-95")
         }
       >
         &lt;{tag}&gt;
@@ -26,8 +26,8 @@ const HtmlElement = ({ tag, children, blur, variants, ...props }) => {
       </motion.div>
       <span
         className={
-          "text-sm md:text-lg xl:text-xl text-left text-neutral-content opacity-25 transition-all  w-fit ease-[cubic-bezier(.03,.98,.52,.99)]" +
-          (blur && " blur-xs scale-90")
+          "text-md md:text-lg xl:text-xl 2xl:text-3xl text-left text-neutral-content opacity-25 transition-all duration-300 w-fit ease-[cubic-bezier(0.8, 0, 0.2, 1)]" +
+          (blur && " blur-xs scale-95")
         }
       >
         &lt;/{tag}&gt;

@@ -1,37 +1,61 @@
-import { useRef } from "react";
+import { useRef, useEffect } from "react";
 import Form from "./Form";
 import Header from "./Header";
 import Socials from "./Socials";
-import { motion, useInView } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
+import { useFooter } from "./FooterContext";
 
 export default function Footer() {
-  const ref = useRef(null);
-  const isInView = useInView(ref, {
-    // amount: 0.85,
-    margin: "0% 0% -35% 0%",
-  });
-  return (
-    <>
-      <div ref={ref} className="-z-[999] h-0" />
-      <div className="sticky bottom-0 min-h-[60vh] flex flex-col justify-center z-0 bg-accent">
-        <Bars isInView={isInView} />
-        <footer className="static bottom-0 flex flex-col items-start justify-center gap-0 pt-8 pb-12 mx-auto md:pt-16 xl:pt-20 sm:pb-24 lg:gap-x-30 xl:gap-x-36 gap-x-24 xl:flex-row">
-          <motion.div className="flex flex-col items-start justify-center w-full pb-10 mx-auto md:justify-start gap-y-3 md:gap-y-1">
-            <Header isInView={isInView} />
-            <Socials isInView={isInView} />
-          </motion.div>
+  const { isOpen, closeFooter } = useFooter();
 
-          <motion.div
-            initial={{ y: "100%", opacity: 0 }}
-            animate={{ y: "0%", opacity: 1 }}
-            exit={{ y: "100%", transition: { delay: 0 } }}
-            className="relative z-0 flex w-full mx-auto grow"
-          >
-            <Form isInView={isInView} closeForm={() => toggleForm(false)} />
+  useEffect(() => {
+    const onKey = (e) => {
+      if (e.key === "Escape") closeFooter();
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [closeFooter]);
+
+  return (
+    <AnimatePresence>
+      {isOpen && (
+        <motion.div
+          initial={{ y: "100%" }}
+          animate={{ y: 0 }}
+          exit={{ y: "100%" }}
+          transition={{ duration: 0.8, delay: 0.2, ease: [0.6, 0, 0.2, 1] }}
+          className="fixed inset-0  h-full z-[9999] flex items-center justify-center"
+        >
+          {/* <div
+            onClick={closeFooter}
+            className="absolute inset-0 h-full bg-black/30 backdrop-blur-sm"
+          /> */}
+
+          <motion.div className="absolute bottom-0 z-20 max-h-[85vh] overflow-auto rounded-t-sm bg-base-200  w-fit border-base-content border-opacity-10 border px-8 py-4 lg:px-12">
+            <div className="flex justify-end ">
+              <button
+                onClick={closeFooter}
+                aria-label="Close"
+                className="px-3 py-1 text-sm border rounded"
+              >
+                Close
+              </button>
+            </div>
+
+            <div className="flex flex-col gap-8 mx-auto lg:flex-row w-fit">
+              <div className="flex flex-col items-start justify-center w-full pb-6 gap-y-3 md:gap-y-6">
+                <Header isInView={true} />
+                <Socials isInView={true} />
+              </div>
+
+              <div className="flex-1">
+                <Form isInView={true} closeForm={closeFooter} />
+              </div>
+            </div>
           </motion.div>
-        </footer>
-      </div>
-    </>
+        </motion.div>
+      )}
+    </AnimatePresence>
   );
 }
 

@@ -30,7 +30,7 @@ const Description = ({ visible, description }) => {
       initial="hidden"
       animate={visible ? "visible" : "hidden"}
     >
-      <p className="z-10 max-w-xl py-1 text-sm font-light leading-tight tracking-wider text-left transition-all duration-300 sm:text-base text-balance opacity-90 xl:text-md text-base-content group-hover:text-neutral-content ">
+      <p className="z-10 py-1 text-sm font-light leading-tight tracking-wider text-left transition-all duration-300 sm:text-base text-balance opacity-90 xl:text-md text-base-content group-hover:text-neutral-content ">
         {description}
       </p>
     </motion.div>

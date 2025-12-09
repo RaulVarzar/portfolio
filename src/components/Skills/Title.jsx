@@ -18,7 +18,7 @@ export default splitStringUsingRegex;
 const variants = {
   hidden: { opacity: 0, y: "150%" },
   visible: {
-    opacity: 1,
+    opacity: 0.4,
     y: 0,
     transition: {
       type: "spring",
@@ -57,7 +57,7 @@ export const Title = () => {
         transition={{
           staggerChildren: 0.1,
         }}
-        className="flex flex-row text-5xl font-bold tracking-wide uppercase text-neutral-content sm:text-6xl md:text-8xl lg:text-9xl"
+        className="flex flex-row text-5xl font-bold tracking-wide uppercase text-neutral osm:text-6xl md:text-8xl lg:text-9xl"
       >
         {TITLE.map((letter, i) => (
           <motion.span className="min-w-2" key={i} variants={variants}>

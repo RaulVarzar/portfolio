@@ -30,6 +30,7 @@
     "scrollbooster": "^3.0.2",
     "smooth-scrollbar": "^8.8.4",
     "swiper": "^11.0.5",
+    "tailwind-merge": "^3.4.0",
     "tailwindcss-elevation": "^2.0.0"
   },
   "devDependencies": {

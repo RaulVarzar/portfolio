@@ -2,7 +2,7 @@ import styles from "./bubble.module.css";
 
 const BubbleText = ({ text }) => {
   return (
-    <div className="tracking-wider transition duration-300">
+    <div className="tracking-wider transition duration-300 text-neutral-content ">
       {text.split("").map((child, idx) => (
         <span className={styles.hoverText} key={idx}>
           {child}

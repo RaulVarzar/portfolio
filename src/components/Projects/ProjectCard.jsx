@@ -2,7 +2,11 @@ import { motion, useInView, useScroll, useTransform } from "framer-motion";
 import { useRef, useEffect } from "react";
 import Title from "./ProjectTitle";
 import Description from "./ProjectDescription";
-import { GithubButton, DemoButton } from "./Buttons";
+import Button, { GithubButton, DemoButton } from "./Button";
+import { IoLogoGithub } from "react-icons/io5";
+import { FaExternalLinkAlt } from "react-icons/fa";
+import { RxExternalLink } from "react-icons/rx";
+import { HiOutlineExternalLink } from "react-icons/hi";
 
 const ProjectCard = ({ project, projectIndex }) => {
   const { title, description, github, demo, photo } = project;
@@ -46,28 +50,27 @@ const ProjectCard = ({ project, projectIndex }) => {
   return (
     <motion.div
       ref={containerRef}
-      className="flex items-center sticky top-[15vh] bg-base-200 w-full max-w-6xl overflow-hidden border-t border-opacity-25 border-base-content"
+      style={{ opacity }}
+      className="flex items-center sticky top-[15vh] 2xl:top-[20vh] bg-base-200 w-full max-w-7xl overflow-hidden border-t border-opacity-20 border-base-content"
     >
       <motion.div
         style={{ opacity, scale, filter }}
-        className="relative flex flex-row justify-between p-0 py-8 mx-auto overflow-hidden origin-top md:py-10 xl:py-16 2xl:py-20 gap-x-4 h-fit group "
+        className="relative grid justify-between grid-cols-12 p-0 py-8 mx-auto overflow-hidden origin-top md:py-12 lg:py-16 xl:py-20 2xl:py-28 gap-x-4 h-fit group "
       >
-        <span className="text-2xl text-neutral-content opacity-60">
-          0{projectIndex}
+        <span className="col-span-1 text-2xl xl:text-3xl text-neutral-content opacity-60">
+          0{projectIndex + 1}
         </span>
+
         <div
           ref={textRef}
-          className="flex flex-col items-start px-4 grow md:px-6 xl:px-12 2xl:pl-12 2xl:pr-24"
+          className="flex flex-col items-start col-span-5 px-1 grow md:px-2 xl:px-6 "
         >
           <Title title={title} visible={isInView} />
           <Description visible={isInView} description={description} />
-          {/* <div className="z-50 flex flex-row items-center gap-3 py-1 mt-2 xl:gap-4 w-fit group justify-evenly ">
-            <GithubButton link={github} />
-            {demo.length > 0 && <DemoButton link={demo} />}
-          </div> */}
+          <ActionButtons github={github} demo={demo} />
         </div>
 
-        <motion.div className="z-20 p-1 overflow-hidden rounded-t-lg bg-gradient-to- from-accent to-secondary bg-opacity-5 fade-ou aspect-video ">
+        <motion.div className="z-20 col-span-6 p-1 overflow-hidden rounded-lg aspect-video ">
           <motion.img
             style={{ scale: 1.01 }}
             src={project.photo}
@@ -81,3 +84,30 @@ const ProjectCard = ({ project, projectIndex }) => {
 };
 
 export default ProjectCard;
+
+const ActionButtons = ({ github, demo }) => {
+  return (
+    <div className="z-50 flex flex-row items-center gap-3 py-1 mt-2 md:gap-4 xl:gap-6 w-fit group justify-evenly ">
+      <Button
+        label={"Github"}
+        link={github}
+        className="!text-sm py-1.5 md:py-2 border-1 px-4 !gap-5 font-light rounded-sm"
+        color={"accent"}
+        transitionAmount={3}
+      >
+        <IoLogoGithub />
+      </Button>
+      {demo.length > 0 && (
+        <Button
+          label={"Demo"}
+          link={demo}
+          className="!text-sm py-1.5 md:py-2 border-1 px-4 !gap-5 font-light rounded-sm"
+          color={"accent"}
+          transitionAmount={3}
+        >
+          <HiOutlineExternalLink />
+        </Button>
+      )}
+    </div>
+  );
+};

@@ -1,13 +1,22 @@
 import { motion, useInView, useTransform } from "framer-motion";
-import { ViewAllProjectsButton } from "./Buttons";
+import Button from "./Button";
+import { GoArrowUpRight } from "react-icons/go";
 
 const Header = ({ trackedRef, progress }) => {
-  const variants = {
+  const titleVariants = {
     hidden: { opacity: 0, y: "100%", transition: { duration: 0.4 } },
     visible: {
       opacity: 1,
       y: 0,
       transition: { duration: 0.6, delay: 0.1, ease: [0.25, 0.1, 0.25, 1] },
+    },
+  };
+  const buttonVariants = {
+    hidden: { opacity: 0, y: "80%", transition: { duration: 0.4 } },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.6, delay: 0.25, ease: [0.25, 0.1, 0.25, 1] },
     },
   };
 
@@ -21,7 +30,7 @@ const Header = ({ trackedRef, progress }) => {
   };
 
   const entered = useInView(trackedRef, {
-    margin: "0% 0% -60% 0%",
+    margin: "0% 0% -80% 0%",
   });
   const notComplete = useInView(trackedRef, {
     margin: "-110% 0% 0% 0%",
@@ -32,16 +41,27 @@ const Header = ({ trackedRef, progress }) => {
   const progressBarWidth = useTransform(progress, [0, 1], ["0%", "100%"]);
 
   return (
-    <div className="lg:sticky  max-lg:pt-[20vh] xl:px-8 2xl:px-12 3xl:px-16 lg:-mt-[75vh] top-0 z-10  lg:h-screen  lg:items-end justify-startxl:mt-[10vh] lg:w-fit flex-col gap-0.5 lg:gap-1.5 flex">
-      <motion.div className="flex flex-col justify-center gap-2 px-4 lg:items-end lg:justify-end h-fit sm:px-8 md:px-0 xl:pt-[15vh] 2xl:pt-[20vh]">
+    <div className="lg:sticky max-lg:pt-[20vh] xl:px-8 2xl:px-12 3xl:px-16 lg:-mt-[75vh] top-0 z-10  lg:h-screen  lg:items-end justify-startxl:mt-[10vh] lg:w-fit flex-col gap-0.5 lg:gap-1.5 flex">
+      <motion.div className="flex  flex-col justify-center gap-2 px-4 lg:items-end lg:justify-end h-fit sm:px-8 md:px-0 xl:mt-[15vh] 2xl:mt-[20vh]">
         <motion.h3
-          variants={variants}
+          variants={titleVariants}
           animate={visible ? "visible" : "hidden"}
           className="text-xl font-semibold leading-none tracking-wider text-center text-base-content md:text-2xl lg:text-3xl xl:text-4xl 2xl:text-5xl"
         >
           MY PROJECTS
         </motion.h3>
-        <ViewAllProjectsButton visible={visible} />
+        <motion.div
+          variants={buttonVariants}
+          animate={visible ? "visible" : "hidden"}
+        >
+          <Button
+            label={"View all"}
+            color="accent"
+            link={"https://github.com/RaulVarzar?tab=repositories"}
+          >
+            <GoArrowUpRight />
+          </Button>
+        </motion.div>
       </motion.div>
     </div>
   );
