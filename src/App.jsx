@@ -1,12 +1,12 @@
 import { useRef } from "react";
 
-import Home from "./components/Home/Home";
-import Projects from "./components/Projects/Projects";
-import Skills from "./components/Skills/Skills";
-import Footer from "./components/Footer/Footer";
-import { FooterProvider } from "./components/Footer/FooterContext";
+import Home from "../components/Home/Home";
+import Projects from "../components/Projects/Projects";
+import Skills from "../components/Skills/Skills";
+import Footer from "../components/Footer/Footer";
+import { FooterProvider } from "../components/Footer/FooterContext";
 
-import ScrollContext from "./components/SmoothScroll";
+import ScrollContext from "../components/SmoothScroll";
 
 const App = () => {
   const skills = useRef();

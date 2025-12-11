@@ -5,14 +5,14 @@ import {
   useScroll,
   useTransform,
 } from "framer-motion";
-import { useFooter } from "../Footer/FooterContext";
+import { useFooter } from "../../../components/Footer/FooterContext";
 import HtmlElement from "./HtmlElement";
 import { useRef, useState } from "react";
 import ChevronButton from "./ChevronButton";
 import Tilt from "react-parallax-tilt";
 import BubbleText from "../BubbleText/BubbleText";
 import { Socials } from "./Socials";
-import useScreenSize from "../../hooks/useScreenSize";
+import useScreenSize from "../../src/hooks/useScreenSize";
 import BottomControls from "./BottomControls";
 
 const variants = {
