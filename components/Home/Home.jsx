@@ -6,7 +6,6 @@ import {
   useScroll,
   useTransform,
 } from "framer-motion";
-import { useFooter } from "@/components/Footer/FooterContext";
 import HtmlElement from "@/components/Home/HtmlElement";
 import { useRef, useState } from "react";
 import Tilt from "react-parallax-tilt";
@@ -31,7 +30,6 @@ const variants = {
 
 const Home = () => {
   const screenSize = useScreenSize();
-  const { isOpen: footerOpen } = useFooter();
 
   const [zoomInText, setZoomInText] = useState(false);
   const scrollProgressRef = useRef(null);
@@ -48,10 +46,10 @@ const Home = () => {
   return (
     <>
       <motion.section
-        className=" min-h-[90vh] sticky top-0 z-10 flex flex-col justify-center w-full grow bg-base-100 place-content-start"
+        className=" min-h-[100dvh] grid-bg sticky top-0 z-10 flex flex-col justify-center w-full grow  place-content-start"
         style={{ filter, y }}
       >
-        <Socials />
+        <BottomControls />
 
         <motion.div className="flex flex-col-reverse items-center justify-center h-full gap-4 px-2 border-t border-opacity-0 border-base-content sm:px-4 md:px-8 grow xl:flex-row ">
           <Tilt
@@ -67,8 +65,9 @@ const Home = () => {
           </Tilt>
           <ProfilePhoto />
         </motion.div>
+        <Socials />
       </motion.section>
-      <BottomControls />
+
       <div ref={scrollProgressRef} className="relative h-0"></div>
     </>
   );

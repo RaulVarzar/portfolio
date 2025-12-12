@@ -5,6 +5,13 @@ import { useEffect, useState } from "react";
 import { FaSquareGithub, FaSquareInstagram } from "react-icons/fa6";
 import { FaBehanceSquare } from "react-icons/fa";
 import Button from "@/components/Projects/Button";
+import { BiLogoInstagram } from "react-icons/bi";
+import { BsBehance } from "react-icons/bs";
+import { IoLogoGithub } from "react-icons/io5";
+import { FaRegEnvelope } from "react-icons/fa";
+import { MdOutlineMailOutline } from "react-icons/md";
+import { FaRegEnvelopeOpen } from "react-icons/fa";
+import { RiMailSendLine } from "react-icons/ri";
 
 const variants = {
   hidden: { opacity: 0, y: "-150%", scale: 0.85, transition: { delay: 0 } },
@@ -71,7 +78,7 @@ export const Socials = () => {
   });
 
   return (
-    <div className="inset-0 flex flex-row py-1 mx-auto tracking-tighter sm:py-2 w-fit h-fit">
+    <div className="inset-0 flex flex-row gap-2 py-8 mx-auto tracking-tighter md:gap-3 2xl:gap-4 lg:py-10 w-fit h-fit">
       <SocialLink
         link={"https://github.com/RaulVarzar"}
         title={"github"}
@@ -80,7 +87,7 @@ export const Socials = () => {
         setHovering={setHovering}
         hidden={hidden}
       >
-        <FaSquareGithub />
+        <IoLogoGithub />
       </SocialLink>
 
       <SocialLink
@@ -91,7 +98,7 @@ export const Socials = () => {
         setHovering={setHovering}
         hidden={hidden}
       >
-        <FaBehanceSquare />
+        <BsBehance />
       </SocialLink>
 
       <SocialLink
@@ -102,9 +109,19 @@ export const Socials = () => {
         setHovering={setHovering}
         hidden={hidden}
       >
-        <FaSquareInstagram />
+        <BiLogoInstagram />
       </SocialLink>
 
+      <SocialLink
+        link={"mailto:raul_varzar@yahoo.com"}
+        title={"email"}
+        id={4}
+        hovering={hovering}
+        setHovering={setHovering}
+        hidden={hidden}
+      >
+        <MdOutlineMailOutline />
+      </SocialLink>
       {/* <Button label={"github"} className={"!py-0 2xl:py-0"}>
         <FaSquareGithub />
       </Button> */}
@@ -112,53 +129,45 @@ export const Socials = () => {
   );
 };
 
-const SocialLink = ({
-  title,
-  children,
-  id,
-  link,
-  hovering,
-  setHovering,
-  hidden,
-}) => {
+const SocialLink = ({ children, id, link, hovering, setHovering, hidden }) => {
+  const bgVariants = {
+    idle: {
+      y: "101%",
+      transition: { duration: 0.43, ease: [0.75, 0, 0.25, 1] },
+    },
+    hover: {
+      y: "0%",
+      transition: { duration: 0.55, ease: [0.75, 0, 0.25, 1] },
+    },
+  };
+
   return (
     <motion.a
       href={link}
       target="_blank"
-      variants={variants}
-      initial="hidden"
-      animate={hidden ? "hidden" : "visible"}
       onHoverStart={() => setHovering(id)}
       onHoverEnd={() => setHovering(null)}
-      className="relative px-4 pt-1 font-light tracking-wide cursor-pointer sm:px-6 lg:px-8 text-neutral-content"
+      className={`relative px-3.5 py-1.5 transition-all duration-700 font-light overflow-hidden border-opacity-15 tracking-wide border rounded-sm cursor-pointer text-opacity-80 border-base-content text-neutral-content ${
+        hovering === id
+          ? " opacity-100 "
+          : hovering === null
+          ? " opacity-100 "
+          : " brightness-75 "
+      } `}
     >
       <motion.div
-        className={`flex flex-row items-center gap-2 transition-all duration-500 ease-[cubic-bezier(0.7,0,0.25,1)] ${
-          hovering === id &&
-          "opacity-100 scale-105 brightness-125 -translate-y-0.5"
-        } ${hovering && hovering != id && "brightness-75 "}`}
+        className={`flex flex-row items-center gap-2  leading-none pb-0.5 justify-center transition-all duration-500 ease-[cubic-bezier(0.7,0,0.25,1)] ${
+          hovering === id && "opacity-100 scale-105 "
+        } `}
       >
-        <span className="pt-0.5 text-3xl  sm:text-xl md:text-xl lg:text-2xl">
-          {children}
-        </span>
-        <h1 className="py-2 max-sm:hidden text-neutral-content text-md sm:text-lg lg:text-xl md:py-3 xl:py-4">
-          {title}
-        </h1>
+        <span className="pt-0.5 text-md md:text-lg z-50">{children}</span>
       </motion.div>
-      {/* {hovering === id && (
-        <motion.span
-          layoutId="socials"
-          transition={{
-            type: "spring",
-            stiffness: 60,
-            damping: 5,
-            mass: 0.2,
-          }}
-          initial={{ y: "-200%", opacity: 0 }}
-          animate={{ y: "0%", opacity: 1 }}
-          className="absolute bottom-1 inset-x-0 size-1.5 md:size-2 mx-auto brightness-200 bg-accent  rounded-full "
-        ></motion.span>
-      )} */}
+      <motion.span
+        variants={bgVariants}
+        initial="idle"
+        animate={hovering === id ? "hover" : "idle"}
+        className="absolute inset-0 bg-accent -z-10"
+      />
     </motion.a>
   );
 };

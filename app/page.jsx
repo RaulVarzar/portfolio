@@ -7,6 +7,7 @@ import Skills from "@/components/Skills/Skills";
 import Footer from "@/components/Footer/Footer";
 import { motion } from "framer-motion";
 import { useFooter } from "@/components/Footer/FooterContext";
+import PageTransitionAnimation from "@/components/PageTransitionAnimation";
 
 export default function RootPage() {
   const skills = useRef();
@@ -15,26 +16,15 @@ export default function RootPage() {
     skills.current?.scrollIntoView({ behavior: "smooth" });
   }
 
-  const { isOpen: footerOpen } = useFooter();
+  // const { isOpen: footerOpen } = useFooter();
 
   return (
-    <>
-      <motion.div
-        className=""
-        animate={
-          footerOpen
-            ? { opacity: 0.55, scale: 0.99, y: "3vh", filter: "blur(4px)" }
-            : { opacity: 1, scale: 1, y: 0, filter: "blur(0px)" }
-        }
-        transition={{ duration: 1.1, ease: [0.6, 0, 0.2, 1] }}
-      >
-        <Home goToSection={() => goToSection()} />
-        <div ref={skills}>
-          <Skills />
-        </div>
-        <Projects />
+    <PageTransitionAnimation>
+      <motion.div className="relative bg-base-100">
+        <Home />
+
+        {/* <Skills /> */}
       </motion.div>
-      <Footer />
-    </>
+    </PageTransitionAnimation>
   );
 }

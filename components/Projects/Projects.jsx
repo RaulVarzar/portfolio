@@ -6,6 +6,7 @@ import { projects } from "@/data/projects";
 import Divider from "@/components/Projects/Divider";
 import Header from "@/components/Projects/Header";
 import ProjectCard from "@/components/Projects/ProjectCard";
+import Link from "next/link";
 
 const Projects = () => {
   const sectionRef = useRef(null);
@@ -21,6 +22,9 @@ const Projects = () => {
       ref={sectionRef}
       className="relative z-20 flex flex-col justify-center w-full pt-24 md:pt-36 xl:pt-48 2xl:pt-56 gap-x-12 lg:flex-row bg-base-100"
     >
+      <Link href="/" className="">
+        Back to home
+      </Link>
       <Header trackedRef={sectionRef} progress={totalProgress} />
       <Divider trackedRef={sectionRef} progress={totalProgress} />
       <motion.div

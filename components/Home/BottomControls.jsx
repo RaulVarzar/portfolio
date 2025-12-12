@@ -4,6 +4,11 @@ import { useFooter } from "@/components/Footer/FooterContext";
 import ControlButton from "./ControlButton";
 import { motion } from "framer-motion";
 import { useState } from "react";
+import Link from "next/link";
+import { useTransitionStore } from "@/hooks/transitionStore";
+import { BsSendFill } from "react-icons/bs";
+import { GoPlus } from "react-icons/go";
+import { TiPlusOutline } from "react-icons/ti";
 
 const BottomControls = () => {
   const bgVariants = {
@@ -26,14 +31,31 @@ const BottomControls = () => {
     },
   };
 
-  const { openFooter } = useFooter();
+  // const { openFooter } = useFooter();
+
+  const triggerExit = useTransitionStore((state) => state.triggerExit);
 
   return (
     <>
-      <motion.div className="sticky z-[999] bg-base-100 top-0 flex items-stretch justify-center w-full gap-6 pb-4 mx-auto border-t max-w-screen-2xl border-opacity-10 text-md md:text-xl border-base-content divide-x- divide-base-content divide-opacity-10">
-        <ControlButton label="MY SKILLS" />
-        <ControlButton label="PROJECTS" />
-        <ControlButton label="CONTACT" onClick={() => openFooter()} />
+      <motion.div className="sticky z-[999]  top-0 flex items-center justify-end w-full gap-4 py-6 xl:py-8 3xl:py-10 mx-auto max-w-screen-2xl">
+        <ControlButton label="My skills">
+          <TiPlusOutline />
+        </ControlButton>
+
+        <ControlButton
+          label="Projects"
+          onClick={() => triggerExit("/projects")}
+        >
+          <TiPlusOutline />
+        </ControlButton>
+        <ControlButton
+          label="Contact"
+          colored
+          className="rounded-sm"
+          onClick={null}
+        >
+          <BsSendFill />
+        </ControlButton>
       </motion.div>
     </>
   );

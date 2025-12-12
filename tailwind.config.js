@@ -83,6 +83,7 @@ export default {
           error: "#8d0801",
           "neutral-content": "#dad8d7",
           "base-content": "#efeeeb",
+          neutral: "#151514",
           //   error: '#602b1f',
           //   success: '#2d8364',
         },
