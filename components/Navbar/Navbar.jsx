@@ -1,75 +1,76 @@
 "use client";
 
-import { motion, useScroll } from "framer-motion";
-import { GrContact } from "react-icons/gr";
+import { useFooter } from "@/components/Footer/FooterContext";
+import NavButton from "./NavButton";
+import ContactButton from "./ContactButton/ContactButton";
+import { motion } from "framer-motion";
+import { useState } from "react";
+import { useTransitionStore } from "@/hooks/transitionStore";
+import { GoPlus } from "react-icons/go";
+import { TiPlusOutline } from "react-icons/ti";
 
-import "./burger.css";
-import { useEffect, useState } from "react";
-
-const Sidebar = ({ goToSection, activeSection }) => {
-  const { scrollY } = useScroll();
-  const [hidden, setHidden] = useState(false);
-
-  function update() {
-    if (scrollY?.current < 200) {
-      setHidden(false);
-    } else if (scrollY?.current >= 200) {
-      setHidden(true);
-    }
-  }
-  useEffect(() => {
-    return scrollY.on("change", () => update());
-  });
-
-  const variants = {
-    visible: { opacity: 1, x: 0 },
-    hidden: { opacity: 0, x: -100 },
+const Navbar = () => {
+  const bgVariants = {
+    idle: {
+      y: "-140%",
+      transition: { duration: 0.43, ease: [0.8, 0, 0.2, 1] },
+    },
+    hover: { y: "0%", transition: { duration: 0.65, ease: [0.8, 0, 0.2, 1] } },
+  };
+  const labelVariants = {
+    idle: {
+      opacity: 0.6,
+      scale: 1,
+      transition: { duration: 0.43, ease: [0.8, 0, 0.2, 1] },
+    },
+    hover: {
+      opacity: 1,
+      scale: 1.04,
+      transition: { duration: 0.65, ease: [0.8, 0, 0.2, 1] },
+    },
   };
 
+  const { toggleFooter } = useFooter();
+
+  const triggerExit = useTransitionStore((state) => state.triggerExit);
+
   return (
-    <div className="fixed z-50 top-3 left-2 sm:top-10 sm:left-16">
-      <motion.div
-        layout
-        transition={{ delay: 0.2 }}
-        style={{ borderRadius: "90px" }}
-        className="relative flex flex-row items-center border-2 gap- bg-base-content"
-      >
-        <motion.div
-          layout="position"
-          onClick={() => setHidden(!hidden)}
-          className="relative z-50 px-3 py-3 cursor-pointer sm:py-5 sm:px-6"
-        >
-          <GrContact className="text-xl text-base-100 sm:text-3xl" />
-        </motion.div>
-        {!hidden && (
-          <motion.div className="flex flex-row gap-8 pl-4 pr-10 justify-evenly">
-            <motion.div
-              initial={{ opacity: 0, x: "-150%" }}
-              animate={{ opacity: 1, x: "0", transition: { delay: 0.4 } }}
-            >
-              <Social name="github" link="https://github.com/RaulVarza" />
-            </motion.div>
-            <motion.div
-              initial={{ opacity: 0, x: "-150%" }}
-              animate={{ opacity: 1, x: "0", transition: { delay: 0.5 } }}
-            >
-              <Social
-                name="instagram"
-                link="https://instagram.com/raulvarzar"
-              />{" "}
-            </motion.div>
-            <motion.div
-              initial={{ opacity: 0, x: "-150%" }}
-              animate={{ opacity: 1, x: "0", transition: { delay: 0.6 } }}
-            >
-              <Social name="behance" link="https://behance.net/varzarr" />{" "}
-            </motion.div>
-          </motion.div>
-        )}
-        {/* </AnimatePresence> */}
-      </motion.div>
-    </div>
+    <motion.nav
+      layout
+      className="fixed z-[99999] top-0 inset-x-0 flex items-center justify-end w-full gap-4 py-6 px-2 sm:px-4 lg:px-8 xl:py-8 3xl:py-10 mx-auto max-w-screen-3xl"
+    >
+      <NavButton label="My skills">
+        <TiPlusOutline />
+      </NavButton>
+      <NavButton label="Projects" onClick={() => triggerExit("/projects")}>
+        <TiPlusOutline />
+      </NavButton>
+      <ContactButton onClick={toggleFooter} />
+    </motion.nav>
   );
 };
 
-export default Sidebar;
+export default Navbar;
+
+export function SharedLayoutAnimation() {
+  const [selectedTab, setSelectedTab] = useState(tabs[0]);
+
+  return (
+    <nav style={nav}>
+      <ul style={tabsContainer}>
+        {tabs.map((item) => (
+          <motion.li key={item.label} onClick={() => setSelectedTab(item)}>
+            {`${item.icon} ${item.label}`}
+            {item === selectedTab ? (
+              <motion.div
+                style={underline}
+                layoutId="underline"
+                id="underline"
+              />
+            ) : null}
+          </motion.li>
+        ))}
+      </ul>
+    </nav>
+  );
+}

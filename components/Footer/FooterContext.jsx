@@ -8,8 +8,15 @@ export const FooterProvider = ({ children }) => {
   const [isOpen, setIsOpen] = useState(false);
   const openFooter = () => setIsOpen(true);
   const closeFooter = () => setIsOpen(false);
+
+  const toggleFooter = () => setIsOpen((prev) => !prev);
+
+  console.log("Footer open:", isOpen);
+
   return (
-    <FooterContext.Provider value={{ isOpen, openFooter, closeFooter }}>
+    <FooterContext.Provider
+      value={{ isOpen, openFooter, closeFooter, toggleFooter }}
+    >
       {children}
     </FooterContext.Provider>
   );

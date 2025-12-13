@@ -53,7 +53,7 @@ const ProjectCard = ({ project, projectIndex }) => {
     <motion.div
       ref={containerRef}
       style={{ opacity }}
-      className="flex items-center sticky top-[15vh] 2xl:top-[20vh] bg-base-100 w-full max-w-7xl overflow-hidden border-t border-opacity-20 border-base-content"
+      className="flex items-center  sticky top-[15vh] 2xl:top-[15vh] bg-base-100 w-full max-w-7xl overflow-hidden border-t border-opacity-20 border-base-content"
     >
       <motion.div
         style={{ opacity, scale, filter }}

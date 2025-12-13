@@ -1,7 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
+/* Roboto Mono is loaded using next/font in `app/layout.tsx` for optimal performance */
 * {
   margin: 0;
   padding: 0;
@@ -18,6 +18,20 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+.roboto {
+  /* Use the Roboto Mono font provided by next/font via CSS variable for better optimization */
+  font-family: var(--font-roboto), ui-monospace, "SFMono-Regular", Menlo, Monaco,
+    "Roboto", monospace;
+}
+
+@layer utilities {
+  /* Make a Tailwind-like utility class so you can use `className="roboto"` alongside other utilities */
+  .roboto {
+    font-family: var(--font-roboto), ui-monospace, "SFMono-Regular", Menlo,
+      Monaco, "Roboto", monospace;
+  }
 }
 
 /* Hide scrollbar for Chrome, Safari, Edge */

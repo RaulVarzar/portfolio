@@ -14,7 +14,7 @@ const HtmlElement = ({ tag, children, blur, variants, ...props }) => {
     >
       <span
         className={
-          "text-md md:text-lg xl:text-xl 2xl:text-3xl text-left ml-0 text-neutral-content w-fit opacity-25 transition-all duration-300 ease-[cubic-bezier(0.8, 0, 0.2, 1)] " +
+          "text-md md:text-lg xl:text-xl roboto 2xl:text-3xl text-left ml-0 text-neutral-content w-fit opacity-25 transition-all duration-300 ease-[cubic-bezier(0.8, 0, 0.2, 1)] " +
           (blur && " blur-xs scale-95")
         }
       >

@@ -1,10 +1,14 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Inter, Roboto_Mono } from "next/font/google";
 import { RootLayoutClient } from "./layout-client";
-import ScrollContext from "@/components/SmoothScroll";
 import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"] });
+const roboto = Roboto_Mono({
+  subsets: ["latin"],
+  weight: ["100", "200", "300", "400", "500", "600", "700"],
+  variable: "--font-roboto",
+});
 
 export const metadata: Metadata = {
   title: "Raul Vărzar - Web Designer & Developer",
@@ -18,8 +22,8 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={inter.className}>
-        <ScrollContext>{children}</ScrollContext>
+      <body className={`${inter.className} ${roboto.variable}`}>
+        <RootLayoutClient>{children}</RootLayoutClient>
       </body>
     </html>
   );

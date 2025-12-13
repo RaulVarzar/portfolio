@@ -11,7 +11,7 @@ const page = () => {
       className="relative"
     >
       <Projects />
-      <motion.div
+      {/* <motion.div
         className="absolute inset-0 bg-primary z-[99999]"
         initial={{ y: 0, transition: { duration: 0, delay: 0 } }}
         animate={{
@@ -22,7 +22,7 @@ const page = () => {
           y: 0,
           transition: { duration: 0.8, delay: 0, ease: [0.7, 0, 0.25, 1] },
         }}
-      ></motion.div>
+      ></motion.div> */}
     </motion.div>
   );
 };

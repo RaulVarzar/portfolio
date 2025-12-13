@@ -12,7 +12,6 @@ import Tilt from "react-parallax-tilt";
 import BubbleText from "@/components/BubbleText/BubbleText";
 import { Socials } from "@/components/Home/Socials";
 import useScreenSize from "@/hooks/useScreenSize";
-import BottomControls from "@/components/Home/BottomControls";
 
 const variants = {
   hide: { opacity: 0, x: -40 },
@@ -49,8 +48,6 @@ const Home = () => {
         className=" min-h-[100dvh] grid-bg sticky top-0 z-10 flex flex-col justify-center w-full grow  place-content-start"
         style={{ filter, y }}
       >
-        <BottomControls />
-
         <motion.div className="flex flex-col-reverse items-center justify-center h-full gap-4 px-2 border-t border-opacity-0 border-base-content sm:px-4 md:px-8 grow xl:flex-row ">
           <Tilt
             tiltReverse={true}
@@ -99,7 +96,7 @@ const HTMLText = ({ zoomInText }) => {
         <HtmlElement variants={variants} tag={"h1"} blur={zoomInText}>
           <motion.h3
             className={
-              "text-4xl font-bold roboto md:text-5xl lg:text-6xl xl:text-6xl 2xl:text-7xl 2xl:text-8xl 3xl:text-9xl z-50 text-neutral-content brightness-125 transition-all duration-500  ease-[cubic-bezier(.03,.98,.52,.99)] " +
+              "text-4xl font-bold roboto md:text-5xl tracking-tight lg:text-6xl xl:text-6xl 2xl:text-7xl 2xl:text-8xl 3xl:text-9xl z-50 text-neutral-content brightness-125 transition-all duration-500  ease-[cubic-bezier(.03,.98,.52,.99)] " +
               (zoomInText
                 ? " scale-115 font-bold opacity-100 brightness-125"
                 : " opacity-80")

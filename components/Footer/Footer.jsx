@@ -22,19 +22,30 @@ export default function Footer() {
     <AnimatePresence>
       {isOpen && (
         <motion.div
-          initial={{ y: "100%" }}
-          animate={{ y: 0 }}
-          exit={{ y: "100%" }}
-          transition={{ duration: 0.8, delay: 0.2, ease: [0.6, 0, 0.2, 1] }}
-          className="fixed inset-0  h-full z-[9999] flex items-center justify-center"
+          initial={{
+            y: "100%",
+          }}
+          animate={{
+            y: 0,
+            transition: {
+              duration: 1.05,
+              delay: 0.1,
+              ease: [0.75, 0, 0.25, 1],
+            },
+          }}
+          exit={{
+            y: "100%",
+            transition: { duration: 0.8, ease: [0.75, 0, 0.25, 1] },
+          }}
+          className="fixed inset-0  h-full z-[999] flex items-center justify-center"
         >
           {/* <div
             onClick={closeFooter}
             className="absolute inset-0 h-full bg-black/30 backdrop-blur-sm"
           /> */}
 
-          <motion.div className="absolute bottom-0 z-20 max-h-[85vh] overflow-auto rounded-t-sm bg-base-200  w-fit border-base-content border-opacity-10 border px-8 py-4 lg:px-12">
-            <div className="flex justify-end ">
+          <motion.div className="relative min-h-[100dvh] w-full bottom-0 -z-10 overflow-auto grid place-content-center  bg-base-300  px-8 py-4 lg:px-12">
+            {/* <div className="flex justify-end ">
               <button
                 onClick={closeFooter}
                 aria-label="Close"
@@ -42,7 +53,7 @@ export default function Footer() {
               >
                 Close
               </button>
-            </div>
+            </div> */}
 
             <div className="flex flex-col gap-8 mx-auto lg:flex-row w-fit">
               <div className="flex flex-col items-start justify-center w-full pb-6 gap-y-3 md:gap-y-6">

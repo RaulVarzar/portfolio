@@ -6,6 +6,15 @@ export default {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        roboto: [
+          "var(--font-roboto)",
+          "ui-monospace",
+          "SFMono-Regular",
+          "Menlo",
+          "monospace",
+        ],
+      },
       borderWidth: {
         1: "1px",
         3: "3px",
@@ -80,7 +89,7 @@ export default {
 
           // accent: "#311d6d",
           // accent: "#1c3738",
-          error: "#8d0801",
+          error: "#461816",
           "neutral-content": "#dad8d7",
           "base-content": "#efeeeb",
           neutral: "#151514",

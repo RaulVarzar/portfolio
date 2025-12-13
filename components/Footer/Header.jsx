@@ -5,10 +5,10 @@ import splitStringUsingRegex from "@/utils/splitString";
 
 import ChatIcon from "@/components/Footer/ChatIcon";
 
-const Header = ({ isInView }) => {
+const Header = ({}) => {
   const headerVariants = {
     visible: {
-      transition: { staggerChildren: 0.05, delayChildren: 0.2 },
+      transition: { staggerChildren: 0.05, delayChildren: 0.6 },
     },
   };
 
@@ -33,7 +33,8 @@ const Header = ({ isInView }) => {
     <motion.span
       variants={headerVariants}
       initial="hidden"
-      animate={isInView ? "visible" : "hidden"}
+      animate="visible"
+      exit="hidden"
       className="flex flex-row justify-center w-full px-0 overflow-hidden text-4xl tracking-tight uppercase md:justify-start sm:text-6xl md:text-7xl 2xl:text-8xl"
     >
       {TITLE.map((letter, i) => (
