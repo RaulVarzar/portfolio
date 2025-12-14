@@ -47,6 +47,7 @@ const Socials = ({ isInView }) => {
           className="xl:text-lg py-2 flex max-md:justify-between max-md:w-full md:py-2.5 border-1 px-5 !gap-6 font-light rounded-sm"
           color={"accent"}
           transitionAmount={3}
+          key={item.title}
         >
           <FaSquareGithub />
         </Button>

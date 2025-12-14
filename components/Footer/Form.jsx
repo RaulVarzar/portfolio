@@ -6,7 +6,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { BsChevronCompactDown } from "react-icons/bs";
 import InputField from "@/components/Footer/InputField";
 
-const Form = ({}) => {
+const Form = () => {
   const [error, setError] = useState(false);
   const [success, setSuccess] = useState(false);
   const [loading, setLoading] = useState(false);

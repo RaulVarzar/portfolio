@@ -51,26 +51,3 @@ const Navbar = () => {
 };
 
 export default Navbar;
-
-export function SharedLayoutAnimation() {
-  const [selectedTab, setSelectedTab] = useState(tabs[0]);
-
-  return (
-    <nav style={nav}>
-      <ul style={tabsContainer}>
-        {tabs.map((item) => (
-          <motion.li key={item.label} onClick={() => setSelectedTab(item)}>
-            {`${item.icon} ${item.label}`}
-            {item === selectedTab ? (
-              <motion.div
-                style={underline}
-                layoutId="underline"
-                id="underline"
-              />
-            ) : null}
-          </motion.li>
-        ))}
-      </ul>
-    </nav>
-  );
-}

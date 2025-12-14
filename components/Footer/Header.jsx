@@ -5,7 +5,7 @@ import splitStringUsingRegex from "@/utils/splitString";
 
 import ChatIcon from "@/components/Footer/ChatIcon";
 
-const Header = ({}) => {
+const Header = () => {
   const headerVariants = {
     visible: {
       transition: { staggerChildren: 0.035, delayChildren: 0.6 },

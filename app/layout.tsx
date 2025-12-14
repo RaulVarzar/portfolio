@@ -15,11 +15,7 @@ export const metadata: Metadata = {
   description: "Portfolio showcasing web design and development projects",
 };
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={`${inter.className} ${roboto.variable} bg-base-200`}>

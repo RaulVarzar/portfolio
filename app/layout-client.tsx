@@ -5,7 +5,7 @@ import ScrollContext from "@/components/SmoothScroll";
 import Navbar from "@/components/Navbar/Navbar";
 import Footer from "@/components/Footer/Footer";
 
-export function RootLayoutClient({ children }: { children: React.ReactNode }) {
+export function RootLayoutClient({ children }) {
   return (
     <FooterProvider>
       <ScrollContext>
