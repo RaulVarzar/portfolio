@@ -16,15 +16,9 @@ export default function RootPage() {
     skills.current?.scrollIntoView({ behavior: "smooth" });
   }
 
-  // const { isOpen: footerOpen } = useFooter();
-
   return (
     <PageTransitionAnimation>
-      <motion.div className="relative bg-base-100">
-        <Home />
-
-        {/* <Skills /> */}
-      </motion.div>
+      <Home />
     </PageTransitionAnimation>
   );
 }

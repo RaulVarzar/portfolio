@@ -4,10 +4,9 @@ import { motion, useInView, useScroll, useTransform } from "framer-motion";
 import { useRef, useEffect } from "react";
 import Title from "@/components/Projects/ProjectTitle";
 import Description from "@/components/Projects/ProjectDescription";
-import Button from "@/components/Projects/Button";
+import Button from "@/components/Button";
 import { IoLogoGithub } from "react-icons/io5";
-import { FaExternalLinkAlt } from "react-icons/fa";
-import { RxExternalLink } from "react-icons/rx";
+
 import { HiOutlineExternalLink } from "react-icons/hi";
 
 const ProjectCard = ({ project, projectIndex }) => {

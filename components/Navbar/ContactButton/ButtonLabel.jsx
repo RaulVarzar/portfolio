@@ -28,7 +28,11 @@ const ButtonLabel = ({ isOpen }) => {
       {/* Render both labels, only one visible at a time, to keep width stable */}
       <motion.span
         className="absolute -translate-x-1/2 -translate-y-1/2 pointer-events-none select-none left-1/2 top-1/2"
-        animate={{ opacity: isOpen ? 0 : 1 }}
+        animate={
+          isOpen
+            ? { opacity: 0, transition: { delay: 0 } }
+            : { opacity: 1, transition: { delay: 0.5 } }
+        }
         transition={{ duration: 0.4, ease: [0.75, 0, 0.25, 1] }}
         aria-hidden={isOpen}
       >
@@ -36,7 +40,11 @@ const ButtonLabel = ({ isOpen }) => {
       </motion.span>
       <motion.span
         className="absolute -translate-x-1/2 -translate-y-1/2 pointer-events-none select-none left-1/2 top-1/2"
-        animate={{ opacity: isOpen ? 1 : 0 }}
+        animate={
+          isOpen
+            ? { opacity: 1, transition: { delay: 0.5 } }
+            : { opacity: 0, transition: { delay: 0 } }
+        }
         transition={{ duration: 0.4, ease: [0.75, 0, 0.25, 1] }}
         aria-hidden={!isOpen}
       >

@@ -22,7 +22,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={`${inter.className} ${roboto.variable}`}>
+      <body className={`${inter.className} ${roboto.variable} bg-base-200`}>
         <RootLayoutClient>{children}</RootLayoutClient>
       </body>
     </html>

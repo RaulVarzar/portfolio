@@ -26,7 +26,7 @@ const InputField = ({
       className="relative"
     >
       <label className="flex flex-col w-full px-0 py-1">
-        <span className="mb-2 text-sm font-medium md:text-md text-neutral-content opacity-90">
+        <span className="mb-1 text-sm font-medium uppercase md:text-base text-neutral-content opacity-90">
           {label}
         </span>
         {isTextarea ? (

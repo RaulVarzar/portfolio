@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { FaSquareGithub, FaSquareInstagram } from "react-icons/fa6";
 import { FaBehanceSquare } from "react-icons/fa";
+import Button from "@/components/Button";
 
 const Socials = ({ isInView }) => {
   const variants = {
@@ -37,22 +38,18 @@ const Socials = ({ isInView }) => {
       variants={variants}
       initial="hidden"
       animate={isInView ? "visible" : "hidden"}
-      className="flex flex-row justify-start gap-3 mx-auto text-base font-light w-fit md:w-full md:gap-4 max-md:text-center md:flex-row md:text-lg lg:text-xl text-neutral-content"
+      className="flex flex-col gap-1.5 xl:gap-3 max-lg:mx-auto text-base font-light max-md:items-stretch md:flex-row w-fit max-md:text-center md:text-lg lg:text-xl text-neutral-content"
     >
       {SOCIALS.map((item) => (
-        <motion.li
-          key={item.link}
-          variants={childrenVariants}
-          href={item.link}
-          className="relative flex flex-row items-center justify-center gap-3 px-4 py-3 overflow-hidden border-2 rounded-full cursor-pointer border-opacity- sm:px-4 md:px-6 xl:px-8 md:py-6 group border-base-content text-neutral-content "
+        <Button
+          label={item.title}
+          link={item.link}
+          className="xl:text-lg py-2 flex max-md:justify-between max-md:w-full md:py-2.5 border-1 px-5 !gap-6 font-light rounded-sm"
+          color={"accent"}
+          transitionAmount={3}
         >
-          <div className="absolute inset-0 w-full h-full transition-transform duration-300 translate-y-full bg-opacity-25 group-hover:translate-y-0 bg-secondary -z-10 ease-[cubic-bezier(0.7,0,0.25,1)]"></div>
-
-          <motion.span className="leading-none transition-all duration-500 max-sm:hidden">
-            {item.title}
-          </motion.span>
           <FaSquareGithub />
-        </motion.li>
+        </Button>
       ))}
       {/* <FaSquareGithub />
       <FaBehanceSquare />

@@ -39,31 +39,14 @@ export default function Footer() {
           }}
           className="fixed inset-0  h-full z-[999] flex items-center justify-center"
         >
-          {/* <div
-            onClick={closeFooter}
-            className="absolute inset-0 h-full bg-black/30 backdrop-blur-sm"
-          /> */}
-
-          <motion.div className="relative min-h-[100dvh] w-full bottom-0 -z-10 overflow-auto grid place-content-center  bg-base-300  px-8 py-4 lg:px-12">
-            {/* <div className="flex justify-end ">
-              <button
-                onClick={closeFooter}
-                aria-label="Close"
-                className="px-3 py-1 text-sm border rounded"
-              >
-                Close
-              </button>
-            </div> */}
-
-            <div className="flex flex-col gap-8 mx-auto lg:flex-row w-fit">
+          <motion.div className="relative min-h-[100dvh] w-full bottom-0 -z-10 overflow-auto grid place-content-center bg-base-200 px-8 py-4 lg:px-12">
+            <div className="flex flex-col items-start gap-8 mx-auto xl:flex-row w-fit">
               <div className="flex flex-col items-start justify-center w-full pb-6 gap-y-3 md:gap-y-6">
-                <Header isInView={true} />
-                <Socials isInView={true} />
+                <Header />
+                <Socials />
               </div>
 
-              <div className="flex-1">
-                <Form isInView={true} closeForm={closeFooter} />
-              </div>
+              <Form closeForm={closeFooter} />
             </div>
           </motion.div>
         </motion.div>

@@ -8,7 +8,7 @@ import ChatIcon from "@/components/Footer/ChatIcon";
 const Header = ({}) => {
   const headerVariants = {
     visible: {
-      transition: { staggerChildren: 0.05, delayChildren: 0.6 },
+      transition: { staggerChildren: 0.035, delayChildren: 0.6 },
     },
   };
 
@@ -27,7 +27,7 @@ const Header = ({}) => {
     },
   };
 
-  const TITLE = splitStringUsingRegex("Let's  talk");
+  const TITLE = splitStringUsingRegex("Let's  talk!");
 
   return (
     <motion.span
@@ -40,7 +40,7 @@ const Header = ({}) => {
       {TITLE.map((letter, i) => (
         <motion.h1
           variants={letterVariants}
-          className="pr-0.5 font-black md:font-bold leading-none min-w-2 md:min-w-3 xl:min-w-5"
+          className="pr-0.5 font-black text-neutral-content leading-none min-w-2 md:min-w-3 xl:min-w-5"
           key={i}
         >
           {letter}

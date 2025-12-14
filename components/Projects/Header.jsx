@@ -2,7 +2,7 @@
 
 import { motion, useInView, useTransform } from "framer-motion";
 import { useRef } from "react";
-import Button from "@/components/Projects/Button";
+import Button from "@/components/Button";
 import { GoArrowUpRight } from "react-icons/go";
 
 const Header = ({ trackedRef, progress }) => {

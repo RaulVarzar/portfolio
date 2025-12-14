@@ -6,7 +6,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { BsChevronCompactDown } from "react-icons/bs";
 import InputField from "@/components/Footer/InputField";
 
-const Form = ({ isInView }) => {
+const Form = ({}) => {
   const [error, setError] = useState(false);
   const [success, setSuccess] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -80,17 +80,17 @@ const Form = ({ isInView }) => {
         onSubmit={sendEmail}
         className="flex flex-col justify-center w-full mx-auto"
       >
-        <motion.div className="flex flex-col gap-8 w-full  px-10 py-12 lg:min-w-[500px] xl:min-w-[540px] ">
+        <motion.div className="flex flex-col gap-8 w-full  px-10  lg:min-w-[500px] xl:min-w-[540px] ">
           <div className="flex flex-col justify-between w-full gap-2 md:gap-3 lg:gap-4 ">
             <InputField
               label="Name"
               name="name"
               value={name}
               onChange={(e) => setName(e.target.value)}
-              placeholder="Your name"
+              placeholder="John Doe"
               variants={variants}
               initial="hidden"
-              animate={isInView ? "visible" : "hidden"}
+              animate="visible"
               custom={0}
             />
 
@@ -103,7 +103,7 @@ const Form = ({ isInView }) => {
               type="email"
               variants={variants}
               initial="hidden"
-              animate={isInView ? "visible" : "hidden"}
+              animate="visible"
               custom={1}
             />
 
@@ -117,7 +117,7 @@ const Form = ({ isInView }) => {
               rows={6}
               variants={variants}
               initial="hidden"
-              animate={isInView ? "visible" : "hidden"}
+              animate="visible"
               custom={2}
             />
           </div>
@@ -127,7 +127,7 @@ const Form = ({ isInView }) => {
               variants={variants}
               initial="hidden"
               custom={3}
-              animate={isInView ? "visible" : "hidden"}
+              animate="visible"
             >
               <SubmitButton loading={loading} />
             </motion.div>

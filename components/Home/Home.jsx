@@ -1,17 +1,13 @@
 "use client";
 
-import {
-  motion,
-  useMotionTemplate,
-  useScroll,
-  useTransform,
-} from "framer-motion";
+import { motion } from "framer-motion";
 import HtmlElement from "@/components/Home/HtmlElement";
-import { useRef, useState } from "react";
+import { useState } from "react";
 import Tilt from "react-parallax-tilt";
 import BubbleText from "@/components/BubbleText/BubbleText";
 import { Socials } from "@/components/Home/Socials";
 import useScreenSize from "@/hooks/useScreenSize";
+import { useFooter } from "@/components/Footer/FooterContext";
 
 const variants = {
   hide: { opacity: 0, x: -40 },
@@ -28,27 +24,42 @@ const variants = {
 };
 
 const Home = () => {
+  const { isOpen } = useFooter();
+
   const screenSize = useScreenSize();
 
   const [zoomInText, setZoomInText] = useState(false);
-  const scrollProgressRef = useRef(null);
-  const { scrollYProgress } = useScroll({
-    target: scrollProgressRef,
-    offset: ["start end", "end start"],
-  });
-
-  const brightnessRaw = useTransform(scrollYProgress, [0.1, 0.5], [0, 5]);
-  const filter = useMotionTemplate`blur(${brightnessRaw}px)`;
-
-  const y = useTransform(scrollYProgress, [0, 1], ["0vh", "-10vh"]);
 
   return (
     <>
-      <motion.section
-        className=" min-h-[100dvh] grid-bg sticky top-0 z-10 flex flex-col justify-center w-full grow  place-content-start"
-        style={{ filter, y }}
-      >
-        <motion.div className="flex flex-col-reverse items-center justify-center h-full gap-4 px-2 border-t border-opacity-0 border-base-content sm:px-4 md:px-8 grow xl:flex-row ">
+      <motion.section className=" min-h-[100dvh] grid-bg sticky top-0 z-10 flex flex-col justify-center w-full grow bg-base-200  place-content-start">
+        <motion.div
+          initial={{ y: 0, opacity: 1 }}
+          animate={
+            isOpen
+              ? {
+                  y: "10%",
+
+                  rotate: 0,
+                  scale: 0.98,
+                  opacity: 0.4,
+                  transition: { duration: 1, ease: [0.75, 0, 0.25, 1] },
+                }
+              : {
+                  y: 0,
+                  opacity: 1,
+                  scale: 1,
+
+                  rotate: 0,
+                  transition: {
+                    duration: 0.95,
+
+                    ease: [0.75, 0, 0.25, 1],
+                  },
+                }
+          }
+          className="flex flex-col-reverse items-center justify-center h-full gap-4 px-2 mx-auto sm:max-w-xl md:max-w-2xl lg:max-w-3xl xl:max-w-screen-3xl xl:px-20 sm:px-4 md:px-8 grow xl:flex-row "
+        >
           <Tilt
             tiltReverse={true}
             transitionEasing="cubic-bezier(.03,.98,.52,.99)"
@@ -64,8 +75,6 @@ const Home = () => {
         </motion.div>
         <Socials />
       </motion.section>
-
-      <div ref={scrollProgressRef} className="relative h-0"></div>
     </>
   );
 };

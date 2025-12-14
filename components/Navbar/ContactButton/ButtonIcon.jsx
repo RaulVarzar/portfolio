@@ -15,12 +15,12 @@ const ButtonIcon = ({ isOpen }) => {
             ? {
                 opacity: 0,
                 y: "-120%",
-                transition: { duration: 0.7, ease: [0.95, 0, 0.25, 1] },
+                transition: { duration: 0.5, ease: [0.95, 0, 0.25, 1] },
               }
             : {
                 opacity: 1,
                 y: "0%",
-                transition: { duration: 0.7, ease: [0.75, 0, 0.25, 1] },
+                transition: { duration: 0.5, ease: [0.75, 0, 0.25, 1] },
               }
         }
         className="absolute inset-0 flex items-center justify-center"
@@ -34,12 +34,12 @@ const ButtonIcon = ({ isOpen }) => {
             ? {
                 opacity: 0,
                 y: "120%",
-                transition: { duration: 0.7, ease: [0.75, 0, 0.25, 1] },
+                transition: { duration: 0.5, ease: [0.75, 0, 0.25, 1] },
               }
             : {
                 opacity: 1,
                 y: "0%",
-                transition: { duration: 0.7, ease: [0.95, 0, 0.25, 1] },
+                transition: { duration: 0.5, ease: [0.95, 0, 0.25, 1] },
               }
         }
         className="absolute inset-0 flex items-center justify-center text-base"

@@ -4,7 +4,7 @@ import { motion, useScroll } from "framer-motion";
 import { useEffect, useState } from "react";
 import { FaSquareGithub, FaSquareInstagram } from "react-icons/fa6";
 import { FaBehanceSquare } from "react-icons/fa";
-import Button from "@/components/Projects/Button";
+import Button from "@/components/Button";
 import { BiLogoInstagram } from "react-icons/bi";
 import { BsBehance } from "react-icons/bs";
 import { IoLogoGithub } from "react-icons/io5";
