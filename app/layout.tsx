@@ -1,4 +1,3 @@
-import type { Metadata } from "next";
 import { Inter, Roboto_Mono } from "next/font/google";
 import { RootLayoutClient } from "./layout-client";
 import "./globals.css";
@@ -10,7 +9,7 @@ const roboto = Roboto_Mono({
   variable: "--font-roboto",
 });
 
-export const metadata: Metadata = {
+export const metadata = {
   title: "Raul Vărzar - Web Designer & Developer",
   description: "Portfolio showcasing web design and development projects",
 };
