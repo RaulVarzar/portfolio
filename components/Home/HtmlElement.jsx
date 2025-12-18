@@ -23,8 +23,7 @@ const HtmlElement = ({ tag, children, zoomInText, variants, ...props }) => {
       <motion.div
         // variants={variants}
         className={
-          " flex flex-col gap-2 ml-4 md:ml-6 2xl:ml-7 text-lg md:text-xl lg:text-2xl  xl:text-3xl 2xl:text-4xl z-50 text-neutral-content transition-all duration-500 ease-[cubic-bezier(.03,.98,.52,.99)]  " +
-          (zoomInText ? " scale-115 opacity-100" : " opacity-60")
+          " flex flex-col gap-2 ml-4 md:ml-6 2xl:ml-7 text-lg md:text-xl lg:text-2xl  xl:text-3xl 2xl:text-4xl z-50 text-neutral-content transition-all duration-500 ease-[cubic-bezier(.03,.98,.52,.99)]  "
         }
       >
         {children}

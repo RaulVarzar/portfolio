@@ -28,6 +28,12 @@
       }
     ]
   },
-  "include": ["**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "app/layout.tsx"],
+  "include": [
+    "**/*.ts",
+    "**/*.tsx",
+    ".next/types/**/*.ts",
+    "app/layout.tsx",
+    "app/providers/LenisProvider.jsx"
+  ],
   "exclude": ["node_modules"]
 }

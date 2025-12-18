@@ -12,6 +12,7 @@ import { FaRegEnvelope } from "react-icons/fa";
 import { MdOutlineMailOutline } from "react-icons/md";
 import { FaRegEnvelopeOpen } from "react-icons/fa";
 import { RiMailSendLine } from "react-icons/ri";
+import { usePageAnimation } from "@/hooks/usePageAnimation";
 
 const variants = {
   hidden: { opacity: 0, y: "-150%", scale: 0.85, transition: { delay: 0 } },
@@ -62,6 +63,24 @@ const variants3 = {
 };
 
 export const Socials = () => {
+  const controls = usePageAnimation({
+    initial: { opacity: 0, y: 120, scale: 0.95 },
+    enter: {
+      opacity: 1,
+      y: 0,
+      scale: 1,
+      transition: {
+        delay: 0.6,
+        duration: 0.95,
+        ease: [0.75, 0, 0.25, 1],
+      },
+    },
+    exit: {
+      opacity: 0,
+      y: 100,
+      transition: { duration: 0.25, ease: "easeIn" },
+    },
+  });
   const { scrollY } = useScroll();
   const [hidden, setHidden] = useState(false);
   const [hovering, setHovering] = useState(null);
@@ -78,7 +97,10 @@ export const Socials = () => {
   });
 
   return (
-    <div className="inset-0 flex flex-row gap-2 py-8 mx-auto tracking-tighter md:gap-3 2xl:gap-4 lg:py-10 w-fit h-fit">
+    <motion.div
+      animate={controls}
+      className="inset-0 flex flex-row gap-2 py-8 mx-auto tracking-tighter md:gap-3 2xl:gap-4 lg:py-10 w-fit h-fit"
+    >
       <SocialLink
         link={"https://github.com/RaulVarzar"}
         title={"github"}
@@ -122,10 +144,7 @@ export const Socials = () => {
       >
         <MdOutlineMailOutline />
       </SocialLink>
-      {/* <Button label={"github"} className={"!py-0 2xl:py-0"}>
-        <FaSquareGithub />
-      </Button> */}
-    </div>
+    </motion.div>
   );
 };
 

@@ -2,9 +2,10 @@
 
 import { motion } from "framer-motion";
 import { useFooter } from "@/components/Footer/FooterContext";
+import TransitionLink from "../TransitionLink";
 
-const ControlButton = ({ label, onClick, className = "", children }) => {
-  const { closeFooter, isOpen } = useFooter();
+const ControlButton = ({ label, link, className = "", children }) => {
+  const { isOpen } = useFooter();
   const bgVariants = {
     idle: {
       y: "102%",
@@ -46,28 +47,26 @@ const ControlButton = ({ label, onClick, className = "", children }) => {
             }
       }
     >
-      <motion.button
-        initial="idle"
-        whileHover="hover"
-        animate="idle"
-        onClick={() => {
-          closeFooter();
-          onClick?.();
-        }}
-        className={`relative flex flex-row uppercase items-center border-b  overflow-hidden tracking-wide  text-neutral-content font-medium  pr-2 pl-3 py-1.5 md:py-2 gap-0.5 border-neutral-content border- border-opacity-15 w-fit  ${className}`}
-      >
-        <motion.p
-          className="z-10 text-[0.85rem] lg:text-base  "
-          variants={labelVariants}
+      <TransitionLink href={link}>
+        <motion.button
+          initial="idle"
+          whileHover="hover"
+          animate="idle"
+          className={`relative flex flex-row uppercase items-center border-b  overflow-hidden tracking-wide  text-neutral-content font-medium  pr-2 pl-3 py-1.5 md:py-2 gap-0.5 border-neutral-content border- border-opacity-15 w-fit  ${className}`}
         >
-          {label}
-        </motion.p>
-        {children && (
-          <span className="z-10 grid p-2 text-sm rounded-sm place-content-center backdrop-brightness-150">
-            {children}
-          </span>
-        )}
-      </motion.button>
+          <motion.p
+            className="z-10 text-[0.85rem] lg:text-base  "
+            variants={labelVariants}
+          >
+            {label}
+          </motion.p>
+          {children && (
+            <span className="z-10 grid p-2 text-sm rounded-sm place-content-center backdrop-brightness-150">
+              {children}
+            </span>
+          )}
+        </motion.button>
+      </TransitionLink>
     </motion.div>
   );
 };

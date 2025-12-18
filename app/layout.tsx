@@ -23,3 +23,15 @@ export default function RootLayout({ children }) {
     </html>
   );
 }
+
+// export default function RootLayout({ children }) {
+//   return (
+//     <html lang="en">
+//       <body className={`${inter.className} ${roboto.variable}   `}>
+//         <TransitionProvider>
+//           <LenisProvider>{children}</LenisProvider>
+//         </TransitionProvider>
+//       </body>
+//     </html>
+//   );
+// }

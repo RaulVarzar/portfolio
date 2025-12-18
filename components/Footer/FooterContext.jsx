@@ -11,8 +11,6 @@ export const FooterProvider = ({ children }) => {
 
   const toggleFooter = () => setIsOpen((prev) => !prev);
 
-  console.log("Footer open:", isOpen);
-
   return (
     <FooterContext.Provider
       value={{ isOpen, openFooter, closeFooter, toggleFooter }}
