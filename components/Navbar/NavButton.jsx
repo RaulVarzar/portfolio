@@ -54,13 +54,16 @@ const ControlButton = ({ label, onClick, className = "", children }) => {
           closeFooter();
           onClick?.();
         }}
-        className={`relative flex flex-row uppercase items-center   overflow-hidden tracking-wide  text-neutral-content font-medium  pr-2 pl-3 py-1.5 md:py-2 gap-1.5 border-base-content border- border-opacity-15 w-fit  text-[0.85rem]  ${className}      }`}
+        className={`relative flex flex-row uppercase items-center border-b  overflow-hidden tracking-wide  text-neutral-content font-medium  pr-2 pl-3 py-1.5 md:py-2 gap-0.5 border-neutral-content border- border-opacity-15 w-fit  ${className}`}
       >
-        <motion.p className="z-10" variants={labelVariants}>
+        <motion.p
+          className="z-10 text-[0.85rem] lg:text-base  "
+          variants={labelVariants}
+        >
           {label}
         </motion.p>
         {children && (
-          <span className="z-10 grid p-2 text-xs rounded-sm place-content-center backdrop-brightness-150">
+          <span className="z-10 grid p-2 text-sm rounded-sm place-content-center backdrop-brightness-150">
             {children}
           </span>
         )}

@@ -6,18 +6,29 @@ import { useFooter } from "../../Footer/FooterContext";
 import ButtonLabel from "./ButtonLabel";
 import ButtonIcon from "./ButtonIcon";
 
-const ControlButton = ({ onClick }) => {
-  const bgVariants = {
-    idle: {
-      y: "102%",
-      transition: { duration: 0.43, ease: [0.75, 0, 0.25, 1] },
-    },
-    hover: {
-      y: "0%",
-      transition: { duration: 0.65, ease: [0.75, 0, 0.25, 1] },
-    },
-  };
+const buttonVariants = {
+  idle: {
+    scale: 1,
+    transition: { duration: 0.45, ease: [0.75, 0, 0.25, 1] },
+  },
+  hover: {
+    scale: 1.05,
+    transition: { duration: 0.65, ease: [0.75, 0, 0.25, 1] },
+  },
+};
 
+const bgVariants = {
+  idle: {
+    y: "102%",
+    transition: { duration: 0.45, ease: [0.75, 0, 0.25, 1] },
+  },
+  hover: {
+    y: "0%",
+    transition: { duration: 0.65, ease: [0.75, 0, 0.25, 1] },
+  },
+};
+
+const ControlButton = ({ onClick }) => {
   const { isOpen } = useFooter();
 
   return (
@@ -25,8 +36,9 @@ const ControlButton = ({ onClick }) => {
       initial="idle"
       whileHover="hover"
       animate="idle"
+      variants={buttonVariants}
       onClick={onClick}
-      className="relative flex flex-row uppercase items-center   overflow-hidden tracking-wide   w-fit  text-[0.85rem]  rounded-sm       text-base-content font-semibold text-opacity-100 bg-neutral gap-2.5 px-3.5 py-1.5 md:py-2 "
+      className="relative flex flex-row uppercase items-center   overflow-hidden tracking-wide   w-fit    rounded-sm       text-base-content font-semibold text-opacity-100 bg-neutral gap-2.5 lg:gap-4 px-3.5 lg:pl-6 lg:pr-4 py-1.5 lg:py-3 "
     >
       <ButtonLabel isOpen={isOpen} />
 

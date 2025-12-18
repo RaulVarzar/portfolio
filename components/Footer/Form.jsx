@@ -169,7 +169,7 @@ const SubmitButton = ({ loading }) => {
       initial="idle"
       animate="idle"
       whileHover="hover"
-      className="relative z-40 w-full px-6 py-3 mx-auto mt-2 overflow-hidden transition-colors duration-200 bg-transparent border rounded-sm border-base-content border-opacity-10 hover:border-opacity-5 text-neutral-content"
+      className="relative z-40 w-full px-6 py-3 mx-auto overflow-hidden transition-colors duration-200 bg-transparent border rounded-sm border-base-content border-opacity-10 hover:border-opacity-5 text-neutral-content"
     >
       {!loading && (
         <div className="flex flex-row items-center justify-center gap-3 ">

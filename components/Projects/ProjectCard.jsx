@@ -32,6 +32,9 @@ const ProjectCard = ({ project, projectIndex }) => {
   });
 
   // wire next sibling DOM node to nextRef (useScroll accepts a ref or element)
+
+  // Track if there is a next sibling (for last card, no exit animation)
+  const hasNext = !!containerRef.current?.nextElementSibling;
   useEffect(() => {
     if (!containerRef.current) return;
     nextRef.current = containerRef.current.nextElementSibling;
@@ -51,11 +54,11 @@ const ProjectCard = ({ project, projectIndex }) => {
   return (
     <motion.div
       ref={containerRef}
-      style={{ opacity }}
+      style={hasNext ? { opacity } : {}}
       className="flex items-center  sticky top-[15vh] 2xl:top-[15vh] bg-base-100 w-full max-w-7xl overflow-hidden border-t border-opacity-20 border-base-content"
     >
       <motion.div
-        style={{ opacity, scale, filter }}
+        style={hasNext ? { opacity, scale, filter } : {}}
         className="relative grid justify-between grid-cols-12 p-0 py-8 mx-auto overflow-hidden origin-top md:py-12 lg:py-16 xl:py-20 2xl:py-28 gap-x-4 h-fit group "
       >
         <span className="col-span-1 text-2xl xl:text-3xl text-neutral-content opacity-60">

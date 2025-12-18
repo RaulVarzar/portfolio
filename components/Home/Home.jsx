@@ -32,7 +32,16 @@ const Home = () => {
 
   return (
     <>
-      <motion.section className=" min-h-[100dvh] grid-bg sticky top-0 z-10 flex flex-col justify-center w-full grow bg-base-200  place-content-start">
+      <motion.section
+        // exit={{ opacity: 0 }}
+        // transition={{ duration: 1 }}
+        exit={{
+          y: "-100vh",
+          opacity: 0.9,
+          transition: { duration: 0.6, ease: [0.75, 0, 0.25, 1] },
+        }}
+        className=" min-h-[100dvh] bg-base-100 grid-bg z-10 flex flex-col justify-center w-full grow  place-content-start"
+      >
         <motion.div
           initial={{ y: 0, opacity: 1 }}
           animate={
@@ -62,15 +71,19 @@ const Home = () => {
         >
           <Tilt
             tiltReverse={true}
-            transitionEasing="cubic-bezier(.03,.98,.52,.99)"
-            tiltMaxAngleX={4}
-            tiltMaxAngleY={3}
+            // transitionEasing="cubic-bezier(.75,.1,.25,1)"
+            tiltMaxAngleX={6}
+            tiltMaxAngleY={6}
+            reset={false}
             perspective={2000}
+            transitionSpeed={2}
+            // trackOnWindow={true}
             onEnter={() => screenSize.width > 1080 && setZoomInText(true)}
             onLeave={() => setZoomInText(false)}
           >
             <HTMLText zoomInText={zoomInText} />
           </Tilt>
+
           <ProfilePhoto />
         </motion.div>
         <Socials />
@@ -85,30 +98,19 @@ const HTMLText = ({ zoomInText }) => {
     <motion.div className="relative flex flex-col max-w-3xl gap-0 py-2 roboto md:max-w-4xl 2xl:max-w-6xl sm:px-4 max-sm:pl-3 md:pr-12 md:pl-10 h-fit xl:pl-12 xl:pr-16 2xl:pr-20 ">
       <HtmlElement
         tag={"header"}
-        blur={zoomInText}
+        zoomInText={zoomInText}
         variants={variants}
         animate="show"
         initial="hide"
+        // exit="hide"
       >
-        <HtmlElement tag={"h3"} blur={zoomInText} variants={variants}>
-          <motion.h3
-            className={
-              "text-lg md:text-xl lg:text-2xl  xl:text-3xl 2xl:text-4xl opacity-60 z-50 text-neutral-content transition-all duration-500 ease-[cubic-bezier(.03,.98,.52,.99)]  " +
-              (zoomInText
-                ? " scale-110 font-semibold opacity-100"
-                : " opacity-60")
-            }
-          >
-            Hello, my name is
-          </motion.h3>
+        <HtmlElement tag={"h3"} zoomInText={zoomInText} variants={variants}>
+          <motion.h3>Hello, my name is</motion.h3>
         </HtmlElement>
-        <HtmlElement variants={variants} tag={"h1"} blur={zoomInText}>
+        <HtmlElement variants={variants} tag={"h1"} zoomInText={zoomInText}>
           <motion.h3
             className={
-              "text-4xl font-bold roboto md:text-5xl tracking-tight lg:text-6xl xl:text-6xl 2xl:text-7xl 2xl:text-8xl 3xl:text-9xl z-50 text-neutral-content brightness-125 transition-all duration-500  ease-[cubic-bezier(.03,.98,.52,.99)] " +
-              (zoomInText
-                ? " scale-115 font-bold opacity-100 brightness-125"
-                : " opacity-80")
+              "text-4xl font-bold roboto md:text-5xl tracking-tight lg:text-6xl xl:text-6xl 2xl:text-7xl 2xl:text-8xl 3xl:text-9xl z-50 text-neutral-content brightness-125 transition-all duration-500  ease-[cubic-bezier(.03,.98,.52,.99)] "
             }
           >
             Raul Vărzar
@@ -116,10 +118,11 @@ const HTMLText = ({ zoomInText }) => {
         </HtmlElement>
       </HtmlElement>
       <HtmlElement
-        blur={zoomInText}
+        zoomInText={zoomInText}
         tag={"p"}
         animate="show"
         initial="hide"
+        // exit="hide"
         variants={variants}
       >
         <motion.h3

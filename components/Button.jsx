@@ -99,7 +99,7 @@ const Button = ({
     },
   };
 
-  const defaultClasses = `flex relative overflow-hidden items-center gap-6 px-0.5 py-2  text-sm sm:text-base xl:text-md  font-normal tracking-wide uppercase border-b cursor-pointer  md:gap-10 xl:gap-20 2xl:gap-24 border-primary-content !border-opacity-20  w-fit text-neutral-content`;
+  const defaultClasses = `flex relative overflow-hidden items-center gap-6 px-0.5 py-2  text-sm sm:text-base xl:text-md  font-normal tracking-wide uppercase border-b cursor-pointer  md:gap-10 xl:gap-20 2xl:gap-24 border-primary-content !border-opacity-10  w-fit text-neutral-content`;
 
   return (
     <motion.a

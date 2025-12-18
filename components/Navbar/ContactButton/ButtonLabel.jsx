@@ -3,12 +3,12 @@ import { motion } from "framer-motion";
 const labelVariants = {
   idle: {
     opacity: 0.8,
-    scale: 1,
+
     transition: { duration: 0.5, ease: [0.8, 0, 0.2, 1] },
   },
   hover: {
     opacity: 1,
-    scale: 1.02,
+    filter: "brightness(150%)",
     transition: { duration: 0.4, ease: [0.8, 0, 0.2, 1] },
   },
 };
@@ -22,7 +22,7 @@ const ButtonLabel = ({ isOpen }) => {
         transition: { duration: 0.2, delay: 0.1, ease: [0.75, 0, 0.25, 1] },
       }}
       key={isOpen}
-      className="relative z-10 flex items-center px-10 whitespace-nowrap"
+      className="relative z-10 flex items-center px-10 text-[0.85rem] lg:text-base whitespace-nowrap"
       variants={labelVariants}
     >
       {/* Render both labels, only one visible at a time, to keep width stable */}

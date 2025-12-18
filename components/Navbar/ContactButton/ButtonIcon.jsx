@@ -2,10 +2,23 @@ import { motion } from "framer-motion";
 import { BsSendFill } from "react-icons/bs";
 import { AiOutlineClose } from "react-icons/ai";
 
+const iconVariants = {
+  idle: {
+    opacity: 0.8,
+    scale: 1,
+    transition: { duration: 0.45, ease: [0.75, 0, 0.25, 1] },
+  },
+  hover: {
+    opacity: 1,
+    scale: 1.15,
+    transition: { duration: 0.55, delay: 0.1, ease: [0.75, 0, 0.25, 1] },
+  },
+};
+
 const ButtonIcon = ({ isOpen }) => {
   return (
     <motion.span
-      layout
+      variants={iconVariants}
       className="relative z-10 pl-3.5 pr-4 py-3.5 text-xs rounded-sm backdrop-brightness-150 overflow-hidden"
     >
       <motion.span
