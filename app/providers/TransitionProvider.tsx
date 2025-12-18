@@ -1,7 +1,7 @@
 "use client";
 
 import { createContext, useContext, useRef } from "react";
-import type Lenis from "lenis";
+import Lenis from "lenis";
 
 const TransitionContext = createContext<{
   register: (fn: () => Promise<void>) => () => void;
