@@ -1,6 +1,7 @@
 import { Inter, Roboto_Mono } from "next/font/google";
 import { RootLayoutClient } from "./layout-client";
 import "./globals.css";
+import { LenisProvider } from "./lib/lenis";
 
 const inter = Inter({ subsets: ["latin"] });
 const roboto = Roboto_Mono({
@@ -17,21 +18,9 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={`${inter.className} ${roboto.variable}   `}>
+      <body className={`${inter.className} ${roboto.variable}`}>
         <RootLayoutClient>{children}</RootLayoutClient>
       </body>
     </html>
   );
 }
-
-// export default function RootLayout({ children }) {
-//   return (
-//     <html lang="en">
-//       <body className={`${inter.className} ${roboto.variable}   `}>
-//         <TransitionProvider>
-//           <LenisProvider>{children}</LenisProvider>
-//         </TransitionProvider>
-//       </body>
-//     </html>
-//   );
-// }

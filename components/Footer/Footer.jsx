@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useEffect } from "react";
+import { useEffect } from "react";
 import Form from "@/components/Footer/Form";
 import Header from "@/components/Footer/Header";
 import Socials from "@/components/Footer/Socials";
@@ -37,9 +37,10 @@ export default function Footer() {
             y: "100%",
             transition: { duration: 0.8, ease: [0.75, 0, 0.25, 1] },
           }}
-          className="fixed inset-0  h-full z-[999] flex items-center justify-center"
+          className="fixed inset-0 border-6 h-full z-[999] flex items-center justify-center"
         >
-          <motion.div className="relative min-h-[100dvh] w-full bottom-0 -z-10 overflow-auto grid place-content-center bg-base-300 px-8 py-4 lg:px-12">
+          <motion.div className="relative min-h-[100dvh] w-full bottom-0 -z-10 overflow-auto grid place-content-center bg-accent px-8 py-4 lg:px-12">
+            <Overlay />
             <div className="flex flex-col items-start gap-8 mx-auto xl:flex-row w-fit">
               <div className="flex flex-col items-start justify-center w-full pb-6 gap-y-3 md:gap-y-6">
                 <Header />
@@ -55,63 +56,20 @@ export default function Footer() {
   );
 }
 
-const Bars = ({ isInView }) => {
+const Overlay = ({}) => {
   const variants = {
-    hidden: (custom) => ({
-      y: "100%",
-      transition: {
-        ease: [0.44, 0.36, 0.23, 0.96],
-        duration: 0.8,
-        delay: 0.1 + custom * 0.03,
-      },
-    }),
-    visible: (custom) => ({
+    hidden: { y: "100%" },
+    visible: {
       y: "0%",
-      transition: {
-        ease: [0.44, 0.36, 0.23, 0.96],
-        delay: custom * 0.05,
-        duration: 1.1,
-      },
-    }),
+      transition: { duration: 0.9, delay: 0.4, ease: [0.25, 1, 0.5, 1] },
+    },
   };
-
   return (
-    <div className="absolute bottom-0 -translate-y-[100%] right-0 flex flex-row w-full h-full z-10 ">
-      <motion.div
-        variants={variants}
-        initial="hidden"
-        custom={0}
-        animate={isInView ? "visible" : "hidden"}
-        className="z-10 w-1/4 h-full bg-base-100 max-sm:w-1/3"
-      />
-      <motion.div
-        variants={variants}
-        initial="hidden"
-        custom={1}
-        animate={isInView ? "visible" : "hidden"}
-        className="z-10 w-1/4 h-full bg-base-100 max-sm:w-1/3"
-      />
-      <motion.div
-        variants={variants}
-        initial="hidden"
-        custom={3}
-        animate={isInView ? "visible" : "hidden"}
-        className="z-10 w-1/4 h-full bg-base-100 max-sm:w-1/3"
-      />
-      <motion.div
-        variants={variants}
-        initial="hidden"
-        custom={2}
-        animate={isInView ? "visible" : "hidden"}
-        className="z-10 w-1/4 h-full bg-base-100 max-sm:hidden"
-      />
-      <motion.div
-        variants={variants}
-        initial="hidden"
-        custom={1}
-        animate={isInView ? "visible" : "hidden"}
-        className="z-10 w-1/4 h-full bg-base-100 max-sm:hidden"
-      />
-    </div>
+    <motion.div
+      variants={variants}
+      initial="hidden"
+      animate="visible"
+      className="absolute bottom-0 right-0 z-0 w-full h-full bg-base-300"
+    />
   );
 };

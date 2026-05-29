@@ -33,8 +33,8 @@ const Header = () => {
   };
 
   return (
-    <div className="lg:sticky max-lg:pt-[20vh] lg:min-w-96 xl:px-4 2xl:px-8 3xl:px-12 lg:-mt-[75vh] top-0 z-10  lg:h-screen  lg:items-end justify-startxl:mt-[10vh] lg:w-fit flex-col gap-0.5 lg:gap-1.5 flex">
-      <motion.div className="flex  flex-col justify-center gap-2 px-4 lg:items-end lg:justify-end h-fit sm:px-8 md:px-0 xl:mt-[15vh] 2xl:mt-[20vh]">
+    <div className="lg:sticky max-lg:pt-[10vh] lg:min-w-96 xl:px-4 2xl:px-8 3xl:px-12  top-[10vh] xl:top-[15vh] z-10  lg:h-screen  lg:items-end justify-start lg:w-fit flex-col gap-0.5 lg:gap-1.5 flex">
+      <motion.div className="flex flex-col justify-center gap-2 px-4 lg:items-end lg:justify-end h-fit sm:px-8 md:px-0">
         <motion.h3
           variants={titleVariants}
           animate="visible"

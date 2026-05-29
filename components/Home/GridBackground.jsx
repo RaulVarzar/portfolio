@@ -1,29 +1,30 @@
 "use client";
 
+import { AnimatedBox } from "@/util/exitAnimationWrapper";
 import { motion } from "framer-motion";
-import { usePageAnimation } from "@/hooks/usePageAnimation";
 
 const GridBackground = () => {
-  const controls = usePageAnimation({
+  const variants = {
     initial: { opacity: 0 },
     enter: {
       opacity: 1,
       transition: {
-        delay: 0.5,
-        duration: 0.75,
+        delay: 0.2,
+        duration: 0.45,
         ease: [0.75, 0, 0.3, 1],
       },
     },
-    exit: {
-      opacity: 0,
-      transition: { duration: 0.25, ease: "easeIn" },
-    },
-  });
+  };
+
   return (
-    <motion.div
-      animate={controls}
-      className="absolute inset-0 bg-base-100 grid-bg"
-    />
+    <AnimatedBox y={0}>
+      <motion.div
+        variants={variants}
+        initial="initial"
+        animate="enter"
+        className="absolute inset-0 bg-base-100 grid-bg"
+      />
+    </AnimatedBox>
   );
 };
 

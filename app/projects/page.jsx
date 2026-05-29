@@ -4,12 +4,7 @@ import Projects from "@/components/Projects/Projects";
 
 const page = () => {
   return (
-    <motion.div
-      initial={{ y: "30vh", opacity: 0 }}
-      animate={{ y: "0vh", opacity: 1 }}
-      exit={{ y: "100vh", opacity: 0.9 }}
-      transition={{ duration: 0.9, ease: [0.7, 0, 0.25, 1] }}
-    >
+    <motion.div transition={{ duration: 0.9, ease: [0.7, 0, 0.25, 1] }}>
       <div className="relative">
         <Projects />
       </div>

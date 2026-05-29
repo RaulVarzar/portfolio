@@ -48,14 +48,14 @@ const ProjectCard = ({ project, projectIndex }) => {
   const filter = useTransform(
     nextProgress,
     [0.25, 0.5],
-    ["blur(0px)", "blur(4px)"]
+    ["blur(0px)", "blur(4px)"],
   );
   /////////////
   return (
     <motion.div
       ref={containerRef}
       style={hasNext ? { opacity } : {}}
-      className="flex items-center  sticky top-[15vh] 2xl:top-[15vh] bg-base-100 w-full max-w-7xl overflow-hidden border-t border-opacity-20 border-base-content"
+      className="flex items-center  sticky top-[10vh] xl:top-[15vh] bg-base-100 w-full max-w-7xl overflow-hidden border-t border-opacity-20 border-base-content"
     >
       <motion.div
         style={hasNext ? { opacity, scale, filter } : {}}

@@ -12,7 +12,7 @@ import { FaRegEnvelope } from "react-icons/fa";
 import { MdOutlineMailOutline } from "react-icons/md";
 import { FaRegEnvelopeOpen } from "react-icons/fa";
 import { RiMailSendLine } from "react-icons/ri";
-import { usePageAnimation } from "@/hooks/usePageAnimation";
+import { AnimatedBox } from "@/util/exitAnimationWrapper";
 
 const variants = {
   hidden: { opacity: 0, y: "-150%", scale: 0.85, transition: { delay: 0 } },
@@ -63,92 +63,75 @@ const variants3 = {
 };
 
 export const Socials = () => {
-  const controls = usePageAnimation({
-    initial: { opacity: 0, y: 120, scale: 0.95 },
+  const variants = {
+    initial: { opacity: 0, y: -80, scale: 0.98 },
     enter: {
       opacity: 1,
       y: 0,
       scale: 1,
       transition: {
-        delay: 0.6,
-        duration: 0.95,
+        delay: 0.3,
+        duration: 0.75,
         ease: [0.75, 0, 0.25, 1],
       },
     },
-    exit: {
-      opacity: 0,
-      y: 100,
-      transition: { duration: 0.25, ease: "easeIn" },
-    },
-  });
-  const { scrollY } = useScroll();
-  const [hidden, setHidden] = useState(false);
+  };
+
   const [hovering, setHovering] = useState(null);
 
-  function update() {
-    if (scrollY?.current < 250) {
-      setHidden(false);
-    } else if (scrollY?.current >= 200) {
-      setHidden(true);
-    }
-  }
-  useEffect(() => {
-    return scrollY.on("change", () => update());
-  });
-
   return (
-    <motion.div
-      animate={controls}
-      className="inset-0 flex flex-row gap-2 py-8 mx-auto tracking-tighter md:gap-3 2xl:gap-4 lg:py-10 w-fit h-fit"
-    >
-      <SocialLink
-        link={"https://github.com/RaulVarzar"}
-        title={"github"}
-        id={1}
-        hovering={hovering}
-        setHovering={setHovering}
-        hidden={hidden}
+    <AnimatedBox y={100}>
+      <motion.div
+        variants={variants}
+        initial="initial"
+        animate="enter"
+        className="absolute inset-x-0 top-0 flex flex-row gap-2 py-8 mx-auto tracking-tighter md:gap-3 2xl:gap-4 lg:py-10 w-fit h-fit"
       >
-        <IoLogoGithub />
-      </SocialLink>
+        <SocialLink
+          link={"https://github.com/RaulVarzar"}
+          title={"github"}
+          id={1}
+          hovering={hovering}
+          setHovering={setHovering}
+        >
+          <IoLogoGithub />
+        </SocialLink>
 
-      <SocialLink
-        link={"https://behance.net/varzarr"}
-        title={"behance"}
-        id={2}
-        hovering={hovering}
-        setHovering={setHovering}
-        hidden={hidden}
-      >
-        <BsBehance />
-      </SocialLink>
+        <SocialLink
+          link={"https://behance.net/varzarr"}
+          title={"behance"}
+          id={2}
+          hovering={hovering}
+          setHovering={setHovering}
+        >
+          <BsBehance />
+        </SocialLink>
 
-      <SocialLink
-        link={"https://instagram.com/raulvarzar"}
-        title={"instagram"}
-        id={3}
-        hovering={hovering}
-        setHovering={setHovering}
-        hidden={hidden}
-      >
-        <BiLogoInstagram />
-      </SocialLink>
+        <SocialLink
+          link={"https://instagram.com/raulvarzar"}
+          title={"instagram"}
+          id={3}
+          hovering={hovering}
+          setHovering={setHovering}
+        >
+          <BiLogoInstagram />
+        </SocialLink>
 
-      <SocialLink
-        link={"mailto:raul_varzar@yahoo.com"}
-        title={"email"}
-        id={4}
-        hovering={hovering}
-        setHovering={setHovering}
-        hidden={hidden}
-      >
-        <MdOutlineMailOutline />
-      </SocialLink>
-    </motion.div>
+        <SocialLink
+          link={"mailto:raul_varzar@yahoo.com"}
+          title={"email"}
+          id={4}
+          hovering={hovering}
+          setHovering={setHovering}
+        >
+          <MdOutlineMailOutline />
+        </SocialLink>
+      </motion.div>
+    </AnimatedBox>
   );
 };
 
-const SocialLink = ({ children, id, link, hovering, setHovering, hidden }) => {
+const SocialLink = ({ children, id, link, hovering, setHovering }) => {
   const bgVariants = {
     idle: {
       y: "101%",
@@ -168,10 +151,10 @@ const SocialLink = ({ children, id, link, hovering, setHovering, hidden }) => {
       onHoverEnd={() => setHovering(null)}
       className={`relative px-3.5 py-1.5 transition-all duration-700 font-light overflow-hidden border-opacity-15 tracking-wide border rounded-sm cursor-pointer text-opacity-80 border-base-content text-neutral-content ${
         hovering === id
-          ? " opacity-100 "
+          ? " opacity-100 scale-105"
           : hovering === null
-          ? " opacity-100 "
-          : " brightness-75 "
+            ? " opacity-100 "
+            : " brightness-65 "
       } `}
     >
       <motion.div

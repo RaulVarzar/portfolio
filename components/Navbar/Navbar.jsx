@@ -5,7 +5,7 @@ import NavButton from "./NavButton";
 import ContactButton from "./ContactButton/ContactButton";
 import { motion } from "framer-motion";
 import { TiPlusOutline } from "react-icons/ti";
-import { usePathname } from "next/navigation";
+import { AnimatedBox } from "@/util/exitAnimationWrapper";
 
 const Navbar = () => {
   const bgVariants = {
@@ -27,24 +27,21 @@ const Navbar = () => {
       transition: { duration: 0.65, ease: [0.8, 0, 0.2, 1] },
     },
   };
-  const pathname = usePathname();
 
   const { toggleFooter } = useFooter();
 
   return (
-    <motion.nav className="fixed z-[99999] top-0 inset-x-0 flex items-center justify-end w-full gap-4 md:gap-6 xl:gap-8 py-6 px-2 sm:px-4 lg:px-8 xl:py-8 3xl:py-10 mx-auto max-w-screen-3xl">
-      {/* <NavButton label="My skills">
-        <TiPlusOutline />
-      </NavButton> */}
-      <NavButton
-        label={pathname === "/projects" ? "Home" : "Projects"}
-        link={pathname === "/projects" ? "/" : "projects"}
-      >
-        <TiPlusOutline />
-      </NavButton>
-
-      <ContactButton onClick={toggleFooter} />
-    </motion.nav>
+    <AnimatedBox scale={0.8} duration={0.65}>
+      <motion.nav className="fixed z-[9999] bottom-0 inset-x-0 flex items-center justify-center w-full gap-4 md:gap-6 xl:gap-8 py-6 px-2 sm:px-4 lg:px-8 xl:py-8 3xl:py-10 mx-auto max-w-screen-3xl">
+        <NavButton label="Skills" link="skills">
+          <TiPlusOutline />
+        </NavButton>
+        <ContactButton onClick={toggleFooter} />
+        <NavButton label="Projects" link="projects">
+          <TiPlusOutline />
+        </NavButton>
+      </motion.nav>
+    </AnimatedBox>
   );
 };
 

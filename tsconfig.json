@@ -33,7 +33,9 @@
     "**/*.tsx",
     ".next/types/**/*.ts",
     "app/layout.tsx",
-    "app/providers/LenisProvider.jsx"
+    "app/providers/LenisProvider.jsx",
+    "hooks/useHashNavigation.js",
+    "app/lib/lenis.ts"
   ],
   "exclude": ["node_modules"]
 }
