@@ -1765,9 +1765,6 @@ details.collapse summary::-webkit-details-marker {
 .top-\[10vh\] {
   top: 10vh;
 }
-.-z-0 {
-  z-index: 0;
-}
 .-z-10 {
   z-index: -10;
 }
@@ -2161,6 +2158,9 @@ details.collapse summary::-webkit-details-marker {
   --tw-bg-opacity: 1;
   background-color: var(--fallback-b1,oklch(var(--b1)/var(--tw-bg-opacity)));
 }
+.bg-base-100\/40 {
+  background-color: var(--fallback-b1,oklch(var(--b1)/0.4));
+}
 .bg-base-200 {
   --tw-bg-opacity: 1;
   background-color: var(--fallback-b2,oklch(var(--b2)/var(--tw-bg-opacity)));
@@ -2177,14 +2177,6 @@ details.collapse summary::-webkit-details-marker {
   --tw-bg-opacity: 1;
   background-color: rgb(6 95 70 / var(--tw-bg-opacity));
 }
-.bg-error {
-  --tw-bg-opacity: 1;
-  background-color: var(--fallback-er,oklch(var(--er)/var(--tw-bg-opacity)));
-}
-.bg-neutral {
-  --tw-bg-opacity: 1;
-  background-color: var(--fallback-n,oklch(var(--n)/var(--tw-bg-opacity)));
-}
 .bg-neutral-content {
   --tw-bg-opacity: 1;
   background-color: var(--fallback-nc,oklch(var(--nc)/var(--tw-bg-opacity)));
@@ -2193,18 +2185,12 @@ details.collapse summary::-webkit-details-marker {
   --tw-bg-opacity: 1;
   background-color: var(--fallback-p,oklch(var(--p)/var(--tw-bg-opacity)));
 }
-.bg-transparent {
-  background-color: transparent;
-}
 .bg-red-500 {
   --tw-bg-opacity: 1;
   background-color: rgb(239 68 68 / var(--tw-bg-opacity));
 }
-.bg-base-100\/70 {
-  background-color: var(--fallback-b1,oklch(var(--b1)/0.7));
-}
-.bg-base-100\/40 {
-  background-color: var(--fallback-b1,oklch(var(--b1)/0.4));
+.bg-transparent {
+  background-color: transparent;
 }
 .bg-opacity-65 {
   --tw-bg-opacity: 0.65;
@@ -2230,9 +2216,6 @@ details.collapse summary::-webkit-details-marker {
 }
 .p-0 {
   padding: 0px;
-}
-.p-0\.5 {
-  padding: 0.125rem;
 }
 .p-1 {
   padding: 0.25rem;
@@ -2329,6 +2312,9 @@ details.collapse summary::-webkit-details-marker {
 .pb-20 {
   padding-bottom: 5rem;
 }
+.pb-28 {
+  padding-bottom: 7rem;
+}
 .pb-6 {
   padding-bottom: 1.5rem;
 }
@@ -2356,14 +2342,11 @@ details.collapse summary::-webkit-details-marker {
 .pt-0\.5 {
   padding-top: 0.125rem;
 }
-.pt-8 {
-  padding-top: 2rem;
-}
-.pb-28 {
-  padding-bottom: 7rem;
-}
 .pt-4 {
   padding-top: 1rem;
+}
+.pt-8 {
+  padding-top: 2rem;
 }
 .text-left {
   text-align: left;
@@ -2426,9 +2409,6 @@ details.collapse summary::-webkit-details-marker {
 .font-semibold {
   font-weight: 600;
 }
-.font-thin {
-  font-weight: 100;
-}
 .uppercase {
   text-transform: uppercase;
 }
@@ -2476,13 +2456,6 @@ details.collapse summary::-webkit-details-marker {
 .text-white {
   --tw-text-opacity: 1;
   color: rgb(255 255 255 / var(--tw-text-opacity));
-}
-.text-base-200 {
-  --tw-text-opacity: 1;
-  color: var(--fallback-b2,oklch(var(--b2)/var(--tw-text-opacity)));
-}
-.text-opacity-100 {
-  --tw-text-opacity: 1;
 }
 .text-opacity-80 {
   --tw-text-opacity: 0.8;
