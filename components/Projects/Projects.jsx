@@ -8,7 +8,6 @@ import Header from "@/components/Projects/Header";
 import ProjectCard from "@/components/Projects/ProjectCard";
 import Link from "next/link";
 import Skills from "../Skills/Skills";
-import HomeButton from "./HomeButton";
 import { AnimatedBox } from "@/util/exitAnimationWrapper";
 
 const Projects = () => {
@@ -28,7 +27,6 @@ const Projects = () => {
           ))}
           <div className="h-[30vh] w-full" />
         </motion.div>
-        <HomeButton />
       </motion.div>
     </AnimatedBox>
   );

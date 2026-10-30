@@ -12,6 +12,7 @@ export function RootLayoutClient({ children }) {
       <FooterProvider>
         <ScrollContext>
           {children}
+          <Navbar />
           <Footer />
         </ScrollContext>
       </FooterProvider>

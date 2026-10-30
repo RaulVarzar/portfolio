@@ -1,82 +1,50 @@
 "use client";
 
-import { motion, AnimatePresence } from "framer-motion";
-import { useFooter } from "../../Footer/FooterContext";
-import NavButton from "../NavButton";
+import { motion } from "framer-motion";
+import { useFooter } from "@/components/Footer/FooterContext";
 
-import ButtonLabel from "./ButtonLabel";
-import ButtonIcon from "./ButtonIcon";
+const ease = [0.75, 0, 0.25, 1];
 
-const buttonVariants = {
-  idle: {
-    scale: 1,
-    transition: { duration: 0.45, ease: [0.75, 0, 0.25, 1] },
-  },
-  hover: {
-    scale: 1.05,
-    transition: { duration: 0.65, ease: [0.75, 0, 0.25, 1] },
-  },
-};
-
-const bgVariants = {
-  idle: {
-    y: "102%",
-    transition: { duration: 0.45, ease: [0.75, 0, 0.25, 1] },
-  },
-  hover: {
-    y: "0%",
-    transition: { duration: 0.65, ease: [0.75, 0, 0.25, 1] },
-  },
-};
-
-const ControlButton = ({ onClick }) => {
+const ContactButton = ({ onClick }) => {
   const { isOpen } = useFooter();
 
   return (
-    <NavButton onClick={onClick} label="Contact"></NavButton>
-    // <motion.button
-    //   initial="idle"
-    //   whileHover="hover"
-    //   animate="idle"
-    //   variants={buttonVariants}
-    //   onClick={onClick}
-    //   className="relative flex flex-row items-center overflow-hidden font-semibold tracking-wide text-opacity-100 uppercase rounded-sm w-fit text-base-content bg-neutral p-0.5"
-    // >
-    //   <ButtonLabel isOpen={isOpen} />
-
-    //   <ButtonIcon isOpen={isOpen} />
-
-    //   <motion.div
-    //     variants={bgVariants}
-    //     layoutId="hoverLine"
-    //     className="absolute inset-0 bg-accent -z-0"
-    //   />
-    //   <AnimatePresence>
-    //     {isOpen && (
-    //       <motion.div
-    //         initial={{ opacity: 0 }}
-    //         animate={{
-    //           opacity: 1,
-    //           transition: {
-    //             duration: 0.4,
-    //             delay: 0.3,
-    //             ease: [0.75, 0, 0.25, 1],
-    //           },
-    //         }}
-    //         exit={{
-    //           opacity: 0,
-    //           transition: {
-    //             duration: 0.2,
-    //             delay: 0.15,
-    //             ease: [0.75, 0, 0.25, 1],
-    //           },
-    //         }}
-    //         className="absolute inset-0 z-0 bg-error"
-    //       />
-    //     )}
-    //   </AnimatePresence>
-    // </motion.button>
+    <button
+      type="button"
+      onClick={onClick}
+      aria-expanded={isOpen}
+      className={`relative flex items-center overflow-hidden uppercase tracking-wide font-normal px-3 py-1.5 w-fit rounded-[0.175rem] transition-colors duration-300
+        ${
+          isOpen
+            ? "bg-red-500 text-white"
+            : "text-base-content hover:bg-base-content hover:bg-opacity-10"
+        }`}
+    >
+      {/* Both labels share one grid cell, so the button keeps a stable width */}
+      <span className="grid text-[0.85rem]">
+        <motion.span
+          className="col-start-1 row-start-1 text-center"
+          initial={false}
+          aria-hidden={isOpen}
+          animate={
+            isOpen ? { opacity: 0, y: "-70%" } : { opacity: 0.8, y: "0%" }
+          }
+          transition={{ duration: 0.45, ease }}
+        >
+          Contact
+        </motion.span>
+        <motion.span
+          className="col-start-1 row-start-1 text-center"
+          initial={false}
+          aria-hidden={!isOpen}
+          animate={isOpen ? { opacity: 1, y: "0%" } : { opacity: 0, y: "70%" }}
+          transition={{ duration: 0.45, ease }}
+        >
+          Close
+        </motion.span>
+      </span>
+    </button>
   );
 };
 
-export default ControlButton;
+export default ContactButton;

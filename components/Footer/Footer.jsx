@@ -37,9 +37,10 @@ export default function Footer() {
             y: "100%",
             transition: { duration: 0.8, ease: [0.75, 0, 0.25, 1] },
           }}
-          className="fixed inset-0 border-6 h-full z-[999] flex items-center justify-center"
+          data-lenis-prevent
+          className="fixed inset-0 border-6 h-full z-[999] flex items-start justify-center overflow-y-auto overscroll-contain"
         >
-          <motion.div className="relative min-h-[100dvh] w-full bottom-0 -z-10 overflow-auto grid place-content-center bg-accent px-8 py-4 lg:px-12">
+          <motion.div className="relative min-h-[100dvh] w-full bottom-0 -z-10 overflow-auto grid place-content-center bg-accent px-8 pt-4 pb-28 lg:px-12">
             <Overlay />
             <div className="flex flex-col items-start gap-8 mx-auto xl:flex-row w-fit">
               <div className="flex flex-col items-start justify-center w-full pb-6 gap-y-3 md:gap-y-6">

@@ -8,7 +8,6 @@ import { useFooter } from "@/components/Footer/FooterContext";
 import ProfilePhoto from "@/components/Home/ProfilePhoto";
 import HTMLText from "@/components/Home/HTMLText";
 import GridBackground from "@/components/Home/GridBackground";
-import Navbar from "../Navbar/Navbar";
 import ContentWrapper from "./ContentWrapper";
 import { AnimatedBox } from "@/util/exitAnimationWrapper";
 
@@ -19,7 +18,6 @@ const Home = () => {
 
   return (
     <>
-      <Navbar />
       <section className=" min-h-[100dvh]  z-10 flex flex-col relative justify-center w-full grow  place-content-start">
         <GridBackground />
         <ContentWrapper isOpen={isOpen}>

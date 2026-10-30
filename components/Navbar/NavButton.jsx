@@ -2,28 +2,13 @@
 
 import { motion } from "framer-motion";
 import { useFooter } from "@/components/Footer/FooterContext";
-import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useAnimatedRouter } from "../useAnimatedRouter";
 
-const ControlButton = ({
-  className = "",
-  children,
-  label,
-  link,
-  active = false,
-}) => {
+const ControlButton = ({ className = "", children, label, link }) => {
+  const pathname = usePathname();
+  const active = pathname === link;
   const { isOpen } = useFooter();
-
-  const bgVariants = {
-    idle: {
-      y: "102%",
-      transition: { duration: 0.43, ease: [0.75, 0, 0.25, 1] },
-    },
-    hover: {
-      y: "0%",
-      transition: { duration: 0.65, ease: [0.75, 0, 0.25, 1] },
-    },
-  };
 
   const labelVariants = {
     idle: {
@@ -41,40 +26,54 @@ const ControlButton = ({
 
   return (
     <motion.div
-      initial={{ y: 0 }}
+      className="relative"
+      initial={false}
       animate={
         isOpen
           ? {
-              y: "-150%",
+              width: 0,
               opacity: 0,
-              transition: { duration: 0.4, ease: [0.75, 0, 0.25, 1] },
+              marginRight: 0,
+              overflow: "hidden",
+              transition: { duration: 0.55, ease: [0.75, 0, 0.25, 1] },
             }
           : {
-              y: "0%",
+              width: "auto",
               opacity: 1,
+              marginRight: "0.375rem",
               transition: { duration: 0.65, ease: [0.75, 0, 0.25, 1] },
+              // keep clipping while expanding, then release so the sliding pill isn't clipped
+              transitionEnd: { overflow: "visible" },
             }
       }
+      style={{ pointerEvents: isOpen ? "none" : "auto" }}
+      aria-hidden={isOpen}
     >
+      {active && (
+        <motion.span
+          layoutId="nav-active-pill"
+          className="absolute inset-0 rounded-[0.175rem] bg-base-content"
+          transition={{ duration: 0.5, ease: [0.75, 0, 0.25, 1] }}
+        />
+      )}
       <button
+        tabIndex={isOpen ? -1 : 0}
         initial="idle"
         whileHover="hover"
         animate="idle"
         onClick={(e) => {
           navigate(link);
         }}
-        className={`relative flex flex-row uppercase items-center overflow-hidden tracking-wide  font-normal px-3 py-1.5 gap-0.5 w-fit rounded-[0.175rem]  
-          ${active ? "bg-base-content text-base-300" : "text-base-content hover:bg-base-content hover:bg-opacity-10 transition-colors duration-300"} 
+        className={`relative z-10 flex flex-row uppercase items-center overflow-hidden whitespace-nowrap tracking-wide  font-normal px-3 py-1.5 gap-0.5 w-fit rounded-[0.175rem]  
+          ${active ? "text-base-300 font-bold" : "text-base-content hover:bg-base-content hover:bg-opacity-10"} transition-colors duration-300 
           ${className}`}
       >
-        <motion.p className="z-10 text-[0.85rem]  " variants={labelVariants}>
+        <motion.p
+          className={`z-10 text-[0.85rem]  ${active ? "font-bold" : "font-normal"}`}
+          variants={labelVariants}
+        >
           {label}
         </motion.p>
-        {children && (
-          <span className="z-10 grid p-2 text-sm rounded-sm place-content-center backdrop-brightness-150">
-            {children}
-          </span>
-        )}
       </button>
     </motion.div>
   );
