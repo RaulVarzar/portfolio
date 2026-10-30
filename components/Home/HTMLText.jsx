@@ -2,51 +2,76 @@
 
 import { motion } from "framer-motion";
 import HtmlElement from "@/components/Home/HtmlElement";
-import { AnimatedBox } from "@/util/exitAnimationWrapper";
+
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.55,
+      delayChildren: 0.6,
+    },
+  },
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, x: -40 },
+  visible: {
+    opacity: 1,
+    x: 0,
+    transition: { duration: 0.9, ease: "easeOut" },
+  },
+};
 
 const HTMLText = ({ zoomInText }) => {
   return (
-    <AnimatedBox scale={0.98} duration={0.65}>
-      <motion.div className="relative flex flex-col max-w-3xl gap-0 py-2 roboto md:max-w-4xl 2xl:max-w-6xl sm:px-4 max-sm:pl-3 md:pr-12 md:pl-10 h-fit xl:pl-12 xl:pr-16 2xl:pr-20 ">
-        <HtmlElement tag={"header"} zoomInText={zoomInText}>
-          <HtmlElement tag={"h3"} zoomInText={zoomInText}>
-            <motion.h3
-              className={
-                "text-sm md:text-md xl:text-xl  leading-tight  2xl:text-3xl z-50 text-neutral-content transition-all duration-500 ease-[cubic-bezier(.03,.98,.52,.99)]  " +
-                (zoomInText
-                  ? " scale-105 opacity-90 tracking-wide"
-                  : " opacity-70 tracking-normal")
-              }
-            >
-              Hello, my name is
-            </motion.h3>
-          </HtmlElement>
-          <HtmlElement tag={"h1"} zoomInText={zoomInText}>
-            <motion.h3
-              className={
-                "text-4xl font-bold roboto md:text-5xl lg:text-6xl xl:text-6xl 2xl:text-7xl 2xl:text-8xl 3xl:text-9xl z-50 text-neutral-content brightness-125 transition-all duration-500  ease-[cubic-bezier(.03,.98,.52,.99)] " +
-                (zoomInText
-                  ? " scale-105  opacity-90 tracking-normal"
-                  : " opacity-70 tracking-tight ")
-              }
-            >
-              Raul Vărzar
-            </motion.h3>
-          </HtmlElement>
-        </HtmlElement>
-        <HtmlElement zoomInText={zoomInText} tag={"p"}>
+    <motion.div
+      className="relative flex flex-col max-w-3xl gap-0 py-2 roboto md:max-w-4xl 2xl:max-w-6xl sm:px-4 max-sm:pl-3 md:pr-12 md:pl-10 h-fit xl:pl-12 xl:pr-16 2xl:pr-20 "
+      variants={containerVariants}
+      initial="hidden"
+      animate="visible"
+    >
+      <HtmlElement
+        tag={"header"}
+        zoomInText={zoomInText}
+        variants={itemVariants}
+      >
+        <HtmlElement tag={"h3"} zoomInText={zoomInText} variants={itemVariants}>
           <motion.h3
             className={
               "text-sm md:text-md xl:text-xl  leading-tight  2xl:text-3xl z-50 text-neutral-content transition-all duration-500 ease-[cubic-bezier(.03,.98,.52,.99)]  " +
-              (zoomInText ? " scale-105 font-normal opacity-90" : " opacity-70")
+              (zoomInText
+                ? " scale-105 opacity-90 tracking-wide"
+                : " opacity-70 tracking-normal")
             }
           >
-            I am passionate about web design and creating stuff that looks
-            pretty
+            Hello, my name is
           </motion.h3>
         </HtmlElement>
-      </motion.div>
-    </AnimatedBox>
+        <HtmlElement tag={"h1"} zoomInText={zoomInText} variants={itemVariants}>
+          <motion.h3
+            className={
+              "text-4xl font-bold roboto md:text-5xl lg:text-6xl xl:text-6xl 2xl:text-7xl 2xl:text-8xl 3xl:text-9xl z-50 text-neutral-content brightness-125 transition-all duration-500  ease-[cubic-bezier(.03,.98,.52,.99)] " +
+              (zoomInText
+                ? " scale-105  opacity-90 tracking-normal"
+                : " opacity-70 tracking-tight ")
+            }
+          >
+            Raul Vărzar
+          </motion.h3>
+        </HtmlElement>
+      </HtmlElement>
+      <HtmlElement zoomInText={zoomInText} tag={"p"} variants={itemVariants}>
+        <motion.h3
+          className={
+            "text-sm md:text-md xl:text-xl  leading-tight  2xl:text-3xl z-50 text-neutral-content transition-all duration-500 ease-[cubic-bezier(.03,.98,.52,.99)]  " +
+            (zoomInText ? " scale-105 font-normal opacity-90" : " opacity-70")
+          }
+        >
+          I am passionate about web design and creating stuff that looks pretty
+        </motion.h3>
+      </HtmlElement>
+    </motion.div>
   );
 };
 

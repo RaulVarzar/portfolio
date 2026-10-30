@@ -10,6 +10,7 @@ import HTMLText from "@/components/Home/HTMLText";
 import GridBackground from "@/components/Home/GridBackground";
 import Navbar from "../Navbar/Navbar";
 import ContentWrapper from "./ContentWrapper";
+import { AnimatedBox } from "@/util/exitAnimationWrapper";
 
 const Home = () => {
   const { isOpen } = useFooter();
@@ -22,18 +23,20 @@ const Home = () => {
       <section className=" min-h-[100dvh]  z-10 flex flex-col relative justify-center w-full grow  place-content-start">
         <GridBackground />
         <ContentWrapper isOpen={isOpen}>
-          <Tilt
-            tiltReverse={true}
-            tiltMaxAngleX={6}
-            tiltMaxAngleY={6}
-            reset={false}
-            perspective={2000}
-            transitionSpeed={2}
-            onEnter={() => screenSize.width > 1080 && setZoomInText(true)}
-            onLeave={() => setZoomInText(false)}
-          >
-            <HTMLText zoomInText={zoomInText} />
-          </Tilt>
+          <AnimatedBox scale={0.98} duration={0.75}>
+            <Tilt
+              tiltReverse={true}
+              tiltMaxAngleX={6}
+              tiltMaxAngleY={6}
+              reset={false}
+              perspective={2000}
+              transitionSpeed={2}
+              onEnter={() => screenSize.width > 1080 && setZoomInText(true)}
+              onLeave={() => setZoomInText(false)}
+            >
+              <HTMLText zoomInText={zoomInText} />
+            </Tilt>
+          </AnimatedBox>
 
           <ProfilePhoto />
         </ContentWrapper>

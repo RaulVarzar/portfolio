@@ -5,7 +5,13 @@ import { useFooter } from "@/components/Footer/FooterContext";
 import Link from "next/link";
 import { useAnimatedRouter } from "../useAnimatedRouter";
 
-const ControlButton = ({ className = "", children, label, link }) => {
+const ControlButton = ({
+  className = "",
+  children,
+  label,
+  link,
+  active = false,
+}) => {
   const { isOpen } = useFooter();
 
   const bgVariants = {
@@ -57,12 +63,11 @@ const ControlButton = ({ className = "", children, label, link }) => {
         onClick={(e) => {
           navigate(link);
         }}
-        className={`relative flex flex-row uppercase items-center overflow-hidden tracking-wide  text-neutral-content font-medium  pr-2 pl-3 py-1.5 md:py-2 gap-0.5 border-neutral-content border- border-opacity-15 w-fit  ${className}`}
+        className={`relative flex flex-row uppercase items-center overflow-hidden tracking-wide  font-normal px-3 py-1.5 gap-0.5 w-fit rounded-[0.175rem]  
+          ${active ? "bg-base-content text-base-300" : "text-base-content hover:bg-base-content hover:bg-opacity-10 transition-colors duration-300"} 
+          ${className}`}
       >
-        <motion.p
-          className="z-10 text-[0.85rem] lg:text-base  "
-          variants={labelVariants}
-        >
+        <motion.p className="z-10 text-[0.85rem]  " variants={labelVariants}>
           {label}
         </motion.p>
         {children && (

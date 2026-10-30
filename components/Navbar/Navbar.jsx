@@ -32,14 +32,11 @@ const Navbar = () => {
 
   return (
     <AnimatedBox scale={0.8} duration={0.65}>
-      <motion.nav className="fixed z-[9999] bottom-0 inset-x-0 flex items-center justify-center w-full gap-4 md:gap-6 xl:gap-8 py-6 px-2 sm:px-4 lg:px-8 xl:py-8 3xl:py-10 mx-auto max-w-screen-3xl">
-        <NavButton label="Skills" link="skills">
-          <TiPlusOutline />
-        </NavButton>
-        <ContactButton onClick={toggleFooter} />
-        <NavButton label="Projects" link="projects">
-          <TiPlusOutline />
-        </NavButton>
+      <motion.nav className="fixed z-[9999] bottom-0 border-1 border-opacity-25 rounded-[0.3rem]  border-base-content inset-x-0 flex items-center justify-center w-fit gap-1.5  py-1.5 px-1.5 mb-6 xl:mb-8 2xl:mb-10 mx-auto max-w-screen-3xl">
+        <NavButton label="Home" link="/" active={true} />
+        <NavButton label="Skills" link="skills" />
+        <NavButton label="Projects" link="projects" />
+        {/* <ContactButton onClick={toggleFooter} /> */}
       </motion.nav>
     </AnimatedBox>
   );
