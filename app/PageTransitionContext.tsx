@@ -7,7 +7,7 @@ const PageTransitionContext = createContext(null);
 export function PageTransitionProvider({ children }) {
   const exits = useRef([]);
 
-  const registerExit = (fn: ExitFn) => {
+  const registerExit = (fn) => {
     exits.current.push(fn);
   };
 

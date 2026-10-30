@@ -27,7 +27,7 @@ const ContentWrapper = ({ children, isOpen }) => {
               },
             }
       }
-      className="flex flex-col-reverse items-center justify-center h-full gap-4 px-2 pb-20 mx-auto sm:max-w-xl md:max-w-2xl lg:max-w-3xl xl:max-w-screen-3xl xl:px-20 sm:px-4 md:px-8 grow xl:flex-row "
+      className="flex flex-col-reverse items-center justify-center h-full gap-4 px-2 mx-auto my-24 sm:max-w-xl md:max-w-2xl lg:max-w-3xl xl:max-w-screen-3xl xl:px-20 sm:px-4 md:px-8 grow xl:flex-row "
     >
       {children}
     </motion.div>
