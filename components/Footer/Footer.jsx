@@ -57,7 +57,7 @@ export default function Footer() {
   );
 }
 
-const Overlay = ({}) => {
+const Overlay = () => {
   const variants = {
     hidden: { y: "100%" },
     visible: {

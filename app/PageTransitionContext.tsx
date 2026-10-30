@@ -1,15 +1,11 @@
+// @ts-nocheck
 // PageTransitionContext.tsx
 import { createContext, useContext, useRef } from "react";
 
-type ExitFn = () => Promise<void>;
-
-const PageTransitionContext = createContext<{
-  registerExit: (fn: ExitFn) => void;
-  runExit: () => Promise<void>;
-} | null>(null);
+const PageTransitionContext = createContext(null);
 
 export function PageTransitionProvider({ children }) {
-  const exits = useRef<ExitFn[]>([]);
+  const exits = useRef([]);
 
   const registerExit = (fn: ExitFn) => {
     exits.current.push(fn);

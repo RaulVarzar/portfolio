@@ -5,7 +5,7 @@ import { useFooter } from "@/components/Footer/FooterContext";
 import { usePathname } from "next/navigation";
 import { useAnimatedRouter } from "../useAnimatedRouter";
 
-const ControlButton = ({ className = "", children, label, link }) => {
+const ControlButton = ({ className = "", label, link }) => {
   const pathname = usePathname();
   const active = pathname === link;
   const { isOpen } = useFooter();
@@ -58,9 +58,6 @@ const ControlButton = ({ className = "", children, label, link }) => {
       )}
       <button
         tabIndex={isOpen ? -1 : 0}
-        initial="idle"
-        whileHover="hover"
-        animate="idle"
         onClick={(e) => {
           navigate(link);
         }}

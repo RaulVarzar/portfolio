@@ -1,9 +1,8 @@
 "use client";
 
-import React, { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import emailjs from "@emailjs/browser";
 import { AnimatePresence, motion } from "framer-motion";
-import { BsChevronCompactDown } from "react-icons/bs";
 import InputField from "@/components/Footer/InputField";
 
 const Form = () => {
@@ -39,7 +38,7 @@ const Form = () => {
         "service_86b16ld",
         "template_zcbtlko",
         form.current,
-        "taFxVEHpZaCSDSpKM"
+        "taFxVEHpZaCSDSpKM",
       )
       .then(
         (result) => {
@@ -50,7 +49,7 @@ const Form = () => {
         (error) => {
           setError("Failed to send email. Please try again later");
           setLoading(false);
-        }
+        },
       );
   };
 
